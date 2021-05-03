@@ -1,0 +1,442 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation -0.2511823952711989 0.9268350509231473 0.2790773955126247 1.7290747115115876
+  position 9.311713315837965 5.626192703188004 -0.7327887381782582
+}
+TexturedBackground {
+  texture "empty_office"
+  reflections FALSE
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  name "restaurant"
+  floorSize 6 6
+  floorAppearance Parquetry {
+    type "light strip"
+    colorOverride 0.8 0.8 0.8
+  }
+  wallThickness 0.03
+  wallHeight 0.7
+  wallAppearance BrushedAluminium {
+    colorOverride 0.4 0.4 0.4
+  }
+}
+Door {
+  translation 3.02 0 -4.42745e-07
+  rotation 0 1 0 -1.5707953071795862
+  size 0.5 0.7 0.04
+  canBeOpen FALSE
+  doorThickness 0.01
+  frameHeight 1
+  frameSize 0.03 0.02 0.01
+  wallAppearance Roughcast {
+    colorOverride 0.5 0.5 0.5
+  }
+}
+HotPlate {
+  translation -2.77 0.27 2.9
+}
+HotPlate {
+  translation -2.77 0.27 2.42
+  name "hot plate(1)"
+}
+Table {
+  translation -1.72 0.0100098 -2.26
+  rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
+  size 0.6 0.25 0.4
+  feetSize 0.02 0.02
+  frameThickness 0.02
+}
+Table {
+  translation -0.22 0.0100098 -2.26
+  rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
+  name "table(1)"
+  size 0.6 0.25 0.4
+  feetSize 0.02 0.02
+  frameThickness 0.02
+}
+Table {
+  translation 1.28 0.0100098 -2.26
+  rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
+  name "table(2)"
+  size 0.6 0.25 0.4
+  feetSize 0.02 0.02
+  frameThickness 0.02
+}
+Table {
+  translation 1.28 0.0100033 -0.76
+  rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
+  name "table(3)"
+  size 0.6 0.25 0.4
+  feetSize 0.02 0.02
+  frameThickness 0.02
+}
+Table {
+  translation -0.22 0.0100033 -0.759999
+  rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
+  name "table(4)"
+  size 0.6 0.25 0.4
+  feetSize 0.02 0.02
+  frameThickness 0.02
+}
+Table {
+  translation -1.72 0.0100033 -0.759999
+  rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
+  name "table(5)"
+  size 0.6 0.25 0.4
+  feetSize 0.02 0.02
+  frameThickness 0.02
+}
+Table {
+  translation -0.22 0.00999676 0.740001
+  rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
+  name "table(7)"
+  size 0.6 0.25 0.4
+  feetSize 0.02 0.02
+  frameThickness 0.02
+}
+Table {
+  translation 1.28 0.00999676 0.740001
+  rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
+  name "table(6)"
+  size 0.6 0.25 0.4
+  feetSize 0.02 0.02
+  frameThickness 0.02
+}
+Table {
+  translation 1.28 0.0099897 2.24
+  rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
+  name "table(10)"
+  size 0.6 0.25 0.4
+  feetSize 0.02 0.02
+  frameThickness 0.02
+}
+Table {
+  translation -0.22 0.0099897 2.24
+  rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
+  name "table(11)"
+  size 0.6 0.25 0.4
+  feetSize 0.02 0.02
+  frameThickness 0.02
+}
+Plate {
+  translation -0.07999999999983376 0.2599369089007957 0.7300000905162962
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  radius 0.05
+}
+Plate {
+  translation 1.42 0.259937 0.73
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate13"
+  radius 0.05
+}
+Plate {
+  translation 1.28 0.259935 2.01
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(24)"
+  radius 0.05
+}
+Plate {
+  translation 1.28 0.259935 2.46
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(25)"
+  radius 0.05
+}
+Plate {
+  translation 1.28 0.259942 -0.54
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(26)"
+  radius 0.05
+}
+Plate {
+  translation 1.28 0.259942 -0.99
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(27)"
+  radius 0.05
+}
+Plate {
+  translation 1.28 0.259942 -2.49
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(28)"
+  radius 0.05
+}
+Plate {
+  translation 1.17 0.259942 -2.27
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(30)"
+  radius 0.05
+}
+Plate {
+  translation 1.41 0.259942 -2.27
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(31)"
+  radius 0.05
+}
+Plate {
+  translation 1.41 0.259942 -0.77
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(32)"
+  radius 0.05
+}
+Plate {
+  translation 1.16 0.259942 -0.77
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(33)"
+  radius 0.05
+}
+Plate {
+  translation 1.16 0.259933 2.24
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(34)"
+  radius 0.05
+}
+Plate {
+  translation 1.41 0.259933 2.24
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(35)"
+  radius 0.05
+}
+Plate {
+  translation -0.09 0.259933 2.24
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(36)"
+  radius 0.05
+}
+Plate {
+  translation -0.34 0.259933 2.24
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(37)"
+  radius 0.05
+}
+Plate {
+  translation -0.22 0.259933 2
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(38)"
+  radius 0.05
+}
+Plate {
+  translation -0.22 0.259933 2.47
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(39)"
+  radius 0.05
+}
+Plate {
+  translation 1.28 0.259942 -2.03
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(29)"
+  radius 0.05
+}
+Plate {
+  translation -0.08 0.259937 -0.77
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(4)"
+  radius 0.05
+}
+Plate {
+  translation -0.08 0.259941 -2.26
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(5)"
+  radius 0.05
+}
+Plate {
+  translation -1.6 0.259941 -2.27
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(6)"
+  radius 0.05
+}
+Plate {
+  translation -1.6 0.259941 -0.77
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(7)"
+  radius 0.05
+}
+Plate {
+  translation -1.83 0.259941 -0.77
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(8)"
+  radius 0.05
+}
+Plate {
+  translation -0.34 0.259941 -0.77
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(9)"
+  radius 0.05
+}
+Plate {
+  translation -0.34 0.259941 -2.27
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(10)"
+  radius 0.05
+}
+Plate {
+  translation -1.84 0.259941 -2.28
+  rotation 0.9999999999983136 2.4653399928718067e-12 -1.8365738433142221e-06 4.691585657051745e-06
+  name "plate(11)"
+  radius 0.05
+}
+Plate {
+  translation -0.3499999999998339 0.25993690890312093 0.7300000905162962
+  rotation 0.9999999999983133 2.9124611176982256e-12 -1.836637343336294e-06 4.691585657296787e-06
+  name "plate(1)"
+  radius 0.05
+}
+Plate {
+  translation 1.15 0.259937 0.73
+  rotation 0.9999999999983133 2.9124611176982256e-12 -1.836637343336294e-06 4.691585657296787e-06
+  name "plate9"
+  radius 0.05
+}
+Plate {
+  translation -0.21999999999983375 0.25993794050794533 0.5100000905184443
+  rotation 0.9999999999983135 1.850778962196901e-12 -1.8365742585405677e-06 4.69158565531518e-06
+  name "plate(2)"
+  radius 0.05
+}
+Plate {
+  translation 1.28 0.259938 0.51
+  rotation 0.9999999999983135 1.850778962196901e-12 -1.8365742585405677e-06 4.69158565531518e-06
+  name "plate10"
+  radius 0.05
+}
+Plate {
+  translation -0.21999999999983372 0.25993592418723666 0.9400000905142447
+  rotation 0.9999999999983136 9.710625564517636e-12 -1.8365358048328161e-06 4.69158565938325e-06
+  name "plate(3)"
+  radius 0.05
+}
+Plate {
+  translation 1.28 0.259936 0.94
+  rotation 0.9999999999983136 9.710625564517636e-12 -1.8365358048328161e-06 4.69158565938325e-06
+  name "plate11"
+  radius 0.05
+}
+Plate {
+  translation -0.22 0.259937 -0.54
+  rotation 0.9999999999983136 9.710625564517636e-12 -1.8365358048328161e-06 4.69158565938325e-06
+  name "plate(12)"
+  radius 0.05
+}
+Plate {
+  translation -0.22 0.259937 -0.99
+  rotation 0.9999999999983136 9.710625564517636e-12 -1.8365358048328161e-06 4.69158565938325e-06
+  name "plate(13)"
+  radius 0.05
+}
+Plate {
+  translation -0.22 0.259937 -2.02
+  rotation 0.9999999999983136 9.710625564517636e-12 -1.8365358048328161e-06 4.69158565938325e-06
+  name "plate(14)"
+  radius 0.05
+}
+Plate {
+  translation -0.22 0.259944 -2.49
+  rotation 0.9999999999983136 9.710625564517636e-12 -1.8365358048328161e-06 4.69158565938325e-06
+  name "plate(15)"
+  radius 0.05
+}
+Plate {
+  translation -1.73 0.259937 -0.54
+  rotation 0.9999999999983136 9.710625564517636e-12 -1.8365358048328161e-06 4.69158565938325e-06
+  name "plate(16)"
+  radius 0.05
+}
+Plate {
+  translation -1.73 0.259937 -0.98
+  rotation 0.9999999999983136 9.710625564517636e-12 -1.8365358048328161e-06 4.69158565938325e-06
+  name "plate(17)"
+  radius 0.05
+}
+Plate {
+  translation -1.74 0.259939 -2.03
+  rotation 0.9999999999983136 9.710625564517636e-12 -1.8365358048328161e-06 4.69158565938325e-06
+  name "plate(18)"
+  radius 0.05
+}
+Plate {
+  translation -1.74 0.259939 -2.5
+  rotation 0.9999999999983136 9.710625564517636e-12 -1.8365358048328161e-06 4.69158565938325e-06
+  name "plate(19)"
+  radius 0.05
+}
+Wall {
+  translation -2.36 0 1.27
+  size 1.3 0.7 0.05
+  appearance Roughcast {
+    colorOverride 0.3 0.3 0.3
+    textureTransform TextureTransform {
+      scale 1 2.4
+    }
+  }
+}
+Wall {
+  translation -1.74 0 2.51
+  rotation 0 1 0 -1.5707953071795862
+  name "wall(1)"
+  size 1 0.3 0.05
+  appearance Roughcast {
+    colorOverride 0.3 0.3 0.3
+    textureTransform TextureTransform {
+      scale 1 2.4
+    }
+  }
+}
+Wall {
+  translation -2.53 0 2.51
+  rotation 0 1 0 -1.5707953071795862
+  name "wall(4)"
+  size 1 0.3 0.02
+  appearance Roughcast {
+    colorOverride 0.7 0.7 0.7
+    textureTransform TextureTransform {
+      scale 1 2.4
+    }
+  }
+}
+Wall {
+  translation -3.025 0.287223 2.51
+  rotation 0.5773502691896258 0.5773502691896258 0.5773502691896258 -2.094395307179586
+  name "wall(5)"
+  size 1 0.5 0.02
+  appearance Roughcast {
+    colorOverride 0.7 0.7 0.7
+    textureTransform TextureTransform {
+      scale 1 2.4
+    }
+  }
+}
+Wall {
+  translation -1.74 0.5 2.51
+  rotation 0 1 0 -1.5707953071795862
+  name "wall(2)"
+  size 1 0.2 0.05
+  appearance Roughcast {
+    colorOverride 0.3 0.3 0.3
+    textureTransform TextureTransform {
+      scale 1 2.4
+    }
+  }
+}
+Wall {
+  translation -1.74 0.3 2.06
+  rotation 0 1 0 -1.5707953071795862
+  name "wall(3)"
+  size 0.1 0.2 0.05
+  appearance Roughcast {
+    colorOverride 0.3 0.3 0.3
+    textureTransform TextureTransform {
+      scale 1 2.4
+    }
+  }
+}
+Oven {
+  translation -2.77 0.34 1.79
+  mainColor 0.7 0.7 0.7
+}
+FireBird6 {
+  translation -1.02 0.14 1.47
+  controller "cameriere"
+}
