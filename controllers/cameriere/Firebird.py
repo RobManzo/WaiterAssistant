@@ -14,5 +14,11 @@ class Firebird:
         while self.robot.step(64) != -1:
             self.lmotor.setVelocity(5.0)
             self.rmotor.setVelocity(5.0)
-            self.ProximitySensor.getDistance()
+            print(self.ProximitySensor.getDistance())
+            if(self.ProximitySensor.getDistance() < 2.0):
+                self.lmotor.setVelocity(0.0)
+                self.rmotor.setVelocity(0.0)
+
+
+            
 

@@ -47,5 +47,5 @@ class ProximitySensor:
         self.lbSensor.enable(64)
 
     def getDistance(self):
-        print(self.rfSensor.getType())
+        return self.fSensor.getValue()
 
