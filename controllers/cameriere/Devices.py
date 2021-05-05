@@ -1,3 +1,5 @@
+M_PI = 3.14
+import math
 
 #Classe per gestire il motore della ruota sinistra
 class LMotor:
@@ -48,4 +50,25 @@ class ProximitySensor:
 
     def getDistance(self):
         return self.fSensor.getValue()
+
+class Compass:
+    def __init__(self, robot):
+        self.compass_xy = robot.getDevice('compassXY_01')
+        self.compass_z = robot.getDevice('compassZ_01')
+        self.compass_xy.enable(64)
+        self.compass_z.enable(64)
+
+    def getCompass(self):
+        self.compassXY = self.compass_xy.getValues()
+        self.compassZ = self.compass_z.getValues()
+        return  [self.compassXY[0], self.compassXY[1], self.compassZ[2]]
+
+    def compassToDegree(self):
+        north = self.getCompass()
+        rad = math.atan2(north[0], north[2])
+        bearing = (rad - 1.5708) / M_PI * 180.0
+        if(bearing < 0):
+            bearing += 360.0
+        return bearing
+
 
