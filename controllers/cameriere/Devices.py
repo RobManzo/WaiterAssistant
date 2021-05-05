@@ -69,6 +69,6 @@ class Compass:
         bearing = (rad - 1.5708) / M_PI * 180.0
         if(bearing < 0):
             bearing += 360.0
-        return bearing
+        return float(bearing)
 
 
