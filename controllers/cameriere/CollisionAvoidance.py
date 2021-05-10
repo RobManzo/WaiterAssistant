@@ -23,8 +23,8 @@ class CollisionAvoidance:
         self.lbSensor = self.proximitysensor.lbSensor.getValue()
 
     def collisionCheck(self):
-        threshold=2.0
-        if(self.fSensor<threshold):
+        threshold=0.42
+        if(self.fSensor<threshold or self.lfSensor<threshold or self.rfSensor<threshold):
             self.collisionDetected=1
         else:
             self.collisionDetected=0

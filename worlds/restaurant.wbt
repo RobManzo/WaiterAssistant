@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.3868093023295187 -0.8395311129799274 -0.3815312227983905 4.567982342711561
-  position 6.744781411703528 7.552102751799365 0.3841857089903539
+  orientation 0.39198195147751963 -0.8237812373095572 -0.4095541756258996 4.491851355634328
+  position 10.449026605220435 13.627361689160118 -1.275304429132814
 }
 TexturedBackground {
   texture "empty_office"
@@ -49,7 +49,7 @@ HotPlate {
   name "hot plate(1)"
 }
 Table {
-  translation -0.8 -5.8843e-06 1.4
+  translation -0.8 -7.7615e-06 1.8
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(11)"
   size 0.8 0.25 0.4
@@ -65,7 +65,7 @@ Table {
   frameThickness 0.04
 }
 Table {
-  translation -0.8 9.13322e-06 -1.8
+  translation -0.8 1.10098e-05 -2.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(2)"
   size 0.8 0.25 0.4
@@ -73,7 +73,7 @@ Table {
   frameThickness 0.04
 }
 Table {
-  translation -2.4 9.13322e-06 -1.8
+  translation -2.4 1.10098e-05 -2.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(3)"
   size 0.8 0.25 0.4
@@ -89,7 +89,7 @@ Table {
   frameThickness 0.04
 }
 Table {
-  translation 0.81 -5.8843e-06 1.4
+  translation 0.81 -7.7615e-06 1.8
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(8)"
   size 0.8 0.25 0.4
@@ -105,7 +105,7 @@ Table {
   frameThickness 0.04
 }
 Table {
-  translation 2.41 -5.8843e-06 1.4
+  translation 2.41 -7.7615e-06 1.8
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(9)"
   size 0.8 0.25 0.4
@@ -121,7 +121,7 @@ Table {
   frameThickness 0.04
 }
 Table {
-  translation 0.81 9.1332e-06 -1.8
+  translation 0.81 1.10098e-05 -2.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(7)"
   size 0.8 0.25 0.4
@@ -129,7 +129,7 @@ Table {
   frameThickness 0.02
 }
 Table {
-  translation 2.41 9.1332e-06 -1.8
+  translation 2.41 1.10098e-05 -2.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(5)"
   size 0.8 0.25 0.4
