@@ -31,10 +31,13 @@ class ProximitySensor:
     def __init__(self, robot):
         # l: left   r: right    f: front    b: back
         self.lSensor = robot.getDevice('ps0')
+
         self.lfSensor = robot.getDevice('ps1')
         self.fSensor = robot.getDevice('ps2')
         self.rfSensor = robot.getDevice('ps3')
+
         self.rSensor = robot.getDevice('ps4')
+        
         self.rbSensor = robot.getDevice('ps5')
         self.bSensor = robot.getDevice('ps6')
         self.lbSensor = robot.getDevice('ps7')
@@ -47,9 +50,6 @@ class ProximitySensor:
         self.rbSensor.enable(64)
         self.bSensor.enable(64)
         self.lbSensor.enable(64)
-
-    def getDistance(self):
-        return self.fSensor.getValue()
 
 class Compass:
     def __init__(self, robot):
