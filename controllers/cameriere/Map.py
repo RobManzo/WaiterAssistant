@@ -11,7 +11,7 @@ B = WALL    # map border
 K = WALL    # kitchen
 F = 0       # floor
 S = -1      # start tile
-C = 99      # curve
+C = 66      # curve
 
 # --- MAP ---
 # F-----> Y      ^ N

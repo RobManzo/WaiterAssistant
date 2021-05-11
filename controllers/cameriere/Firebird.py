@@ -1,5 +1,5 @@
 from controller import Robot
-from Devices import LMotor, RMotor, ProximitySensor, Compass
+from Devices import LMotor, RMotor, ProximitySensor, Compass, PositionSensor
 from Positioning import Positioning
 from Movement import Movement
 from CollisionAvoidance import CollisionAvoidance
@@ -12,11 +12,13 @@ class Firebird:
         self.proximitysensor = ProximitySensor(self.robot)
         self.compass = Compass(self.robot)
         self.positioning = Positioning(self.compass)
-        self.collisionAvoidance=CollisionAvoidance(self.proximitysensor)
-        self.movement= Movement(self.positioning,self.lmotor,self.rmotor,self.collisionAvoidance)
+        self.collisionAvoidance = CollisionAvoidance(self.proximitysensor)
+        self.movement = Movement(self.positioning,self.lmotor,self.rmotor,self.collisionAvoidance)
+        self.positionsensor = PositionSensor(self.robot)
 
     def run(self):
         # for each timestep update services
         while self.robot.step(64) != -1:            
             self.positioning.update()
             self.movement.update()
+            print(self.positionsensor.getDistanceTraveled())

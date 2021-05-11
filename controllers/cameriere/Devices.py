@@ -70,5 +70,13 @@ class Compass:
         if(bearing < 0):
             bearing += 360.0
         return float(bearing)
+    
+class PositionSensor:
+    def __init__(self, robot):
+        self.leftpos = robot.getDevice('left wheel sensor')
+        self.rightpos = robot.getDevice('right wheel sensor')
+        self.leftpos.enable(64)
+        self.rightpos.enable(64)
 
-
+    def getDistanceTraveled(self):
+        return self.leftpos.getValue(), self.rightpos.getValue()
