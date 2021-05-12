@@ -7,7 +7,7 @@ class Movement:
         self.collisionAvoidance = collisionAvoidance
         self.collisionAvoidance.update()
         self.isRotating = 0
-        self.tolerance=0.05
+        self.tolerance=0.2
         self.finalDegree=None
 
     def rotate(self):
@@ -32,8 +32,8 @@ class Movement:
             self.lmotor.setVelocity(0.05)
             print("adjust2")
     def movement(self):
-        self.rmotor.setVelocity(3.00)   # 13.75 cm/s ????
-        self.lmotor.setVelocity(3.00)
+        self.rmotor.setVelocity(6.00)   # 13.75 cm/s ????
+        self.lmotor.setVelocity(6.00)
     
     def update(self):
         print(self.positioning.getOrientation())

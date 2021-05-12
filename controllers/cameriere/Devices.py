@@ -42,21 +42,21 @@ class ProximitySensor:
         self.bSensor = robot.getDevice('ps6')
         self.lbSensor = robot.getDevice('ps7')
 
-        self.lSensor.enable(64)
-        self.lfSensor.enable(64)
-        self.fSensor.enable(64)
-        self.rfSensor.enable(64)
-        self.rSensor.enable(64)
-        self.rbSensor.enable(64)
-        self.bSensor.enable(64)
-        self.lbSensor.enable(64)
+        self.lSensor.enable(32)
+        self.lfSensor.enable(32)
+        self.fSensor.enable(32)
+        self.rfSensor.enable(32)
+        self.rSensor.enable(32)
+        self.rbSensor.enable(32)
+        self.bSensor.enable(32)
+        self.lbSensor.enable(32)
 
 class Compass:
     def __init__(self, robot):
         self.compass_xy = robot.getDevice('compassXY_01')
         self.compass_z = robot.getDevice('compassZ_01')
-        self.compass_xy.enable(64)
-        self.compass_z.enable(64)
+        self.compass_xy.enable(32)
+        self.compass_z.enable(32)
 
     def getCompass(self):
         self.compassXY = self.compass_xy.getValues()
@@ -69,14 +69,14 @@ class Compass:
         bearing = (rad - 1.5708) / M_PI * 180.0
         if(bearing < 0):
             bearing += 360.0
-        return float(bearing)
+        return round(float(bearing), 6)
     
 class PositionSensor:
     def __init__(self, robot):
         self.leftpos = robot.getDevice('left wheel sensor')
         self.rightpos = robot.getDevice('right wheel sensor')
-        self.leftpos.enable(64)
-        self.rightpos.enable(64)
+        self.leftpos.enable(32)
+        self.rightpos.enable(32)
 
     def getDistanceTraveled(self):
         return self.leftpos.getValue(), self.rightpos.getValue()
@@ -84,8 +84,8 @@ class PositionSensor:
 class Camera:
     def __init__(self, robot):
         self.camera = robot.getDevice('camera')
-        self.camera.enable(16)
-        self.camera.recognitionEnable(64)
+        self.camera.enable(32)
+        self.camera.recognitionEnable(32)
     
     def getFov(self):
         return self.camera.getFov()

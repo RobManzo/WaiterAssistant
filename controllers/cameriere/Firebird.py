@@ -19,7 +19,7 @@ class Firebird:
 
     def run(self):
         # for each timestep update services
-        while self.robot.step(64) != -1:            
+        while self.robot.step(32) != -1:            
             self.positioning.update()
             self.movement.update()
             print(self.positionsensor.getDistanceTraveled())
