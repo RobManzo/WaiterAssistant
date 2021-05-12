@@ -7,7 +7,7 @@ class Movement:
         self.collisionAvoidance = collisionAvoidance
         self.collisionAvoidance.update()
         self.isRotating = 0
-        self.tolerance=0.2
+        self.tolerance=0.05
         self.finalDegree=None
 
     def rotate(self):
@@ -16,20 +16,20 @@ class Movement:
     
     def checkDegrees(self,degree):
         if(degree>=360.0):
-                return degree-360.0
-        elif(degree<0):
-               return degree+360.0
+                return degree-359.9
+        elif(degree<=0):
+               return degree+359.9
         else:
             return degree
     
     def adjustOrientation(self,finalDegree):
         if(self.positioning.getOrientation()>finalDegree+self.tolerance):
-            self.rmotor.setVelocity(0.02)
-            self.lmotor.setVelocity(-0.05)
+            self.rmotor.setVelocity(0.1)
+            self.lmotor.setVelocity(-0.1)
             print("adjust1")
         elif(self.positioning.getOrientation()<finalDegree+self.tolerance):
-            self.rmotor.setVelocity(-0.05)
-            self.lmotor.setVelocity(0.05)
+            self.rmotor.setVelocity(-0.1)
+            self.lmotor.setVelocity(0.1)
             print("adjust2")
     def movement(self):
         self.rmotor.setVelocity(6.00)   # 13.75 cm/s ????
@@ -40,7 +40,7 @@ class Movement:
         self.collisionAvoidance.update()
         if(self.collisionAvoidance.getCollision() and not self.isRotating):
             self.finalDegree=round(self.positioning.getOrientation()+180.0)
-            self.finalDegree=self.checkDegrees(self.finalDegree)    
+            self.finalDegree=self.checkDegrees(self.finalDegree)
             print("final degree=",self.finalDegree)
             self.isRotating = 1
             self.rotate()
