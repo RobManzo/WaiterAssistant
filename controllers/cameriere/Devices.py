@@ -80,3 +80,12 @@ class PositionSensor:
 
     def getDistanceTraveled(self):
         return self.leftpos.getValue(), self.rightpos.getValue()
+
+class Camera:
+    def __init__(self, robot):
+        self.camera = robot.getDevice('camera')
+        self.camera.enable(16)
+        self.camera.recognitionEnable(64)
+    
+    def getFov(self):
+        return self.camera.getFov()

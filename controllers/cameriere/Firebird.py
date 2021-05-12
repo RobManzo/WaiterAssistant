@@ -1,5 +1,5 @@
 from controller import Robot
-from Devices import LMotor, RMotor, ProximitySensor, Compass, PositionSensor
+from Devices import LMotor, RMotor, ProximitySensor, Compass, PositionSensor, Camera
 from Positioning import Positioning
 from Movement import Movement
 from CollisionAvoidance import CollisionAvoidance
@@ -15,6 +15,7 @@ class Firebird:
         self.collisionAvoidance = CollisionAvoidance(self.proximitysensor)
         self.movement = Movement(self.positioning,self.lmotor,self.rmotor,self.collisionAvoidance)
         self.positionsensor = PositionSensor(self.robot)
+        self.camera = Camera(self.robot)
 
     def run(self):
         # for each timestep update services
