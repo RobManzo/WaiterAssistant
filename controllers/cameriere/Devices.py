@@ -1,4 +1,4 @@
-M_PI = 3.14
+from Constants import M_PI
 import math
 
 #Classe per gestire il motore della ruota sinistra
@@ -89,3 +89,12 @@ class Camera:
     
     def getFov(self):
         return self.camera.getFov()
+    
+    def getGrayScale(self,  image, width, x, y):
+        return self.camera.imageGetGray(image, width, x, y)
+    
+    def getImage(self):
+        return self.camera.getImage()
+
+    def getWidth(self):
+        return self.camera.getWidth()

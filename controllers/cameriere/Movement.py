@@ -49,7 +49,7 @@ class Movement:
         self.rmotor.setVelocity(speed)
         self.lmotor.setVelocity(speed)
     
-    def toNewOrientation(self,):
+    def toNewOrientation(self, ):
         self.isRotating=1
         self.startDegree=self.positioning.getOrientation()
         self.finalDegree=self.degreeToDirection(self.checkDegrees(self.startDegree+90.0)) #finalDegree verrà scelto dal PathPlanner
