@@ -25,7 +25,7 @@ class Positioning:
 
     def update(self):
         self.updateOrientation()
-    
+        
     def updateBlock(self, camera):
         self.image = camera.getImage()
         self.nextblock = camera.getGrayScale(self.image, self.camera.getWidth(), 64, 126)

@@ -65,6 +65,7 @@ class Movement:
         print("final:",self.finalDegree)
         self.collisionAvoidance.update()
         self.positioning.updateBlock(self.positioning.camera)
+        self.positioning.update()
         print("Block Counter : " + self.positioning.counter.__str__())
         if(self.collisionAvoidance.getCollision() and not self.isRotating):
             self.toNewOrientation()
