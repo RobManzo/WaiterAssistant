@@ -250,7 +250,7 @@ Robot {
     }
     DEF camera Camera {
         translation 0 -0.02 -0.15
-        rotation -1.5 0 0 0.5
+        rotation -1 0 0 0.5
         name "camera"
         width 128
         height 128
