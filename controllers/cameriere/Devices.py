@@ -85,7 +85,6 @@ class Camera:
     def __init__(self, robot):
         self.camera = robot.getDevice('camera')
         self.camera.enable(32)
-        self.camera.recognitionEnable(32)
     
     def getFov(self):
         return self.camera.getFov()

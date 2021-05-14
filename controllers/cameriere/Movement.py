@@ -6,6 +6,7 @@ class Movement:
         self.lmotor = lmotor
         self.rmotor = rmotor
         self.positioning.update()
+        #self.positioning.updateBlock()
         self.collisionAvoidance = collisionAvoidance
         self.collisionAvoidance.update()
         self.isRotating = 0
@@ -49,7 +50,7 @@ class Movement:
         self.rmotor.setVelocity(speed)
         self.lmotor.setVelocity(speed)
     
-    def toNewOrientation(self, ):
+    def toNewOrientation(self):
         self.isRotating=1
         self.startDegree=self.positioning.getOrientation()
         self.finalDegree=self.degreeToDirection(self.checkDegrees(self.startDegree+90.0)) #finalDegree verrà scelto dal PathPlanner
@@ -64,7 +65,6 @@ class Movement:
         print("Orientation:",self.positioning.getOrientation())
         print("final:",self.finalDegree)
         self.collisionAvoidance.update()
-        self.positioning.updateBlock(self.positioning.camera)
         self.positioning.update()
         print("Block Counter : " + self.positioning.counter.__str__())
         if(self.collisionAvoidance.getCollision() and not self.isRotating):
@@ -78,4 +78,4 @@ class Movement:
         elif(not self.isRotating):
             print(self.isRotating,"movement")
             self.movement(6.0)
-        
+            self.positioning.updateBlock()

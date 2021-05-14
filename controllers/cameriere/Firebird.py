@@ -16,7 +16,6 @@ class Firebird:
         self.positioning = Positioning(self.compass, self.camera)
         self.collisionAvoidance = CollisionAvoidance(self.proximitysensor)
         self.movement = Movement(self.positioning,self.lmotor,self.rmotor,self.collisionAvoidance)
-        
 
     def run(self):
         # for each timestep update services
