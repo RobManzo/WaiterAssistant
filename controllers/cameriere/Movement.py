@@ -53,13 +53,17 @@ class Movement:
     def toNewOrientation(self):
         self.isRotating=1
         self.startDegree=self.positioning.getOrientation()
-        self.finalDegree=self.degreeToDirection(self.checkDegrees(self.startDegree+90.0)) #finalDegree verrà scelto dal PathPlanner
+        self.finalDegree=self.degreeToDirection(self.checkDegrees(self.startDegree+180.0)) #finalDegree verrà scelto dal PathPlanner
         self.diff=self.startDegree-self.finalDegree
         self.diff=self.checkDegrees(self.diff)
         if(self.diff>180.0):
             self.rotate(1.0)
         else:
             self.rotate(-1.0)
+        self.positioning.resetCounter()
+    
+    def toCenterBlock(self):
+        
 
     def update(self):
         print("Orientation:",self.positioning.getOrientation())

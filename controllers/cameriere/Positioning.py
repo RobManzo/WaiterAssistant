@@ -41,6 +41,9 @@ class Positioning:
     
     def update(self):
         self.updateOrientation()
+    
+    def resetCounter(self):
+        self.counter = 0
 
     
     
