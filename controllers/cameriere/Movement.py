@@ -60,18 +60,23 @@ class Movement:
             self.rotate(1.0)
         else:
             self.rotate(-1.0)
-        self.positioning.resetCounter()
-    
-    def toCenterBlock(self):
-        
+        self.positioning.restartBlockCount()
 
-    def update(self):
+
+
+    def update(self, speaker):
+        while not(speaker.isSpeaking()):
+            speaker.speak('Stall', 100)
         print("Orientation:",self.positioning.getOrientation())
         print("final:",self.finalDegree)
         self.collisionAvoidance.update()
         self.positioning.update()
-        print("Block Counter : " + self.positioning.counter.__str__())
-        if(self.collisionAvoidance.getCollision() and not self.isRotating):
+        print("Block Counter : " + self.positioning.getCounter().__str__())
+        if(self.positioning.getCounter() == 5):
+            self.toNewOrientation()
+            print("final degree=",self.finalDegree)
+            print(self.isRotating,"collision")   
+        elif(self.collisionAvoidance.getCollision() and not self.isRotating):
             self.toNewOrientation()
             print("final degree=",self.finalDegree)
             print(self.isRotating,"collision")            

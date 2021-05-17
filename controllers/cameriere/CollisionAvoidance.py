@@ -9,8 +9,8 @@ class CollisionAvoidance:
         self.rbSensor = 0
         self.bSensor = 0
         self.lbSensor = 0
-        self.collisionDetected=0
-        self.rotationDegrees=0
+        self.collisionDetected = 0
+        self.rotationDegrees = 0
         
     
     def updateSensorsValues(self):
@@ -29,7 +29,7 @@ class CollisionAvoidance:
             self.collisionDetected=1 #possibile ritornare quale sensore ha dato la collisione
         elif(self.lfSensor<threshold):
             self.collisionDetected=1
-        elif(self.lfSensor<threshold):
+        elif(self.rfSensor<threshold):
             self.collisionDetected=1
         else:
             self.collisionDetected=0

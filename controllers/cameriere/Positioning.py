@@ -44,6 +44,16 @@ class Positioning:
     
     def resetCounter(self):
         self.counter = 0
+    
+    def getCounter(self):
+        return self.counter
+    
+    def restartBlockCount(self):
+        self.resetCounter()
+        if(self.currentblock <= 110):
+            self.setCurrentBlock(90)
+        elif(self.currentblock >= 110):
+            self.setCurrentBlock(110)
 
     
     

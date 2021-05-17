@@ -214,4 +214,8 @@ FireBird6 {
   translation -1.6 0.135677 2.80411
   rotation -0.9999999857395018 0.0001551056691763044 -6.680739197150214e-05 0
   controller "cameriere"
+  bodySlot [
+    Speaker {
+    }
+  ]
 }

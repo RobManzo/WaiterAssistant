@@ -97,3 +97,17 @@ class Camera:
 
     def getWidth(self):
         return self.camera.getWidth()
+
+class Speaker:
+    def __init__(self, robot):
+        self.speaker = robot.getDevice('speaker')
+        self.speaker.setLanguage('it-IT')
+        self.speaker.setEngine('microsoft')
+    
+    def speak(self, text, volume):
+        self.speaker.speak(text, volume)
+    
+    def isSpeaking(self):
+        if self.speaker.isSpeaking():
+            return True
+        else: return False
