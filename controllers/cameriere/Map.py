@@ -1,5 +1,3 @@
-from Utils import logger, Orientation, Position
-from AStar import WALL
 
 # MAP DIMENSIONS
 WIDTH = 15          # map width
@@ -7,11 +5,12 @@ HEIGHT = 15         # map height
 MAP_RESOLUTION = 0.4 # map resolution
 
 # MAP CONSTANS
-B = WALL    # map border
+B = WALL    # arena border
 K = WALL    # kitchen
 F = 0       # floor
 S = -1      # start tile
 C = 66      # curve
+O = 99      # obstacle
 
 # --- MAP ---
 # F-----> Y      ^ N
@@ -43,89 +42,14 @@ MAP =   [[B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B], # 0
 def getValue(position):
     return MAP[position.getX()][position.getY()]
 
-# return true if robot is allowed to walk in position
+# Ritorna TRUE se la posizione individuata è calpestabile
 def isWalkable(position):
     x = position.getX()
     y = position.getY()
     if x < HEIGHT and x > 0 and y < WIDTH and y > 0:
         value = MAP[x][y]
-        return value == F or value == F or value == C
+        return value == F or value == C
     return False
-
-# return the nearest walkable position given position and orientation
-def getNearestWalkablePosition(position, orientation):
-    if not isWalkable(position):
-        logger.debug("Actual position non walkable. " + str(position) + " is unwalkable")
-        x = position.getX()
-        y = position.getY()
-        logger.debug("ORIENTATION: " + str(orientation))
-        if orientation == Orientation.NORD or orientation == Orientation.SOUTH:
-            p = Position(x, y - 1)
-            if isWalkable(p):
-                return p
-            p = Position(x, y + 1)
-            if isWalkable(p):
-                return p
-        elif orientation == Orientation.EAST or orientation == Orientation.WEST:
-            p = Position(x - 1, y)
-            if isWalkable(p):
-                return p
-            p = Position(x + 1, y)
-            if isWalkable(p):
-                return p
-    else:
-        return position
-
-# return the nearest walkable position given position and orientation
-def getNearestWalkablePositionEquals(position, orientation, value):
-    if not isWalkable(position):
-        logger.debug("Actual position non walkable. " + str(position) + " is unwalkable")
-        x = position.getX()
-        y = position.getY()
-        if orientation == Orientation.NORD or orientation == Orientation.SOUTH:
-            p = Position(x+1, y)
-            if isWalkable(p) and getValue(p) == value:
-                return p
-            p = Position(x-1, y)
-            if isWalkable(p) and getValue(p) == value:
-                return p
-        elif orientation == Orientation.EAST or orientation == Orientation.WEST:
-            p = Position(x, y+1)
-            if isWalkable(p) and getValue(p) == value:
-                return p
-            p = Position(x, y-1)
-            if isWalkable(p) and getValue(p) == value:
-                return p
-    elif getValue(position) == value:
-        return position
-    else:
-        return -1
-
-def getNearestWalkablePosition2(position, orientation):
-    if not isWalkable(position):
-        x = position.getX()
-        y = position.getY()
-        radius = 1
-        for F in range(x-radius, x+radius +1):
-            for j in range(y-radius, y+radius +1):
-                if F < HEIGHT and F > 1 and j < WIDTH and j > 1:
-                    p = Position(x+F, y+j)
-                    if isWalkable(p):
-                        return p
-    else:
-        return position
-
-
-# return the position of the nearest intersection to position, -1 if no interection in range
-def findNearestIntersection(position, radius = 1, orientation = False):
-    x = position.getX()
-    y = position.getY()
-    for F in range(x-radius, x+radius +1):
-        for j in range(y-radius, y+radius +1):
-            if F < HEIGHT and F > 0 and j < WIDTH and j > 0:
-                if MAP[F][j] == F:
-                    return Position(F, j)
-    return -1
 
 # set new 
 def setNewObstacle(position):
@@ -133,7 +57,7 @@ def setNewObstacle(position):
     y = position.getY()
     if x> 0 and x < HEIGHT:
         if y > 0 and y < WIDTH:
-            MAP[x][y] = F
+            MAP[x][y] = O
 
 def printMap():
     for F in range(HEIGHT):
@@ -142,3 +66,7 @@ def printMap():
                 if j >= 0 and j < WIDTH:
                     print("%2d" % MAP[F][j], end=" ")
         print()
+
+
+
+
