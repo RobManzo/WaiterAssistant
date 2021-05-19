@@ -24,10 +24,9 @@ class Movement:
                return degree+360.0
         else:
             return degree
-    def degreeToDirection(self,degree):
-        if(361.0>degree>359.0):
-            return E
-        elif(1.0>degree>-1.0):
+
+    def degreeToDirection(self, degree):
+        if(361.0>degree>359.0 or 1.0>degree>-1.0):
             return E
         elif(271.0>degree>269.0):
             return N
@@ -65,10 +64,11 @@ class Movement:
 
 
     def update(self, speaker):
+        print("------------\n")
         while not(speaker.isSpeaking()):
-            speaker.speak('Stall', 100)
+            speaker.speak('Stall', 1)
         print("Orientation:",self.positioning.getOrientation())
-        print("final:",self.finalDegree)
+        print("Final target degree:",self.finalDegree)
         self.collisionAvoidance.update()
         self.positioning.update()
         print("Block Counter : " + self.positioning.getCounter().__str__())
@@ -85,6 +85,6 @@ class Movement:
         elif(not self.isRotating and self.finalDegree!= None and not (self.finalDegree+self.tolerance>self.positioning.getOrientation()>self.finalDegree-self.tolerance)):
             self.adjustOrientation(self.checkDegrees(self.finalDegree))
         elif(not self.isRotating):
-            print(self.isRotating,"movement")
+            print(self.isRotating,"movement to " + self.degreeToDirection(self.positioning.getOrientation()).__str__()) #counte to a direction
             self.movement(6.0)
             self.positioning.updateBlock()

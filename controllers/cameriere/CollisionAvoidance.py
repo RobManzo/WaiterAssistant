@@ -9,7 +9,7 @@ class CollisionAvoidance:
         self.rbSensor = 0
         self.bSensor = 0
         self.lbSensor = 0
-        self.collisionDetected = 0
+        self.collisionDetected = False
         self.rotationDegrees = 0
         
     
@@ -26,13 +26,13 @@ class CollisionAvoidance:
     def collisionCheck(self):
         threshold=1.65
         if(self.fSensor<threshold):
-            self.collisionDetected=1 #possibile ritornare quale sensore ha dato la collisione
+            self.collisionDetected=True #possibile ritornare quale sensore ha dato la collisione
         elif(self.lfSensor<threshold):
-            self.collisionDetected=1
+            self.collisionDetected=True
         elif(self.rfSensor<threshold):
-            self.collisionDetected=1
+            self.collisionDetected=True
         else:
-            self.collisionDetected=0
+            self.collisionDetected=False
 
     def getCollision(self):
         if (self.collisionDetected):
@@ -41,4 +41,4 @@ class CollisionAvoidance:
     def update(self):
         self.updateSensorsValues()
         self.collisionCheck()
-        print("l:",self.lSensor,"\nlf:",self.lfSensor,"\nf:",self.fSensor,"\nrf:",self.rfSensor,"\nr:",self.rSensor,"\nrb:",self.rbSensor,"\nb:",self.bSensor,"\nlb:",self.lbSensor)
+        print("\n --- Distance Sensor --- \n Left Front: ", self.lfSensor, "\n Front: ", self.fSensor, "\n Righ Front: ", self.rfSensor) 
