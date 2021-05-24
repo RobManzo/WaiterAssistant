@@ -1,7 +1,8 @@
 from Constants import N,S,W,E
+from Misc import Position
 
 class Movement:
-    def __init__(self,positioning,lmotor,rmotor,collisionAvoidance):
+    def __init__(self, positioning, lmotor, rmotor, collisionAvoidance):
         self.positioning = positioning
         self.lmotor = lmotor
         self.rmotor = rmotor
@@ -16,28 +17,10 @@ class Movement:
     def rotate(self,speed): #velocità positiva senso orario
         self.rmotor.setVelocity(-speed)
         self.lmotor.setVelocity(speed)
-    
-    def checkDegrees(self,degree):
-        if(degree>=360.0):
-                return degree-360.0
-        elif(degree<=0):
-               return degree+360.0
-        else:
-            return degree
-
-    def degreeToDirection(self, degree):
-        if(361.0>degree>359.0 or 1.0>degree>-1.0):
-            return E
-        elif(271.0>degree>269.0):
-            return N
-        elif(91.0>degree>89.0):
-            return S
-        elif(181.0>degree>179.0):
-            return W
 
     def adjustOrientation(self,finalDegree):
-        orientation=self.positioning.getOrientation()
-        finalDegree=self.degreeToDirection(finalDegree)
+        orientation = self.positioning.getOrientation()
+        finalDegree = Position.degreeToDirection(finalDegree)
         diff=finalDegree-orientation
         print(diff)
         if(diff>-0.051 or diff<-360):
@@ -49,20 +32,25 @@ class Movement:
         self.rmotor.setVelocity(speed)
         self.lmotor.setVelocity(speed)
     
-    def toNewOrientation(self):
+    def toNewOrientation(self, fdegree):
         self.isRotating=1
-        self.startDegree=self.positioning.getOrientation()
-        self.finalDegree=self.degreeToDirection(self.checkDegrees(self.startDegree+180.0)) #finalDegree verrà scelto dal PathPlanner
+        self.startDegree = self.positioning.getOrientation()
+        self.setFinalDegree(fdegree)
         self.diff=self.startDegree-self.finalDegree
-        self.diff=self.checkDegrees(self.diff)
+        self.diff=Position.checkDegrees(self.diff)
         if(self.diff>180.0):
             self.rotate(1.0)
         else:
             self.rotate(-1.0)
         self.positioning.restartBlockCount()
 
-
-
+    def setFinalDegree(self, fdegree):
+        self.finalDegree = fdegree
+    
+    def collision(self):
+        self.toNewOrientation()
+        #backup function in pathplanner
+    
     def update(self, speaker):
         print("------------\n")
         while not(speaker.isSpeaking()):
@@ -72,19 +60,24 @@ class Movement:
         self.collisionAvoidance.update()
         self.positioning.update()
         print("Block Counter : " + self.positioning.getCounter().__str__())
-        if(self.positioning.getCounter() == 5):
+
+        if(self.positioning.getCounter() == 5):                                     #pathplanner decide di quanto spostare nella direzione corrente(?)
             self.toNewOrientation()
             print("final degree=",self.finalDegree)
             print(self.isRotating,"collision")   
-        elif(self.collisionAvoidance.getCollision() and not self.isRotating):
+
+        elif(self.collisionAvoidance.getCollision() and not self.isRotating):       #Collisione
             self.toNewOrientation()
             print("final degree=",self.finalDegree)
             print(self.isRotating,"collision")            
-        elif(self.isRotating and self.finalDegree+1>self.positioning.getOrientation()>self.finalDegree-1 ):
+
+        elif(self.isRotating and self.finalDegree+1>self.positioning.getOrientation()>self.finalDegree-1):  #rotazione 
             self.isRotating = 0
-        elif(not self.isRotating and self.finalDegree!= None and not (self.finalDegree+self.tolerance>self.positioning.getOrientation()>self.finalDegree-self.tolerance)):
-            self.adjustOrientation(self.checkDegrees(self.finalDegree))
+
+        elif(not self.isRotating and self.finalDegree!= None and not (self.finalDegree+self.tolerance>self.positioning.getOrientation()>self.finalDegree-self.tolerance)): #adjust orientation
+            self.adjustOrientation(Position.checkDegrees(self.finalDegree))
+
         elif(not self.isRotating):
-            print(self.isRotating,"movement to " + self.degreeToDirection(self.positioning.getOrientation()).__str__()) #counte to a direction
+            print(self.isRotating,"movement to " + Position.degreeToDirection(self.positioning.getOrientation()).__str__()) #counter to a direction
             self.movement(6.0)
             self.positioning.updateBlock()
