@@ -1,4 +1,5 @@
-import Map
+from Map import Map
+from Utils import Position
 # MAP DIMENSIONS
 #WIDTH = 15          # map width
 #HEIGHT = 15         # map height
@@ -38,5 +39,18 @@ import Map
 #         [B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B]] # 16
 
 class PathPlanner:
-    def __init__(self):
+    def __init__(self, positioning):
         self.map = Map.MAP
+        self.positioning = positioning
+        self.robotPosition = positioning.getPosition()
+        self.robotOrientation = positioning.getOrientation()
+        self.goalPosition = Position(14, 23)
+    
+    def update(self):
+        self.robotPosition = self.positioning.getPosition()
+        self.robotOrientation = self.positioning.getOrientation()
+    
+    def updateMap(self):
+        self.map = Map.MAP
+
+

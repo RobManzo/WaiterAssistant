@@ -11,7 +11,7 @@ class Positioning:
         self.compass = compass
         self.camera = camera
         self.updateOrientation()
-        #self.position = Position(SX, SY)
+        self.position = Position(SX, SY)
         
     def updateOrientation(self):
         self.orientation = self.compass.compassToDegree()
@@ -21,6 +21,13 @@ class Positioning:
     
     def setOrientation(self, orientation):
         self.orientation = orientation
+    
+    def getPosition(self):
+        return self.position
+    
+    def setPosition(self, x, y):
+        self.position.setX(x)
+        self.position.setY(y)
         
     def updateBlock(self):
         self.image = self.camera.getImage()

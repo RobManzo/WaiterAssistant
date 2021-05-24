@@ -1,5 +1,5 @@
 class CollisionAvoidance:
-    def __init__(self,proximitysensor):
+    def __init__(self, proximitysensor):
         self.proximitysensor=proximitysensor
         self.lSensor = 0
         self.lfSensor = 0
