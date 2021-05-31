@@ -1,10 +1,10 @@
-#VRML_SIM R2021a utf8
+#VRML_SIM R2020b utf8
 WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.3377303637902763 0.8682931388053445 0.36332523512364245 1.7665739685808128
-  position 7.674077612127312 8.607163380799038 0.5119368334621079
+  orientation -0.26649661599843916 0.924388875148373 0.27291896446254194 1.6505077383402988
+  position 12.308177806310118 8.043981767542098 -0.11463295316749555
 }
 TexturedBackground {
   texture "empty_office"
@@ -38,7 +38,7 @@ Door {
     colorOverride 0.5 0.5 0.5
   }
   doorHandle DoorLever {
-    translation 0 -1.0976322671829575e-05 0
+    translation 0 -2.195264534365915e-05 0
   }
 }
 HotPlate {
@@ -52,7 +52,7 @@ Table {
   translation -0.8 -7.7615e-06 1.8
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(11)"
-  size 0.8 0.25 0.4
+  size 0.8 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -60,7 +60,7 @@ Table {
   translation -0.8 1.62442e-06 -0.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(1)"
-  size 0.8 0.25 0.4
+  size 0.8 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -68,7 +68,7 @@ Table {
   translation -0.8 1.10098e-05 -2.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(2)"
-  size 0.8 0.25 0.4
+  size 0.8 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -76,7 +76,7 @@ Table {
   translation -2.4 1.10098e-05 -2.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(3)"
-  size 0.8 0.25 0.4
+  size 0.8 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -84,7 +84,7 @@ Table {
   translation -2.4 1.62442e-06 -0.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(4)"
-  size 0.8 0.25 0.4
+  size 0.8 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -92,7 +92,7 @@ Table {
   translation 0.81 -7.7615e-06 1.8
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(8)"
-  size 0.8 0.25 0.4
+  size 0.8 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -100,7 +100,7 @@ Table {
   translation 0.81 1.62442e-06 -0.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(6)"
-  size 0.8 0.25 0.4
+  size 0.8 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -108,7 +108,7 @@ Table {
   translation 2.41 -7.7615e-06 1.8
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(9)"
-  size 0.8 0.25 0.4
+  size 0.8 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -116,7 +116,7 @@ Table {
   translation 2.41 1.62431e-06 -0.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(10)"
-  size 0.8 0.25 0.4
+  size 0.8 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -124,7 +124,7 @@ Table {
   translation 0.81 1.10098e-05 -2.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(7)"
-  size 0.8 0.25 0.4
+  size 0.8 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.02
 }
@@ -132,7 +132,7 @@ Table {
   translation 2.41 1.10098e-05 -2.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(5)"
-  size 0.8 0.25 0.4
+  size 0.8 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -210,12 +210,6 @@ Oven {
   translation -2.77 0.34 1.79
   mainColor 0.7 0.7 0.7
 }
-FireBird6 {
-  translation -1.6 0.135677 2.80411
-  rotation -0.9999999857395018 0.0001551056691763044 -6.680739197150214e-05 0
-  controller "cameriere"
-  bodySlot [
-    Speaker {
-    }
-  ]
+TurtleBot3Burger {
+  translation -1.6 0 2.74
 }
