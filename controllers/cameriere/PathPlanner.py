@@ -44,7 +44,7 @@ class PathPlanner:
         self.positioning = positioning
         self.robotPosition = positioning.getPosition()
         self.robotOrientation = positioning.getOrientation()
-        self.goalPosition = Position(14, 23)
+        self.goalPosition = Position(8, 8)
     
     def update(self):
         self.robotPosition = self.positioning.getPosition()

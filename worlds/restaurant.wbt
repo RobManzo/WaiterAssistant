@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.26649661599843916 0.924388875148373 0.27291896446254194 1.6505077383402988
-  position 12.308177806310118 8.043981767542098 -0.11463295316749555
+  orientation -0.38400205246053487 0.8446272413465948 0.37302445882453555 1.6752426195157193
+  position 2.790691555156949 4.73240654073459 0.833160765889326
 }
 TexturedBackground {
   texture "empty_office"
@@ -211,10 +211,18 @@ Oven {
   mainColor 0.7 0.7 0.7
 }
 TurtleBot3Burger {
-  hidden rotation_10 0.9999906842634569 -0.004316177807741156 4.46702948617963e-05 0.020698459673637776
   translation -1.6 0 2.74
   controller "cameriere"
   controllerArgs [
     "--name=Turtlebot"
+  ]
+  extensionSlot [
+    SharpGP2Y0A02YK0F {
+      translation 0.01 -0.05 -0.081
+      rotation 0 1 0 1.5708
+      name "DSENSOR-SHARP"
+    }
+    RobotisLds01 {
+    }
   ]
 }
