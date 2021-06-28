@@ -17,9 +17,10 @@ class Turtlebot:
         #self.camera = Camera(self.robot)
         #self.speaker = Speaker(self.robot)
         self.positioning = Positioning(self.compass)
-        self.collisionAvoidance = CollisionAvoidance(self.DSensor)
+        self.collisionAvoidance = CollisionAvoidance(self.DSensor, self.LDS)
         self.movement = Movement(self.positioning,self.lmotor,self.rmotor,self.collisionAvoidance)
 
     def run(self):
         while self.robot.step(TIMESTEP) != -1:
             self.movement.update()
+            print(self.LDS.getRangeImage())

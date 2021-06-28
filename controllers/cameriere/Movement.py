@@ -36,7 +36,7 @@ class Movement:
         self.rmotor.setVelocity(SPEED)
         self.lmotor.setVelocity(SPEED)
     
-    def toNewOrientation(self, actualorientation):
+    def toNewOrientation(self, actualorientation):                      #Generalizzare
         self.isRotating = 1
         self.startDegree = self.positioning.getOrientation()
         self.setFinalDegree(round(float(actualorientation + 180.0), 0))
@@ -59,7 +59,7 @@ class Movement:
         print("Orientation:", self.positioning.getOrientation())
         print("Final target degree:", self.finalDegree)
         self.collisionAvoidance.update()
-        self.positioning.update()
+        self.positioning.update() 
 #
         if(self.collisionAvoidance.getCollision() and not self.isRotating):       #Collisione
             self.toNewOrientation(self.positioning.getOrientation())

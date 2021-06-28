@@ -55,14 +55,16 @@ class LDS:
         return self.LDS.getRangeImage()
     
     def getLayerPointCloud(self):
-        return self.LDS.getLayerPointCloud(data_type='list')
+        return self.LDS.getLayerPointCloud(0)
     
     def getNumberOfLayers(self):
         return self.LDS.getNumberOfLayers()
-    
-    def getFOV(self):
-        return self.LDS.getFov()
 
+    def getLayerRangeImage(self):
+        return self.LDS.getLayerRangeImage(0)
+    
+    def getRangeImage(self):
+        return self.LDS.getRangeImage()
 
 class Compass:
     def __init__(self, robot):

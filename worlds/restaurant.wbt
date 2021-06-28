@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.38400205246053487 0.8446272413465948 0.37302445882453555 1.6752426195157193
-  position 2.790691555156949 4.73240654073459 0.833160765889326
+  orientation 0.30548379549658694 -0.8983146340436701 -0.3157696453935791 4.6139116584310935
+  position 9.643240932084375 7.5551850987240545 0.2165364567716368
 }
 TexturedBackground {
   texture "empty_office"
@@ -150,7 +150,7 @@ Wall {
   translation -1.82 0 2.4
   rotation 0 1 0 -1.5707953071795862
   name "wall(1)"
-  size 1.2 0.3 0.04
+  size 1.2 0.4 0.04
   appearance Roughcast {
     colorOverride 0.3 0.3 0.3
     textureTransform TextureTransform {
@@ -183,10 +183,10 @@ Wall {
   }
 }
 Wall {
-  translation -1.82 0.5 2.4
+  translation -1.82 0.59 2.4
   rotation 0 1 0 -1.5707953071795862
   name "wall(2)"
-  size 1.2 0.3 0.04
+  size 1.2 0.2 0.04
   appearance Roughcast {
     colorOverride 0.3 0.3 0.3
     textureTransform TextureTransform {
@@ -195,10 +195,10 @@ Wall {
   }
 }
 Wall {
-  translation -1.82 0.3 2
+  translation -1.82 0.4 2
   rotation 0 1 0 -1.5707953071795862
   name "wall(3)"
-  size 0.4 0.2 0.04
+  size 0.4 0.19 0.04
   appearance Roughcast {
     colorOverride 0.3 0.3 0.3
     textureTransform TextureTransform {
@@ -211,16 +211,31 @@ Oven {
   mainColor 0.7 0.7 0.7
 }
 TurtleBot3Burger {
-  translation -1.6 0 2.74
+  translation -1.6 -3.89348e-08 2.73
+  rotation 0.002614148910175633 0.9999965831069 -9.614835991627522e-09 7.33682e-06
   controller "cameriere"
   controllerArgs [
     "--name=Turtlebot"
   ]
   extensionSlot [
     SharpGP2Y0A02YK0F {
-      translation 0.01 -0.05 -0.081
+      translation 0.08 -0.053 0.012
+      name "DSENSOR-SHARP-RIGHT"
+    }
+    SharpGP2Y0A02YK0F {
+      translation -0.08 -0.053 -0.008
+      rotation 0 1 0 3.14159
+      name "DSENOR-SHARP-LEFT"
+    }
+    SharpGP2Y0A02YK0F {
+      translation 0.01 -0.053 -0.081
       rotation 0 1 0 1.5708
-      name "DSENSOR-SHARP"
+      name "DSENSOR-SHARP-FRONT"
+    }
+    SharpGP2Y0A02YK0F {
+      translation -0.00999984 -0.053 0.079
+      rotation 0 1 0 -1.5707953071795862
+      name "DSENSOR-SHARP-BACK"
     }
     RobotisLds01 {
     }
