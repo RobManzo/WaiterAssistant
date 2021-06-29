@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.30548379549658694 -0.8983146340436701 -0.3157696453935791 4.6139116584310935
-  position 9.643240932084375 7.5551850987240545 0.2165364567716368
+  orientation 0.3750082751561849 -0.8452820342085391 -0.380614077785698 4.564703677785551
+  position 8.701950413736057 9.785398322803049 1.0715933601704608
 }
 TexturedBackground {
   texture "empty_office"
@@ -15,10 +15,15 @@ TexturedBackgroundLight {
 RectangleArena {
   name "restaurant"
   floorSize 6 6
-  floorTileSize 0.8 0.8
-  floorAppearance Parquetry {
-    type "chequered"
-    colorOverride 0.8 0.8 0.8
+  floorTileSize 6 6
+  floorAppearance PBRAppearance {
+    baseColorMap ImageTexture {
+      url [
+        "F:/Robotica/WaiterAssistant/texture/floor_line.png"
+      ]
+      repeatS FALSE
+      repeatT FALSE
+    }
   }
   wallThickness 0.04
   wallHeight 0.8
@@ -211,13 +216,21 @@ Oven {
   mainColor 0.7 0.7 0.7
 }
 TurtleBot3Burger {
-  translation -1.6 -3.89348e-08 2.73
+  hidden rotation_15 0.9999870073030822 0.005097557686059386 -1.1430779947015713e-05 0.004484857262712961
+  translation -1.61 -3.64414e-08 2.6
   rotation 0.002614148910175633 0.9999965831069 -9.614835991627522e-09 7.33682e-06
   controller "cameriere"
   controllerArgs [
     "--name=Turtlebot"
   ]
   extensionSlot [
+    Camera {
+      translation 0 -0.13 -0.06
+      rotation 1 0 0 -0.261795
+      fieldOfView 0.8
+      width 512
+      height 512
+    }
     SharpGP2Y0A02YK0F {
       translation 0.08 -0.053 0.012
       name "DSENSOR-SHARP-RIGHT"

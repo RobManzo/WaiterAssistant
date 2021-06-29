@@ -95,11 +95,27 @@ class PositionSensor:
 
 class DistanceSensor:
     def __init__(self, robot):
-        self.DSensor = robot.getDevice("DSENSOR-SHARP")
+        self.DSensor = robot.getDevice("DSENSOR-SHARP-FRONT")
         self.DSensor.enable(TIMESTEP)
 
     def getValue(self):
         return self.DSensor.getValue()
+
+class Camera:
+    def __init__(self, robot):
+        self.camera = robot.getDevice("camera")
+        self.camera.enable(TIMESTEP)
+    
+    # return camera image in array form
+    def getImageArray(self):
+        return self.camera.getImageArray()
+
+    def getWidth(self):
+        return self.camera.getWidth()
+    
+    def getHeight(self):
+        return self.camera.getHeight()
+
 
 #class Speaker:
 #    def __init__(self, robot):

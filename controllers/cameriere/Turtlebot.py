@@ -1,9 +1,11 @@
 from controller import Robot
-from Devices import LMotor, RMotor, LDS, Compass, DistanceSensor, PositionSensor
+from Devices import LMotor, RMotor, LDS, Compass, DistanceSensor, PositionSensor, Camera
+from LineFollower import LineFollower
 from Positioning import Positioning
 from Movement import Movement
 from CollisionAvoidance import CollisionAvoidance
 from Constants import TIMESTEP
+
 class Turtlebot:
 
     def __init__(self): 
@@ -14,7 +16,8 @@ class Turtlebot:
         self.compass = Compass(self.robot)
         self.DSensor = DistanceSensor(self.robot)
         self.positionsensor = PositionSensor(self.robot)
-        #self.camera = Camera(self.robot)
+        self.camera = Camera(self.robot)
+        self.linefollower = LineFollower(self.camera)
         #self.speaker = Speaker(self.robot)
         self.positioning = Positioning(self.compass)
         self.collisionAvoidance = CollisionAvoidance(self.DSensor, self.LDS)
