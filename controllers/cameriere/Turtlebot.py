@@ -26,4 +26,7 @@ class Turtlebot:
     def run(self):
         while self.robot.step(TIMESTEP) != -1:
             self.movement.update()
-            print(self.LDS.getRangeImage())
+            #print(self.LDS.getRangeImage())
+            print(self.camera.getWidth())
+            print(self.camera.getHeight())
+            self.camera.getImageGray()

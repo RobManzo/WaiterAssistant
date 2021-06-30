@@ -108,7 +108,16 @@ class Camera:
     
     # return camera image in array form
     def getImageArray(self):
-        return self.camera.getImageArray()
+        return self.camera.getImageArray()      
+
+    def getImageGray(self):
+        image=self.camera.getImage()
+        red=self.camera.imageGetRed(image,self.getWidth(),128,55)
+        green=self.camera.imageGetGreen(image,self.getWidth(),128,55)
+        blue=self.camera.imageGetBlue(image,self.getWidth(),128,55)
+        print(red)
+        print(green)
+        print(blue)
 
     def getWidth(self):
         return self.camera.getWidth()
