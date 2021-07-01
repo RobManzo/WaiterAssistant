@@ -224,7 +224,7 @@ TurtleBot3Burger {
   extensionSlot [
     Camera {
       translation 0 -0.1 -0.06
-      rotation 1 0 0 -0.3926946938995747
+      rotation 1 0 0 -1.165
       fieldOfView 1.5
       width 256
       height 60
