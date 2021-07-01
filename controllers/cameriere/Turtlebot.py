@@ -21,7 +21,7 @@ class Turtlebot:
         #self.speaker = Speaker(self.robot)
         self.positioning = Positioning(self.compass)
         self.collisionAvoidance = CollisionAvoidance(self.DSensor, self.LDS)
-        self.movement = Movement(self.positioning,self.lmotor,self.rmotor,self.collisionAvoidance)
+        self.movement = Movement(self.positioning,self.lmotor,self.rmotor,self.collisionAvoidance,self.linefollower)
 
     def run(self):
         while self.robot.step(TIMESTEP) != -1:

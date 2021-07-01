@@ -3,7 +3,7 @@ from Constants import UNKNOWN
 #from Utils import logger
 
 # constants  
-NUM_ZONES = 16          # number of vertical zones of the image
+NUM_ZONES = 3         # number of vertical zones of the image
 MAX_STEERING_ANGLE = 1  # max steering angle allow to line following
 MIN_STEERING_ANGLE = -1 # min steering angle allow to line folloving
 
@@ -38,6 +38,13 @@ class LineFollower:
 
         # true if line is lost
         self.lineLost = False
+        
+        #speeds
+        self.rightSpeed=0
+
+        self.leftSpeed=0
+        
+        self.adjust=False
 
         # angle to be set to follow the line
         self.newSteeringAngle = UNKNOWN
@@ -45,10 +52,16 @@ class LineFollower:
         # index of the last zone with the yellow line detected
         self.lastLineKnownZone = UNKNOWN
 
+    def getAdjust(self):
+        return self.adjust
+    def getRightSpeed(self):
+        return self.rightSpeed
+    def getLeftSpeed(self):
+        return self.leftSpeed    
     # process data from camera
     def processCameraImage(self):
         # if no pixel of line reference color is found, the line is lost
-
+        
         # clear zone's pixel count
         for i in range(NUM_ZONES):
             self.zones[i] = 0
@@ -66,25 +79,44 @@ class LineFollower:
         # lost line
         if sum(self.zones) == 0:
             #logger.debug("Last known line: " + str(self.lastLineKnownZone))
-            return UNKNOWN
+            print("LINE LOST")
 
         # find index of greatest zone
-        index = self.indexOfMax(self.zones)
+        index = self.zones.index(max(self.zones))
+        print(index)
         if index != -1:
             self.lastLineKnownZone = index
 
         # debug
-        # print(self.zones)
+        print(self.zones)
 
         # if the middle zone is the greatest return 0
-        if index == MIDDLE_ZONE:
-            return 0
-        elif index != -1:
+        if index == MIDDLE_ZONE and self.zones[0]<800 and self.zones[2]<800:
+            self.leftSpeed=0
+            self.rightSpeed=0
+            
+        elif index ==2:
+            self.leftSpeed=2
+            print("left")
             # return angle according to greatest zone
-            return MIN_STEERING_ANGLE + index * STEERING_ANGLE_STEP
+            
+        elif index == 0:
+            print("right")
+            self.rightSpeed=2
+            # return angle according to greatest zone
+        elif self.zones[0]<800:
+            self.leftSpeed=0.2
+            print("adj1")
+        elif self.zones[2]<800:
+            self.rightSpeed=0.2    
+            print("Adj2")
+        elif abs(self.zones[0]-self.zones[2]<300):
+            print("ADJUST")
+            self.adjust=True
         else:
-            return 0
-
+            self.leftSpeed=0
+            self.rightSpeed=0
+            
     # compute index of greatest value in the array
     def indexOfMax(self, array):
         index = -1
@@ -107,7 +139,7 @@ class LineFollower:
 
     # update steering angle
     def update(self):
-        self.newSteeringAngle = self.processCameraImage()
+        self.processCameraImage()
         self.lineLost = self.newSteeringAngle == UNKNOWN
         if self.lineLost:
             self.newSteeringAngle = 0.0

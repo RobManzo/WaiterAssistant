@@ -1,12 +1,14 @@
+
 from Constants import N,S,W,E
 from Misc import Position
 from Constants import ROTSPEED, ADJSPEED, SPEED
 
 class Movement:
-    def __init__(self, positioning, lmotor, rmotor, collisionAvoidance):
+    def __init__(self, positioning, lmotor, rmotor, collisionAvoidance,lineFollower):
         self.positioning = positioning
         self.lmotor = lmotor
         self.rmotor = rmotor
+        self.lineFollower=lineFollower
         self.positioning.update()
         self.collisionAvoidance = collisionAvoidance
         self.collisionAvoidance.update()
@@ -33,8 +35,8 @@ class Movement:
             self.rotate(ADJSPEED, False)
             
     def movement(self):
-        self.rmotor.setVelocity(SPEED)
-        self.lmotor.setVelocity(SPEED)
+        self.rmotor.setVelocity(SPEED+self.lineFollower.getRightSpeed())
+        self.lmotor.setVelocity(SPEED+self.lineFollower.getLeftSpeed())
     
     def toNewOrientation(self, actualorientation):                      #Generalizzare
         self.isRotating = 1
@@ -60,6 +62,9 @@ class Movement:
         print("Final target degree:", self.finalDegree)
         self.collisionAvoidance.update()
         self.positioning.update() 
+        self.lineFollower.update()
+        
+
 #
         if(self.collisionAvoidance.getCollision() and not self.isRotating):       #Collisione
             self.toNewOrientation(self.positioning.getOrientation())
@@ -68,7 +73,11 @@ class Movement:
 #
         elif(self.isRotating and self.finalDegree + self.tolerance > self.positioning.getOrientation() > self.finalDegree - self.tolerance ):  #rotazione 
             self.isRotating = 0
-#
+#       
+        #elif(self.lineFollower.getAdjust()):
+         #   print("MOVEMENT ADJ ")
+          #  self.adjustOrientation(90)
+
         elif(not self.isRotating):
             print(self.isRotating, "movement to " + Position.degreeToDirection(self.positioning.getOrientation()).__str__()) #counter to a direction
             self.movement()
