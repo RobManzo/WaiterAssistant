@@ -1,4 +1,4 @@
-from Constants import M_PI, TIMESTEP
+from Constants import M_PI, TIMESTEP, UNKNOWN
 import math
 
 #Classe per gestire il motore della ruota sinistra
@@ -115,15 +115,31 @@ class Camera:
         red=self.camera.imageGetRed(image,self.getWidth(),128,55)
         green=self.camera.imageGetGreen(image,self.getWidth(),128,55)
         blue=self.camera.imageGetBlue(image,self.getWidth(),128,55)
-        print(red)
-        print(green)
-        print(blue)
+        #print(red)
+        #print(green)
+        #print(blue)
 
     def getWidth(self):
         return self.camera.getWidth()
     
     def getHeight(self):
         return self.camera.getHeight()
+
+class Keyboard:
+    def __init__(self, robot):
+        self.keyboard = robot.getKeyboard()
+        self.keyboard.enable(64)
+        self.pressedKey = UNKNOWN
+
+    def getKey(self):
+        return self.pressedKey
+
+    def update(self):
+        self.pressedKey = self.keyboard.getKey()
+
+    # return true if char key or his uppercase is pressed
+    def isKeyPressed(self, key ,char):
+        return key == ord(char) or key == ord(char.upper())
 
 
 #class Speaker:

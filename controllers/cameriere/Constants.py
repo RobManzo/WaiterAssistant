@@ -1,3 +1,7 @@
+from math import nan
+
+
+UNKNOWN = nan
 MAX_SPEED = 6.50
 SPEED = 3.0
 ROTSPEED = 4.0
@@ -12,4 +16,3 @@ SY = 1
 BLACK = 0
 WHITE = 1
 TIMESTEP = 32
-UNKNOWN = -123

@@ -34,9 +34,9 @@ class Movement:
         else:
             self.rotate(ADJSPEED, False)
             
-    def movement(self):
-        self.rmotor.setVelocity(SPEED+self.lineFollower.getRightSpeed())
-        self.lmotor.setVelocity(SPEED+self.lineFollower.getLeftSpeed())
+    def movement(self, speed):
+        self.rmotor.setVelocity(speed+self.lineFollower.getRightSpeed())
+        self.lmotor.setVelocity(speed+self.lineFollower.getLeftSpeed())
     
     def toNewOrientation(self, actualorientation):                      #Generalizzare
         self.isRotating = 1
@@ -56,28 +56,33 @@ class Movement:
         self.toNewOrientation()
         #backup function in pathplanner
     
-    def update(self):
-        print("------------\n")
-        print("Orientation:", self.positioning.getOrientation())
-        print("Final target degree:", self.finalDegree)
-        self.collisionAvoidance.update()
-        self.positioning.update() 
-        self.lineFollower.update()
-        
+    def update(self, status):
+        if status==99:
+            print("------------\n")
+            print("Orientation:", self.positioning.getOrientation())
+            print("Final target degree:", self.finalDegree)
+            self.collisionAvoidance.update()
+            self.positioning.update() 
+            self.lineFollower.update()
 
-#
-        if(self.collisionAvoidance.getCollision() and not self.isRotating):       #Collisione
-            self.toNewOrientation(self.positioning.getOrientation())
-            print("final degree=", self.finalDegree)
-            print(self.isRotating, "collision")            
-#
-        elif(self.isRotating and self.finalDegree + self.tolerance > self.positioning.getOrientation() > self.finalDegree - self.tolerance ):  #rotazione 
-            self.isRotating = 0
-#       
-        #elif(self.lineFollower.getAdjust()):
-         #   print("MOVEMENT ADJ ")
-          #  self.adjustOrientation(90)
 
-        elif(not self.isRotating):
-            print(self.isRotating, "movement to " + Position.degreeToDirection(self.positioning.getOrientation()).__str__()) #counter to a direction
-            self.movement()
+   
+            if(self.collisionAvoidance.getCollision() and not self.isRotating):       #Collisione
+                self.toNewOrientation(self.positioning.getOrientation())
+                print("final degree=", self.finalDegree)
+                print(self.isRotating, "collision")            
+   
+            elif(self.isRotating and self.finalDegree + self.tolerance > self.positioning.getOrientation() > self.finalDegree - self.tolerance ):  #rotazione 
+                self.isRotating = 0
+           
+            #elif(self.lineFollower.getAdjust()):
+             #   print("MOVEMENT ADJ ")
+              #  self.adjustOrientation(90)
+
+            elif(not self.isRotating):
+                print(self.isRotating, "movement to " + Position.degreeToDirection(self.positioning.getOrientation()).__str__()) #counter to a direction
+                self.movement(SPEED)
+
+        elif status==0:
+            self.movement(0)
+            print('// Stopped //')
