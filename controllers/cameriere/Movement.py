@@ -63,7 +63,7 @@ class Movement:
             print("Final target degree:", self.finalDegree)
             self.collisionAvoidance.update()
             self.positioning.update() 
-            self.lineFollower.update()
+            
 
 
    
@@ -71,7 +71,10 @@ class Movement:
                 self.toNewOrientation(self.positioning.getOrientation())
                 print("final degree=", self.finalDegree)
                 print(self.isRotating, "collision")            
-   
+            elif(self.lineFollower.getCrossRoad() and not self.isRotating):
+                print("STOP")
+                
+
             elif(self.isRotating and self.finalDegree + self.tolerance > self.positioning.getOrientation() > self.finalDegree - self.tolerance ):  #rotazione 
                 self.isRotating = 0
            
@@ -82,6 +85,8 @@ class Movement:
             elif(not self.isRotating):
                 print(self.isRotating, "movement to " + Position.degreeToDirection(self.positioning.getOrientation()).__str__()) #counter to a direction
                 self.movement(SPEED)
+
+            self.lineFollower.update()
 
         elif status==0:
             self.movement(0)
