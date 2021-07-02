@@ -1,5 +1,5 @@
 
-from Constants import N,S,W,E
+from Constants import NORTH, SOUTH, WEST, EAST
 from Misc import Position
 from Constants import ROTSPEED, ADJSPEED, SPEED
 

@@ -27,20 +27,17 @@ class ExternalController:
 
         # Start
         if self.keyboard.isKeyPressed(currentKey, 's'):
-            print("Pressed A.")
+            print("Pressed S.")
             self.motionStatus = 99
         
         # Stop
         elif self.keyboard.isKeyPressed(currentKey, 'p'):
-            print("Pressed S.")
+            print("Pressed P.")
             self.motionStatus = 0
         
         elif self.keyboard.isKeyPressed(currentKey, 'm'):
             print ('Going Manual.')
             self.motionStatus = 66
-        
-        else:
-            self.motionStatus = UNKNOWN
 
         # return current key to allow other controls 
         return currentKey
