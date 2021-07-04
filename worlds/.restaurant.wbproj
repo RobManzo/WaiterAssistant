@@ -9,4 +9,4 @@ orthographicViewHeight: 1
 textFiles: -1
 globalOptionalRendering: DistanceSensorRays::LidarPointClouds
 consoles: Console:All:All
-renderingDevicePerspectives: TurtleBot3Burger:camera;1;1.6;0;0
+renderingDevicePerspectives: TurtleBot3Burger:camera;1;2.48333;0;0

@@ -5,8 +5,8 @@ HEIGHT = 15         # map height
 MAP_RESOLUTION = 0.4 # map resolution
 
 # MAP CONSTANS
-B = WALL    # arena border
-K = WALL    # kitchen
+B = -123    # arena border
+K = -123    # kitchen
 F = 0       # floor
 S = -1      # start tile
 C = 66      # curve

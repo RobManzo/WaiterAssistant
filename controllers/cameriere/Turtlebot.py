@@ -23,7 +23,7 @@ class Turtlebot:
         self.camera = Camera(self.robot)
         self.linefollower = LineFollower(self.camera)
         #self.speaker = Speaker(self.robot)
-        self.positioning = Positioning(self.compass)
+        self.positioning = Positioning(self.compass, self.positionsensor)
         self.collisionAvoidance = CollisionAvoidance(self.DSensor, self.LDS)
         self.movement = Movement(self.positioning,self.lmotor,self.rmotor,self.collisionAvoidance,self.linefollower)
         

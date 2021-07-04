@@ -92,7 +92,13 @@ class PositionSensor:
 
     def getDistanceTraveled(self):
         return self.leftpos.getValue(), self.rightpos.getValue()
-
+    
+    def getLeftDistance(self):
+        return self.leftpos.getValue()
+    
+    def getRightDistance(self):
+        return self.rightpos.getValue()
+        
 class DistanceSensor:
     def __init__(self, robot):
         self.DSensor = robot.getDevice("DSENSOR-SHARP-FRONT")
