@@ -1,4 +1,4 @@
-from Constants import N, S, E, W
+from Constants import NORTH, SOUTH, EAST, WEST
 
 class Position:
     def __init__(self, x, y):
@@ -23,14 +23,15 @@ class Position:
         print("Coordinate X: "+ self.getX() + " Coordinate Y: " + self.getY())
     
     def degreeToDirection(degree):
-        if(361.0>degree>359.0 or 1.0>degree>-1.0):
-            return E
-        elif(271.0>degree>269.0):
-            return N
-        elif(91.0>degree>89.0):
-            return S
-        elif(181.0>degree>179.0):
-            return W
+        if(355.0 < degree < 360.0 or 0.0 < degree < 5.0):
+            return 'NORTH'
+        elif(265.0<degree<275.0):
+            return 'EAST'
+        elif(85.0<degree<95.0):
+            return 'WEST'
+        elif(175.5<degree<185.0):
+            return 'SOUTH'
+        print("Degree to direction: " + str(degree))
 
     def checkDegrees(degree):
         if(degree>=360.0):
