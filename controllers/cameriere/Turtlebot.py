@@ -31,6 +31,6 @@ class Turtlebot:
     def run(self):
         while self.robot.step(TIMESTEP) != -1:
             self.externalcontroller.update()
-            self.movement.update(self.externalcontroller.getMotionStatus())
+            self.movement.update(self.externalcontroller.getMotionStatus(), self.positionsensor)
             #print(self.LDS.getRangeImage())
             self.camera.getImageGray()

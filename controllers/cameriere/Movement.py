@@ -1,11 +1,10 @@
-
 from math import nan
 from Constants import NORTH, SOUTH, WEST, EAST
 from Misc import Position
 from Constants import ROTSPEED, ADJSPEED, SPEED
 
 class Movement:
-    def __init__(self, positioning, lmotor, rmotor, collisionAvoidance,lineFollower):
+    def __init__(self, positioning, lmotor, rmotor, collisionAvoidance, lineFollower):
         self.positioning = positioning
         self.lmotor = lmotor
         self.rmotor = rmotor
@@ -16,6 +15,7 @@ class Movement:
         self.isRotating = False
         self.tolerance = 0.02
         self.finalDegree = None
+        self.tiles = 0
 
     def rotate(self, clockwise, speed): #velocità positiva senso orario
         if clockwise:
@@ -55,14 +55,17 @@ class Movement:
         self.toNewOrientation()
         #backup function in pathplanner
     
-    def update(self, status):
+    def update(self, status, positionsensor):
         if status==99:
             self.positioning.update() 
             orientation = self.positioning.getOrientation()
+            tiles = int(round(float(positionsensor.getDistanceTraveled()), 2)/0.4)        #NUMERO BLOCCHI SPOSTATI, 1 BLOCCO = 0.4m
             print("------------\n")
             print("Orientation : ", orientation)
             print('Rotating : ' + str(self.isRotating))
             print('Crossroad : ' + str(self.lineFollower.getCrossRoad()))
+            print('Caselle percorse: '+ str(round(float(tiles), 0)))
+            print('Distance traveled: ' + str(round(float(positionsensor.getDistanceTraveled()), 2)))
             #self.collisionAvoidance.update()
             
             if(self.isRotating):

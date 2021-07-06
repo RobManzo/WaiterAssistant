@@ -1,4 +1,5 @@
-
+from Misc import Position
+from Constants import NORTH, SOUTH, EAST, WEST
 # MAP DIMENSIONS
 WIDTH = 15          # map width
 HEIGHT = 15         # map height
@@ -9,8 +10,10 @@ B = -123    # arena border
 K = -123    # kitchen
 F = 0       # floor
 S = -1      # start tile
-C = 66      # curve
+C = 66      # intersection
 O = 99      # obstacle
+STARTX = 4
+STARTY = 1
 
 # --- MAP ---
 # F-----> Y      ^ N
@@ -58,6 +61,40 @@ def setNewObstacle(position):
     if x> 0 and x < HEIGHT:
         if y > 0 and y < WIDTH:
             MAP[x][y] = O
+
+def findNearestIntersection(position, orientation = False): #ADAPT
+    radius = 1
+    x = position.getX()
+    y = position.getY()
+    for i in range(x-radius, x+radius +1):
+        for j in range(y-radius, y+radius +1):
+            if i < HEIGHT and i > 0 and j < WIDTH and j > 0:
+                if MAP[i][j] == C:
+                    return Position(i, j)
+    return -1
+
+def getNearestWalkablePosition(position, orientation): #ADAPT
+    if not isWalkable(position):
+        print("Actual position non walkable. " + str(position) + " is unwalkable")
+        x = position.getX()
+        y = position.getY()
+        print("ORIENTATION: " + str(orientation))
+        if orientation == NORTH or orientation == SOUTH:
+            p = Position(x, y - 1)
+            if isWalkable(p):
+                return p
+            p = Position(x, y + 1)
+            if isWalkable(p):
+                return p
+        elif orientation == EAST or orientation == WEST:
+            p = Position(x - 1, y)
+            if isWalkable(p):
+                return p
+            p = Position(x + 1, y)
+            if isWalkable(p):
+                return p
+    else:
+        return position
 
 def printMap():
     for F in range(HEIGHT):

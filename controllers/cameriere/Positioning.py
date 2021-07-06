@@ -8,9 +8,12 @@ class Positioning:
         self.orientation = -123
         self.compass = compass
         self.positionsensor = positionsensor
+        self.leftpos = positionsensor.leftpos
+        self.rightpos = positionsensor.rightpos
         self.updateOrientation()
         self.position = Position(SX, SY)
-        
+        self.distancetravelled = 0.0
+
     def updateOrientation(self):
         self.orientation = self.compass.compassToDegree()
     
@@ -23,55 +26,40 @@ class Positioning:
     def getPosition(self):
         return self.position
     
-    #def setPosition(self, position):
-    #    x = self.position.getX()
-    #    y = self.position.getY()
-    #    if x > 0 and x < Map.HEIGHT - 1:
-    #        self.position.setX(position.x)
-    #    if y > 0 and y < Map.WIDTH - 1:
-    #        self.position.setY(position.y)
+    def updateWheelTraveledDistance(self):
+        self.distancetravelled = self.positionsensor.getDistanceTraveled()
+    
+    def positionOnLandmark(self):
+        nearestIntersection = Map.findNearestIntersection(self.position)
+        offset = 0.25
+        if nearestIntersection != -1:
+            x = nearestIntersection.getX()
+            y = nearestIntersection.getY()
+            if self.orientation == Orientation.NORD:
+                nearestIntersection.setX(x + offset)
+            if self.orientation == Orientation.EAST:
+                nearestIntersection.setY(y - offset)
+            if self.orientation == Orientation.SOUTH:
+                nearestIntersection.setX(x - offset)
+            if self.orientation == Orientation.WEST:
+                nearestIntersection.setY(y + offset)
+            
+            self.position = nearestIntersection
+
+        else:
+            print('No intersection nearby')
+    
+    def setPosition(self, position):
+        x = self.position.getX()
+        y = self.position.getY()
+        if x > 0 and x < Map.HEIGHT - 1:
+            self.position.setX(position.x)
+        if y > 0 and y < Map.WIDTH - 1:
+            self.position.setY(position.y)
     
     def update(self):
         self.updateOrientation()
         #self.updatePosition()
-    
-    #def updateWheelTraveledDistance(self):
-    #    # get radiants from wheel
-    #    radFLW = self.positionsensor.getLeftDistance()
-    #    radFRW = self.positionsensor.getRightDistance()
-#
-    #    # compute distance traveled
-    #    self.leftWheelDistance = radFLW * WHEEL_RADIUS
-    #    self.rightWheelDistance = radFRW * WHEEL_RADIUS
-#
-    #def updatePosition(self):
-    #    
-    #    speed = self.actuators.getSpeed()
-#
-    #    if speed != 0:
-    #        # get actual float map position
-    #        x = self.position.x
-    #        y = self.position.y
-#
-    #        # 72 = 0.50 m/s * speed/MAX_SPEED [1.8] / 40 step/s / 0.5 m
-    #        # linearMove = ((0.50 * (speed/MAX_SPEED)) / 40) * 2
-    #        linearMove = speed/72
-#
-    #        # compass decimal digits
-    #        precision = 2
-#
-    #        turnCoeficent = 1
-    #        # if turning you need to do less meters in order to change position in the map
-    #        steeringAngle = self.actuators.getAngle()
-    #        if abs(steeringAngle) == 0.57:
-    #            turnCoeficent = 1.2
-#
-    #        # update position    
-    #        newX = x - round(self.compass.getXComponent(), precision) * linearMove * turnCoeficent
-    #        newY = y + round(self.compass.getYComponent(), precision) * linearMove * turnCoeficent
-    #    
-    #        self.setPosition(Position(newX,newY))
-
     
     
     #def setPosition(self, position):

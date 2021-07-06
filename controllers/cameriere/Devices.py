@@ -1,4 +1,4 @@
-from Constants import M_PI, TIMESTEP, UNKNOWN
+from Constants import M_PI, TIMESTEP, UNKNOWN, WHEEL_RADIUS
 import math
 
 #Classe per gestire il motore della ruota sinistra
@@ -91,12 +91,12 @@ class PositionSensor:
         self.rightpos.enable(TIMESTEP)
 
     def getDistanceTraveled(self):
-        return self.leftpos.getValue(), self.rightpos.getValue()
-    
-    def getLeftDistance(self):
+        return ((self.getLeftSensor()*WHEEL_RADIUS) + (self.getRightSensor()*WHEEL_RADIUS))/4     #Multiply rad/s * wheel radius in order to obtain mean distance travelled, rotation not affected
+           
+    def getLeftSensor(self):
         return self.leftpos.getValue()
     
-    def getRightDistance(self):
+    def getRightSensor(self):
         return self.rightpos.getValue()
         
 class DistanceSensor:

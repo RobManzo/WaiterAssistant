@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.30021465770011163 -0.9059591052160684 -0.29851174010096404 4.663351224389799
-  position 5.961367507756021 5.549392894385561 -0.02137141539613929
+  orientation 0.5163408767257872 -0.678226775747778 -0.5228771745647526 4.346620642382265
+  position 5.201228024080249 19.704107465586652 1.3095816053106057
 }
 TexturedBackground {
   texture "empty_office"
@@ -15,7 +15,7 @@ TexturedBackgroundLight {
 RectangleArena {
   name "restaurant"
   floorSize 6 6
-  floorTileSize 1.6 1.6
+  floorTileSize 0.8 0.8
   floorAppearance PBRAppearance {
     baseColorMap ImageTexture {
       url [
@@ -214,7 +214,6 @@ Oven {
   mainColor 0.7 0.7 0.7
 }
 TurtleBot3Burger {
-  hidden rotation_15 0.9999786707233249 -0.0065078526497291105 0.0005531295520681584 0.29890566716416767
   translation -1.6 -3.83594e-08 2.7
   rotation 0.002614148910175633 0.9999965831069 -9.614835991627522e-09 7.33682e-06
   controller "cameriere"
