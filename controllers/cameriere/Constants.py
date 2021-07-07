@@ -1,6 +1,5 @@
 from math import nan
 
-
 UNKNOWN = nan
 MAX_SPEED = 6.50
 SPEED = 3.0
@@ -12,7 +11,7 @@ S=90.0
 E=0
 W=180.0
 M_PI = 3.14
-SX = 3
+SX = 4
 SY = 1
 BLACK = 0
 WHITE = 1

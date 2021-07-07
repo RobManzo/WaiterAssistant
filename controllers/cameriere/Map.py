@@ -12,15 +12,13 @@ F = 0       # floor
 S = -1      # start tile
 C = 66      # intersection
 O = 99      # obstacle
-STARTX = 4
-STARTY = 1
 
 # --- MAP ---
-# F-----> Y      ^ N
+# F-----> Y      ^ S
 # |              | 
-# |        W <-- F --> E
+# |        E <-- F --> W
 # v X            |
-#                v S
+#                v N
 #                                       
 #      Y  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16     X    map[X][Y]
 MAP =   [[B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B], # 0

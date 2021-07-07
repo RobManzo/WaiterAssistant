@@ -91,8 +91,8 @@ class PositionSensor:
         self.rightpos.enable(TIMESTEP)
 
     def getDistanceTraveled(self):
-        return ((self.getLeftSensor()*WHEEL_RADIUS) + (self.getRightSensor()*WHEEL_RADIUS))/4     #Multiply rad/s * wheel radius in order to obtain mean distance travelled, rotation not affected
-           
+        return round(float((self.getLeftSensor()*WHEEL_RADIUS + self.getRightSensor()*WHEEL_RADIUS)/4),2)     #Multiply rad/s * wheel radius in order to obtain mean distance travelled, rotation not affected
+        
     def getLeftSensor(self):
         return self.leftpos.getValue()
     

@@ -1,6 +1,6 @@
 from math import nan
-from Constants import NORTH, SOUTH, WEST, EAST
 from Misc import Position
+from Constants import NORTH, SOUTH, EAST, WEST
 from Constants import ROTSPEED, ADJSPEED, SPEED
 
 class Movement:
@@ -57,15 +57,20 @@ class Movement:
     
     def update(self, status, positionsensor):
         if status==99:
-            self.positioning.update() 
+            self.positioning.update()
             orientation = self.positioning.getOrientation()
-            tiles = int(round(float(positionsensor.getDistanceTraveled()), 2)/0.4)        #NUMERO BLOCCHI SPOSTATI, 1 BLOCCO = 0.4m
+            position = self.positioning.getPosition()
+            print('Actual Position: ('+str(position.getX())+','+str(position.getY())+')')
+            distance = positionsensor.getDistanceTraveled()
+            tiles = distance % 0.4    #NUMERO BLOCCHI SPOSTATI, 1 BLOCCO = 0.4m [mi conta due blocchi? Due volte resto zero? Troppo lento?]
+            print('Caselle percorse: '+ str(tiles))
+            print('Distance traveled: ' + str(distance))
+            if(tiles == 0.0):
+                self.positioning.updatePosition(orientation)
             print("------------\n")
             print("Orientation : ", orientation)
-            print('Rotating : ' + str(self.isRotating))
-            print('Crossroad : ' + str(self.lineFollower.getCrossRoad()))
-            print('Caselle percorse: '+ str(round(float(tiles), 0)))
-            print('Distance traveled: ' + str(round(float(positionsensor.getDistanceTraveled()), 2)))
+            #print('Rotating : ' + str(self.isRotating))
+            #print('Crossroad : ' + str(self.lineFollower.getCrossRoad()))
             #self.collisionAvoidance.update()
             
             if(self.isRotating):
@@ -73,7 +78,8 @@ class Movement:
 
             elif(self.lineFollower.getCrossRoad() and not self.isRotating):
                 self.setNewOrientation(NORTH)
-                self.toNewOrientation(orientation)  
+                self.toNewOrientation(orientation)
+                  
            
             #elif(self.lineFollower.getAdjust()):
              #   print("MOVEMENT ADJ ")
