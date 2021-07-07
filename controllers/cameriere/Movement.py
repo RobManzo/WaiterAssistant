@@ -62,10 +62,10 @@ class Movement:
             position = self.positioning.getPosition()
             print('Actual Position: ('+str(position.getX())+','+str(position.getY())+')')
             distance = positionsensor.getDistanceTraveled()
-            tiles = distance % 0.4    #NUMERO BLOCCHI SPOSTATI, 1 BLOCCO = 0.4m [mi conta due blocchi? Due volte resto zero? Troppo lento?]
-            print('Caselle percorse: '+ str(tiles))
+            self.tiles = distance % 0.4   #NUMERO BLOCCHI SPOSTATI, 1 BLOCCO = 0.4m [mi conta due blocchi? Due volte resto zero? Troppo lento?]
+            print('Caselle percorse: '+ str(self.tiles))
             print('Distance traveled: ' + str(distance))
-            if(tiles == 0.0):
+            if(self.tiles < 0.007):
                 self.positioning.updatePosition(orientation)
             print("------------\n")
             print("Orientation : ", orientation)
@@ -77,7 +77,7 @@ class Movement:
                 self.toNewOrientation(orientation)  
 
             elif(self.lineFollower.getCrossRoad() and not self.isRotating):
-                self.setNewOrientation(EAST)
+                self.setNewOrientation(NORTH)
                 self.toNewOrientation(orientation)
             elif(self.lineFollower.isLineLost() and not self.isRotating):
                 print("MOv lost")

@@ -63,9 +63,9 @@ class Positioning:
     def setPosition(self, position):
         x = self.position.getX()
         y = self.position.getY()
-        if x > 0 and x < Map.HEIGHT - 1:
+        if x >= 0 and x < Map.HEIGHT - 1:
             self.position.setX(position.x)
-        if y > 0 and y < Map.WIDTH - 1:
+        if y >= 0 and y < Map.WIDTH - 1:
             self.position.setY(position.y)
     
     def updatePosition(self, orientation):      #Da richiamare ogni volta che si ci sposta di 0.4m
