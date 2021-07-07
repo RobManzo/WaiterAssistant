@@ -77,9 +77,14 @@ class Movement:
                 self.toNewOrientation(orientation)  
 
             elif(self.lineFollower.getCrossRoad() and not self.isRotating):
-                self.setNewOrientation(NORTH)
+                self.setNewOrientation(EAST)
                 self.toNewOrientation(orientation)
-                  
+            elif(self.lineFollower.isLineLost() and not self.isRotating):
+                print("MOv lost")
+                variable=self.positioning.getOrientation()
+                print("variable"+str(variable))
+                self.setNewOrientation(variable+180.0)
+                self.toNewOrientation(orientation) 
            
             #elif(self.lineFollower.getAdjust()):
              #   print("MOVEMENT ADJ ")

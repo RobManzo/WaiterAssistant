@@ -63,6 +63,8 @@ class LineFollower:
         return self.leftSpeed
     def getCrossRoad(self):
         return self.crossRoadPass    
+    def setLineLost(self):
+        self.lineLost=False
     # process data from camera
     def processCameraImage(self):
         # if no pixel of line reference color is found, the line is lost
@@ -82,10 +84,7 @@ class LineFollower:
                     self.zones[int(i / self.zoneSpace)] += 1
         
         # lost line
-        if sum(self.zones) == 0:
-            #logger.debug("Last known line: " + str(self.lastLineKnownZone))
-            self.lineLost=True
-            print("LINE LOST")
+        
 
         # find index of greatest zone
         index = self.zones.index(max(self.zones))
@@ -97,10 +96,14 @@ class LineFollower:
         print(self.zones)
 
         # if the middle zone is the greatest return 0
-        if self.lineLost:
-            self.leftSpeed=-6.0
-            self.rightSpeed=-6.0
-        elif self.zones[0]==0:
+        if sum(self.zones) == 0:
+            #logger.debug("Last known line: " + str(self.lastLineKnownZone))
+            self.lineLost=True
+            print("LINE LOST")
+        else: 
+            self.lineLost=False
+            
+        if self.zones[0]==0:
             self.leftSpeed=2
             self.rightSpeed=-0.5
             print("left")
@@ -162,9 +165,7 @@ class LineFollower:
     def update(self):
         self.processCameraImage()
         print("IS CROSSROAD:"+str(self.getCrossRoad()))
-        self.lineLost = self.newSteeringAngle == UNKNOWN
-        if self.lineLost:
-            self.newSteeringAngle = 0.0
+        
 
     # return steereng angle
     def getNewSteeringAngle(self):
