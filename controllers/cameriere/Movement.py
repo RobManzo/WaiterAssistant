@@ -16,6 +16,7 @@ class Movement:
         self.tolerance = 0.02
         self.finalDegree = None
         self.tiles = 0
+        self.clockwise = True
 
     def rotate(self, clockwise, speed): #velocità positiva senso orario
         if clockwise:
@@ -45,12 +46,20 @@ class Movement:
             self.isRotating = False
             self.setNewOrientation(nan)
         else:
-            self.rotate(True, ROTSPEED)
+            if(self.clockwise):
+                self.rotate(False, ROTSPEED)
+            else:
+                self.rotate(True, ROTSPEED)
         
     def setNewOrientation(self, neworientation):
         self.neworientation = neworientation
-
     
+    def rotationDirection(self, orientation):
+        if((self.neworientation - orientation) < 0.0 or (self.neworientation - orientation) > 180.0 ):
+            self.clockwise = False
+        else:
+            self.clockwise = True
+
     def collision(self):
         self.toNewOrientation()
         #backup function in pathplanner
@@ -77,7 +86,8 @@ class Movement:
                 self.toNewOrientation(orientation)  
 
             elif(self.lineFollower.getCrossRoad() and not self.isRotating):
-                self.setNewOrientation(NORTH)
+                self.setNewOrientation(SOUTH)
+                self.rotationDirection(orientation)
                 self.toNewOrientation(orientation)
             elif(self.lineFollower.isLineLost() and not self.isRotating):
                 print("MOv lost")
