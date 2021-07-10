@@ -23,7 +23,6 @@ class ExternalController:
 
     def updateCommands(self):
         self.keyboard.update()
-        print(str(self.orderlist))
         
         # get current key
         self.currentkey = self.keyboard.getKey()
@@ -110,7 +109,7 @@ class ExternalController:
                 print('Table number must be between 1 and 11!')
                 
         elif self.keyboard.isKeyPressed(self.currentkey, '\4'):
-            if(1 < len(self.orderlist) <= 2):
+            if(1 <= len(self.orderlist) <= 2):
                 table = int(''.join(self.orderlist))
                 self.emptyorderlist()
                 if( 0 < table < 12):
