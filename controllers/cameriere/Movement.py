@@ -45,15 +45,25 @@ class Movement:
     
     def toNewOrientation(self, orientation):
         self.isRotating = True
-        if((self.neworientation - 4.0) < orientation < (self.neworientation + 4.0)):
-            self.isRotating = False
-            self.setNewOrientation(nan)
-        else:
-            if(self.clockwise):
-                self.rotate(False, ROTSPEED)
+        if(self.neworientation == NORTH and 270.0 < orientation < 360.0 ):
+            if(4.0 < orientation < 354.0):
+                self.isRotating = False
+                self.setNewOrientation(nan)
             else:
-                self.rotate(True, ROTSPEED)
-        
+                if(self.clockwise):
+                    self.rotate(False, ROTSPEED)
+                else:
+                    self.rotate(True, ROTSPEED)
+        else:
+            if((self.neworientation - 4.0) < orientation < (self.neworientation + 4.0)):
+                self.isRotating = False
+                self.setNewOrientation(nan)
+            else:
+                if(self.clockwise):
+                    self.rotate(False, ROTSPEED)
+                else:
+                    self.rotate(True, ROTSPEED)
+                    
     def setNewOrientation(self, neworientation):
         self.neworientation = neworientation
     
@@ -71,9 +81,6 @@ class Movement:
             self.positioning.update()
             orientation = self.positioning.getOrientation()
             self.position = self.positioning.getPosition()
-            self.nearestintersection = Map.findNearestIntersection(self.position)
-            if(self.nearestintersection!=-1):
-                self.nearestintersection.printCoordinate()
             print('Goal Table: ' + str(goal))
             print('Actual Position: ('+str(self.position.getX())+','+str(self.position.getY())+')')
             
@@ -113,6 +120,9 @@ class Movement:
                 self.distance = positionsensor.getDistanceTraveled()
                 if(self.distance!=0.0):
                     self.tiles = self.distance % 0.4 
+                    self.nearestintersection = Map.findNearestIntersection(self.position)
+                    if(self.nearestintersection!=-1):
+                        self.nearestintersection.printCoordinate()
                 if(self.tiles < 0.006 and self.distance!=0):
                     self.positioning.updatePosition(orientation)
                 print('Caselle percorse: '+ str(self.tiles))

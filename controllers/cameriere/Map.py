@@ -61,15 +61,18 @@ def setNewObstacle(position):
         if y > 0 and y < WIDTH:
             MAP[x][y] = O
 
-def findNearestIntersection(position, orientation = False): #ADAPT
+def findNearestIntersection(position): #ADAPT
     radius = 1
+    list=[]
     x = position.getX()
     y = position.getY()
     for i in range(x-radius, x+radius +1):
         for j in range(y-radius, y+radius +1):
             if i < HEIGHT and i > 0 and j < WIDTH and j > 0:
                 if MAP[i][j] == C:
-                    return Position(i, j)
+                    list.append(Position(i, j))
+    if len(list):
+        return list[-1]
     return -1
 
 def getNearestWalkablePosition(position, orientation): #ADAPT
