@@ -1,47 +1,129 @@
-from Constants import UNKNOWN
 import time
-
-START = 99
-#PARKING = 2
-#COLLISION_AVOIDANCE = 3
-#MANUAL = 4
 
 class ExternalController:
 
     def __init__(self, keyboard):
         self.keyboard = keyboard
         self.status = False
-        self.motionStatus = UNKNOWN
+        self.motionStatus = None
+        self.orderlist = []
 
-    
     def update(self):
-        self.updateCommands()
+        self.currentkey = None
+        return self.updateCommands()
 
     def getMotionStatus(self):
         return self.motionStatus
+    
+    def setMotionStatus(self, motionstatus):
+        self.motionStatus = motionstatus
+    
+    def emptyorderlist(self):
+        self.orderlist = []
 
     def updateCommands(self):
         self.keyboard.update()
+        print(str(self.orderlist))
+        
         # get current key
-        currentKey = self.keyboard.getKey()
+        self.currentkey = self.keyboard.getKey()
 
         # Start
-        if self.keyboard.isKeyPressed(currentKey, 's'):
-            print("Pressed S.")
-            self.motionStatus = 99
+        if self.keyboard.isKeyPressed(self.currentkey, '1'):
+            if(len(self.orderlist) < 2):
+                self.orderlist.append(chr(self.currentkey))
+                print(str(''.join(self.orderlist)))
+                time.sleep(1)
+            else:
+                print('Table number must be between 1 and 11!')
         
-        # Stop
-        elif self.keyboard.isKeyPressed(currentKey, 'p'):
-            print("Pressed P.")
-            self.motionStatus = 0
+        elif self.keyboard.isKeyPressed(self.currentkey, '2'):
+            if(len(self.orderlist) < 2):
+                self.orderlist.append(chr(self.currentkey))
+                print(str(''.join(self.orderlist)))
+                time.sleep(1)
+            else:
+                print('Table number must be between 1 and 11!')
         
-        elif self.keyboard.isKeyPressed(currentKey, 'm'):
-            print ('Going Manual.')
-            self.motionStatus = 66
+        elif self.keyboard.isKeyPressed(self.currentkey, '3'):
+            if(len(self.orderlist) < 2):
+                self.orderlist.append(chr(self.currentkey))
+                print(str(''.join(self.orderlist)))
+                time.sleep(1)
+            else:
+                print('Table number must be between 1 and 11!')
+        
+        elif self.keyboard.isKeyPressed(self.currentkey, '4'):
+            if(len(self.orderlist) < 2):
+                self.orderlist.append(chr(self.currentkey))
+                print(str(''.join(self.orderlist)))
+                time.sleep(1)
+            else:
+                print('Table number must be between 1 and 11!')
+        
+        elif self.keyboard.isKeyPressed(self.currentkey, '5'):
+            if(len(self.orderlist) < 2):
+                self.orderlist.append(chr(self.currentkey))
+                print(str(''.join(self.orderlist)))
+                time.sleep(1)
+            else:
+                print('Table number must be between 1 and 11!')
+        
+        elif self.keyboard.isKeyPressed(self.currentkey, '6'):
+            if(len(self.orderlist) < 2):
+                self.orderlist.append(chr(self.currentkey))
+                print(str(''.join(self.orderlist)))
+                time.sleep(1)
+            else:
+                print('Table number must be between 1 and 11!')
+        
+        elif self.keyboard.isKeyPressed(self.currentkey, '7'):
+            if(len(self.orderlist) < 2):
+                self.orderlist.append(chr(self.currentkey))
+                print(str(''.join(self.orderlist)))
+                time.sleep(1)
+            else:
+                print('Table number must be between 1 and 11!')
+        
+        elif self.keyboard.isKeyPressed(self.currentkey, '8'):
+            if(len(self.orderlist) < 2):
+                self.orderlist.append(chr(self.currentkey))
+                print(str(''.join(self.orderlist)))
+                time.sleep(1)
+            else:
+                print('Table number must be between 1 and 11!')
+        
+        elif self.keyboard.isKeyPressed(self.currentkey, '9'):
+            if(len(self.orderlist) < 2):
+                self.orderlist.append(chr(self.currentkey))
+                print(str(''.join(self.orderlist)))
+                time.sleep(1)
+            else:
+                print('Table number must be between 1 and 11!')
+        
+        elif self.keyboard.isKeyPressed(self.currentkey, '0'):
+            if(len(self.orderlist) < 2):
+                self.orderlist.append(chr(self.currentkey))
+                print(str(''.join(self.orderlist)))
+                time.sleep(1)
+            else:
+                print('Table number must be between 1 and 11!')
+                
+        elif self.keyboard.isKeyPressed(self.currentkey, '\4'):
+            if(1 < len(self.orderlist) <= 2):
+                table = int(''.join(self.orderlist))
+                self.emptyorderlist()
+                if( 0 < table < 12):
+                    self.motionStatus = 99
+                    return table
+                else:
+                    print('Tavolo inesistente.')
+                    return None
+            else:
+                self.emptyorderlist()
+                print('Per favore, inserire un numero compreso tra 1-11.')
 
-        # return current key to allow other controls 
-        return currentKey
-
+        return None
     
     def isEnabled(self):
             return self.status != 0

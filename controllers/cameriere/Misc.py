@@ -20,7 +20,7 @@ class Position:
         return self.y
 
     def printCoordinate(self):
-        print("Coordinate X: "+ self.getX() + " Coordinate Y: " + self.getY())
+        print("Coordinate X: "+ str(self.getX()) + " Coordinate Y: " + str(self.getY()))
     
     def degreeToDirection(degree):
         if(355.0 < degree < 360.0 or 0.0 < degree < 5.0):

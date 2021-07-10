@@ -6,6 +6,7 @@ from Movement import Movement
 from CollisionAvoidance import CollisionAvoidance
 from Constants import TIMESTEP
 from ExternalController import ExternalController
+import Map
 
 class Turtlebot:
 
@@ -26,11 +27,14 @@ class Turtlebot:
         self.positioning = Positioning(self.compass, self.positionsensor)
         self.collisionAvoidance = CollisionAvoidance(self.DSensor, self.LDS)
         self.movement = Movement(self.positioning,self.lmotor,self.rmotor,self.collisionAvoidance,self.linefollower)
-        
+        self.goal = None
 
     def run(self):
         while self.robot.step(TIMESTEP) != -1:
-            self.externalcontroller.update()
-            self.movement.update(self.externalcontroller.getMotionStatus(), self.positionsensor)
-            #print(self.LDS.getRangeImage())
-            self.camera.getImageGray()
+
+            if(self.externalcontroller.getMotionStatus() != 99):
+                self.goal = self.externalcontroller.update()
+            else:
+                self.movement.update(self.positionsensor, self.goal)        #self.goal verrà passato al pathplanner, ad ogni update pathplanner verificherà che l'ordine sia stato consegnato
+                #print(self.LDS.getRangeImage())                            # e restituirà true se è ritornato alla postazione di partenza, nel cas
+                self.camera.getImageGray()

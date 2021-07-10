@@ -144,7 +144,7 @@ class Keyboard:
         self.pressedKey = self.keyboard.getKey()
 
     # return true if char key or his uppercase is pressed
-    def isKeyPressed(self, key ,char):
+    def isKeyPressed(self, key, char):
         return key == ord(char) or key == ord(char.upper())
 
 

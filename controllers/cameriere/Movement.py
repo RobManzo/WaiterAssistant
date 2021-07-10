@@ -2,6 +2,8 @@ from math import nan
 from Misc import Position
 from Constants import NORTH, SOUTH, EAST, WEST
 from Constants import ROTSPEED, ADJSPEED, SPEED
+import Map
+
 
 class Movement:
     def __init__(self, positioning, lmotor, rmotor, collisionAvoidance, lineFollower):
@@ -17,6 +19,7 @@ class Movement:
         self.finalDegree = None
         self.tiles = 0
         self.clockwise = True
+        self.map = Map.MAP
 
     def rotate(self, clockwise, speed): #velocità positiva senso orario
         if clockwise:
@@ -64,11 +67,14 @@ class Movement:
         self.toNewOrientation()
         #backup function in pathplanner
     
-    def update(self, status, positionsensor):
-        if status==99:
+    def update(self, positionsensor, goal):
             self.positioning.update()
             orientation = self.positioning.getOrientation()
             position = self.positioning.getPosition()
+            nearestintersection = Map.findNearestIntersection(position)
+            if(nearestintersection!=-1):
+                nearestintersection.printCoordinate()
+            print('Goal Table: ' + str(goal))
             print('Actual Position: ('+str(position.getX())+','+str(position.getY())+')')
             distance = positionsensor.getDistanceTraveled()
             self.tiles = distance % 0.4   #NUMERO BLOCCHI SPOSTATI, 1 BLOCCO = 0.4m [mi conta due blocchi? Due volte resto zero? Troppo lento?]
@@ -86,7 +92,7 @@ class Movement:
                 self.toNewOrientation(orientation)  
 
             elif(self.lineFollower.getCrossRoad() and not self.isRotating):
-                self.setNewOrientation(SOUTH)
+                self.setNewOrientation(NORTH)
                 self.rotationDirection(orientation)
                 self.toNewOrientation(orientation)
             elif(self.lineFollower.isLineLost() and not self.isRotating):
@@ -105,7 +111,3 @@ class Movement:
                 self.movement(SPEED)
 
             self.lineFollower.update()
-
-        elif status==0:
-            self.movement(0)
-            print('// Stopped //')
