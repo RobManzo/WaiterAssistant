@@ -32,18 +32,7 @@ class RMotor:
     
     def getMaxVelocity(self):
         return self.rmotor.getMaxVelocity()
-
-class LDS:
-    def __init__(self, robot):
-        self.LDS = robot.getDevice('LDS-01')
-        self.LDS.enable(TIMESTEP)
-        self.LDS.enablePointCloud()
-        self.LDS_motor_main = robot.getDevice('LDS-01_main_motor')
-        self.LDS_motor_main.setPosition(float('inf'))
-        self.LDS_motor_secondary = robot.getDevice('LDS-01_secondary_motor')
-        self.LDS_motor_secondary.setPosition(float('inf'))
         
-    
     def setLDSVelocity(self, big, small):
         self.LDS_motor_main.setVelocity(big)                 #VELOCITA' MASSIMA MAIN MOTOR LIDAR 40.0
         self.LDS_motor_secondary.setVelocity(small)         #VELOCITA' MASSIMA SECONDARY MOTOR LIDAR 60.0

@@ -1,5 +1,5 @@
 from controller import Robot
-from Devices import LMotor, RMotor, LDS, Compass, DistanceSensor, PositionSensor, Camera, Keyboard
+from Devices import LMotor, RMotor, Compass, DistanceSensor, PositionSensor, Camera, Keyboard
 from LineFollower import LineFollower
 from Positioning import Positioning
 from Movement import Movement
@@ -17,7 +17,6 @@ class Turtlebot:
         self.externalcontroller.enable()
         self.lmotor = LMotor(self.robot)
         self.rmotor = RMotor(self.robot)
-        self.LDS = LDS(self.robot)
         self.compass = Compass(self.robot)
         self.DSensor = DistanceSensor(self.robot)
         self.positionsensor = PositionSensor(self.robot)
@@ -25,7 +24,7 @@ class Turtlebot:
         self.linefollower = LineFollower(self.camera)
         #self.speaker = Speaker(self.robot)
         self.positioning = Positioning(self.compass, self.positionsensor)
-        self.collisionAvoidance = CollisionAvoidance(self.DSensor, self.LDS)
+        self.collisionAvoidance = CollisionAvoidance(self.DSensor)
         self.movement = Movement(self.positioning,self.lmotor,self.rmotor,self.collisionAvoidance,self.linefollower)
         self.goal = None
 
