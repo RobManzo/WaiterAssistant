@@ -78,9 +78,15 @@ class PositionSensor:
         self.rightpos = robot.getDevice('right wheel sensor')
         self.leftpos.enable(TIMESTEP)
         self.rightpos.enable(TIMESTEP)
+        self.error=0
+        self.i=1
 
     def getDistanceTraveled(self):
-        return float((self.getLeftSensor()*WHEEL_RADIUS + self.getRightSensor()*WHEEL_RADIUS)/4)     #Multiply rad/s * wheel radius in order to obtain mean distance travelled, rotation not affected
+        self.distance=float((self.getLeftSensor()*WHEEL_RADIUS + self.getRightSensor()*WHEEL_RADIUS)/4)     #Multiply rad/s * wheel radius in order to obtain mean distance travelled, rotation not affected
+        return self.distance-self.error
+
+    def resetDistanceTraveled(self):
+        self.error=self.distance
         
     def getLeftSensor(self):
         return self.leftpos.getValue()

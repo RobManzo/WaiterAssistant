@@ -35,7 +35,7 @@ MAP =   [[B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B], # 0
          [B, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, B], # 11
          [B, C, F, F, F, F, C, F, F, F, F, C, F, F, F, F, B], # 12
          [B, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, B], # 13
-         [B, F, F, 9, 9, F, C, F, 10, 10, F, C, F, 11, 11, F, B], # 14
+         [B, C, F, 9, 9, F, C, F, 10, 10, F, C, F, 11, 11, F, B], # 14
          [B, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, B], # 15
          [B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B]] # 16
 

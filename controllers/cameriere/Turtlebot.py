@@ -19,10 +19,10 @@ class Turtlebot:
         self.rmotor = RMotor(self.robot)
         self.compass = Compass(self.robot)
         self.DSensor = DistanceSensor(self.robot)
-        self.positionsensor = PositionSensor(self.robot)
         self.camera = Camera(self.robot)
         self.linefollower = LineFollower(self.camera)
         #self.speaker = Speaker(self.robot)
+        self.positionsensor = PositionSensor(self.robot)
         self.positioning = Positioning(self.compass, self.positionsensor)
         self.collisionAvoidance = CollisionAvoidance(self.DSensor)
         self.movement = Movement(self.positioning,self.lmotor,self.rmotor,self.collisionAvoidance,self.linefollower)
@@ -34,6 +34,5 @@ class Turtlebot:
             if(self.externalcontroller.getMotionStatus() != 99):
                 self.goal = self.externalcontroller.update()
             else:
-                self.movement.update(self.positionsensor, self.goal)        #self.goal verrà passato al pathplanner, ad ogni update pathplanner verificherà che l'ordine sia stato consegnato
-                #print(self.LDS.getRangeImage())                            # e restituirà true se è ritornato alla postazione di partenza, nel cas
+                self.movement.update(self.positionsensor, self.goal)        #self.goal verrà passato al pathplanner, ad ogni update pathplanner verificherà che l'ordine sia stato consegnato # e restituirà true se è ritornato alla postazione di partenza, nel cas
                 self.camera.getImageGray()

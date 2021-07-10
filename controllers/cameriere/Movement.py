@@ -70,18 +70,16 @@ class Movement:
     def update(self, positionsensor, goal):
             self.positioning.update()
             orientation = self.positioning.getOrientation()
-            position = self.positioning.getPosition()
-            nearestintersection = Map.findNearestIntersection(position)
-            if(nearestintersection!=-1):
-                nearestintersection.printCoordinate()
+            self.position = self.positioning.getPosition()
+            self.nearestintersection = Map.findNearestIntersection(self.position)
+            if(self.nearestintersection!=-1):
+                self.nearestintersection.printCoordinate()
             print('Goal Table: ' + str(goal))
-            print('Actual Position: ('+str(position.getX())+','+str(position.getY())+')')
-            distance = positionsensor.getDistanceTraveled()
-            self.tiles = distance % 0.4   #NUMERO BLOCCHI SPOSTATI, 1 BLOCCO = 0.4m [mi conta due blocchi? Due volte resto zero? Troppo lento?]
-            print('Caselle percorse: '+ str(self.tiles))
-            print('Distance traveled: ' + str(distance))
-            if(self.tiles < 0.007):
-                self.positioning.updatePosition(orientation)
+            print('Actual Position: ('+str(self.position.getX())+','+str(self.position.getY())+')')
+            
+              #NUMERO BLOCCHI SPOSTATI, 1 BLOCCO = 0.4m [mi conta due blocchi? Due volte resto zero? Troppo lento?]
+            
+            
             print("------------\n")
             print("Orientation : ", orientation)
             #print('Rotating : ' + str(self.isRotating))
@@ -93,6 +91,9 @@ class Movement:
 
             elif(self.lineFollower.getCrossRoad() and not self.isRotating):
                 self.setNewOrientation(NORTH)
+                self.positioning.setPosition(self.nearestintersection)
+                print("Posizione incrocio settata")
+                positionsensor.resetDistanceTraveled() #posizione incrocio settata
                 self.rotationDirection(orientation)
                 self.toNewOrientation(orientation)
             elif(self.lineFollower.isLineLost() and not self.isRotating):
@@ -109,5 +110,12 @@ class Movement:
             elif(not self.isRotating):
                 print("Movement to " + str(Position.degreeToDirection(self.positioning.getOrientation())))
                 self.movement(SPEED)
+                self.distance = positionsensor.getDistanceTraveled()
+                if(self.distance!=0.0):
+                    self.tiles = self.distance % 0.4 
+                if(self.tiles < 0.006 and self.distance!=0):
+                    self.positioning.updatePosition(orientation)
+                print('Caselle percorse: '+ str(self.tiles))
+                print('Distance traveled: ' + str(self.distance))    
 
             self.lineFollower.update()
