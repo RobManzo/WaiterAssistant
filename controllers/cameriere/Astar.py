@@ -6,6 +6,8 @@ except:
 
 import heapq
 
+WALL = -123
+
 def findPath(map, start, goal):
     route = astar(map, start, goal)
     if not route:
@@ -36,6 +38,7 @@ def astar(map, start, goal):
                 data.append(current)
                 current = came_from[current]
             return data
+            
         close_set.add(current)
 
         for i, j in neighbors:

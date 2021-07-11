@@ -29,7 +29,7 @@ class Movement:
             self.rmotor.setVelocity(speed)
             self.lmotor.setVelocity(-speed)
 
-    def adjustOrientation(self, finalDegree):
+    def adjustOrientation(self, finalDegree):           #Deprecated?
         orientation = self.positioning.getOrientation()
         finalDegree = Position.degreeToDirection(finalDegree)
         diff = finalDegree-orientation

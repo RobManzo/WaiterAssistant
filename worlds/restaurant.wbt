@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.13133474280975474 -0.9792572000306805 -0.15429362112273898 4.6177455846555855
-  position 3.082554052511945 1.8049863274918054 1.6976741397779662
+  orientation 0.26946846735646046 -0.9152259304029261 -0.29958010851633404 4.562742896290121
+  position 11.265333260871243 8.046304081723871 -0.7599091324143277
 }
 TexturedBackground {
   texture "empty_office"
@@ -214,7 +214,6 @@ Oven {
   mainColor 0.7 0.7 0.7
 }
 TurtleBot3Burger {
-  hidden rotation_8 -0.6953720581310263 0.6969253103795172 0.17536479841471608 0.9214253913326415
   translation -1.6 -3.9702e-08 2.78
   rotation 0.002614148910175633 0.9999965831069 -9.614835991627522e-09 7.33682e-06
   controller "cameriere"
@@ -883,6 +882,8 @@ StraightRoadSegment {
   roadBorderHeight 0
   startingRoadBorderWidth 0
   endingRoadBorderWidth 0
+  rightBorder FALSE
+  leftBorder FALSE
   length 4
   appearance PBRAppearance {
     baseColor 0 0 0
