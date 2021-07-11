@@ -21,8 +21,9 @@ class ExternalController:
     
     def emptyorderlist(self):
         self.orderlist = []
-        
+
     def getTable(self):
+        print("TAVOLO: "+ str(self.table))
         return self.table
 
     def updateCommands(self):

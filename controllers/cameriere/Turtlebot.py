@@ -33,6 +33,8 @@ class Turtlebot:
     def run(self):
         while self.robot.step(TIMESTEP) != -1:
             if(self.externalcontroller.getMotionStatus() == 99):
+                print(self.externalcontroller.getTable())
+                self.pathplanner.setGoal(self.externalcontroller.getTable())
                 self.movement.update()        #self.goal verrà passato al pathplanner, ad ogni update pathplanner verificherà che l'ordine sia stato consegnato # e restituirà true se è ritornato alla postazione di partenza, nel cas
                 self.camera.getImageGray()
             else:

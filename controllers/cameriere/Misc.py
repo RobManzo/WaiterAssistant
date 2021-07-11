@@ -19,6 +19,9 @@ class Position:
     def getY(self):
         return self.y
 
+    def getPositionArray(self):
+        return (self.getX(), self.getY())    
+
     def printCoordinate(self):
         print("Coordinate X: "+ str(self.getX()) + " Coordinate Y: " + str(self.getY()))
     

@@ -50,10 +50,12 @@ class PathPlanner:
         self.goalPositions = UNKNOWN
     
     # update path planning service
-    def setGoal(self):
-        self.goalPositions=Map.tablePositions(self.externalcontroller.getTable())
-        print("Goal Positions"+ str(self.goalPositions))
-        
+    def setGoal(self,table):
+        self.goalPositions=Map.tablePositions(table)
+        print("Goal Positions:")
+        for position in self.goalPositions:
+            position.printCoordinate()
+
     def update(self):
         self.robotPosition = self.positioning.getPosition()
         self.robotOrientation = self.positioning.getOrientation()
@@ -71,30 +73,36 @@ class PathPlanner:
 
         #logger.debug("Path from: " + str(self.robotPosition) + " to " + str(self.goalPosition) + " Initial Orientation: " + str(self.robotOrientation))
         # get fastest route from AStar giving map, start position and goal position
-        route = Astar.findPath(self.map, self.robotPosition.getPositionArray(), self.goalPosition.getPositionArray())
-
+        route = Astar.findPath(self.map, self.robotPosition.getPositionArray(), self.goalPositions[0].getPositionArray())
+        print("ROUTE:"+str(route))
         # if no route was found, return UNKNOWN path
         if route == None:
             return UNKNOWN
 
         # get only intersection nodes from AStar route
-        intersections = self.getIntersectionNodesFromRoute(route)
-
+       
+       # intersections = self.getIntersectionNodesFromRoute(route)
+        #print("intersections:"+ str(intersections))
+       
         # get cardinal points directions based on intersection nodes
-        directions = self.getDirectionsFromIntersections(intersections)
+       
+        #directions = self.getDirectionsFromIntersections(intersections)
         
-        #logger.debug(directions)
+        #print("directions"+str(directions))
+       
+       
 
         # get turns based on robot directions and robot orientation
-        turns = self.getTurnsFromDirections(directions)
+        
+        #turns = self.getTurnsFromDirections(directions)
 
-        #logger.debug(turns)
+       
 
         # remove curve turns
-        turns = self.removeCurves(turns, intersections)
+        #turns = self.removeCurves(turns, intersections)
 
         # return the turns
-        return turns
+        return None
 
     #set goal position in the map
     def setGoalPosition(self, position):

@@ -1,7 +1,7 @@
 from math import nan
 from Misc import Position
 from Constants import NORTH, SOUTH, EAST, WEST
-from Constants import ROTSPEED, ADJSPEED, SPEED
+from Constants import ROTSPEED, ADJSPEED, SPEED, UNKNOWN
 import Map
 
 
@@ -22,6 +22,7 @@ class Movement:
         self.clockwise = True
         self.goalReach= False
         self.map = Map.MAP
+        self.currentPath = UNKNOWN
 
     def rotate(self, clockwise, speed): #velocità positiva senso orario
         if clockwise:
@@ -111,9 +112,11 @@ class Movement:
     
     def update(self): #Goal da mettere nel path planner
             self.positioning.update()
+            self.pathplanner.update()
             orientation = self.positioning.getOrientation()
             self.position = self.positioning.getPosition()
-            print('Goal Table: ' + str(goal))
+            self.currentPath = self.pathplanner.getFastestRoute()
+            print(str(self.currentPath))
             print('Actual Position: ('+str(self.position.getX())+','+str(self.position.getY())+')')
             
               #NUMERO BLOCCHI SPOSTATI, 1 BLOCCO = 0.4m [mi conta due blocchi? Due volte resto zero? Troppo lento?]

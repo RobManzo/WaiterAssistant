@@ -8,11 +8,11 @@ MAP_RESOLUTION = 0.4 # map resolution
 # MAP CONSTANS
 B = -123    # arena border
 K = -123    # kitchen
-F = 0       # floor
+F = -123       # floor
 S = -1      # start tile
 C = 66      # intersection
 O = 99      # obstacle
-
+L = 0 
 # --- MAP ---
 # F-----> Y      ^ S
 # |              | 
@@ -23,31 +23,31 @@ O = 99      # obstacle
 #      Y  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16     X    map[X][Y]
 MAP =   [[B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B], # 0
          [B, K, K, K, K, F, F, F, F, F, F, F, F, F, F, F, B], # 1
-         [B, K, K, K, K, F, F, F, 1, 1, F, C, F, 2, 2, F, B], # 2
-         [B, K, K, K, K, F, F, F, F, F, F, F, F, F, F, F, B], # 3
-         [B, S, F, F, F, F, C, F, F, F, F, C, F, F, F, F, B], # 4
-         [B, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, B], # 5
-         [B, C, F, 3, 3, F, C, F, 4, 4, F, C, F, 5, 5, F, B], # 6
-         [B, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, B], # 7
-         [B, C, F, F, F, F, C, F, F, F, F, C, F, F, F, F, B], # 8
-         [B, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, B], # 9
-         [B, C, F, 6, 6, F, C, F, 7, 7, F, C, F, 8, 8, F, B], # 10
-         [B, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, B], # 11
-         [B, C, F, F, F, F, C, F, F, F, F, C, F, F, F, F, B], # 12
-         [B, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, B], # 13
-         [B, C, F, 9, 9, F, C, F, 10, 10, F, C, F, 11, 11, F, B], # 14
+         [B, K, K, K, K, F, C, 1, B, B, 1, C, 2, B, B, B, B], # 2
+         [B, K, K, K, K, F, L, F, F, F, F, L, F, F, F, F, B], # 3
+         [B, S, L, L, L, L, C, L, L, L, L, C, F, F, F, F, B], # 4
+         [B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B], # 5
+         [B, C, 3, B, B, 3, C, 4, B, B, 4, C, 5, B, B, F, B], # 6
+         [B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B], # 7
+         [B, C, L, L, L, L, C, L, L, L, L, C, F, F, F, F, B], # 8
+         [B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B], # 9
+         [B, C, 6, B, B, 6, C, 7, B, B, 7, C, 8, B, B, F, B], # 10
+         [B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B], # 11
+         [B, C, L, L, L, L, C, L, L, L, L, C, F, F, F, F, B], # 12
+         [B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B], # 13
+         [B, C, 9, B, B, 9, C, 10, B, B, 10, C, 11, B, B, F, B], # 14
          [B, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, B], # 15
          [B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B]] # 16
 
 
 #return positions of goals x table
-def tablePositions(self,table):
+def tablePositions(table):
+    print("TABLE:"+str(table))
     list=[]
     for i in range(17):
         for j in range(17):
                 if MAP[i][j] == table:
-                    list.append(Position(i, j),Position(i,j+1))
-    print(str(list))
+                    list.append(Position(i, j))
     return list
 
 # return map value in postion
@@ -60,7 +60,7 @@ def isWalkable(position):
     y = position.getY()
     if x < HEIGHT and x > 0 and y < WIDTH and y > 0:
         value = MAP[x][y]
-        return value == F or value == C
+        return value == F or value == C or value == L
     return False
 
 # set new 
