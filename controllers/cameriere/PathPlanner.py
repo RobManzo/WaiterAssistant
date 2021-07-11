@@ -81,28 +81,28 @@ class PathPlanner:
 
         # get only intersection nodes from AStar route
        
-       # intersections = self.getIntersectionNodesFromRoute(route)
-        #print("intersections:"+ str(intersections))
+        intersections = self.getIntersectionNodesFromRoute(route)
+        print("intersections:"+ str(intersections))
        
         # get cardinal points directions based on intersection nodes
        
-        #directions = self.getDirectionsFromIntersections(intersections)
+        directions = self.getDirectionsFromIntersections(intersections)
         
-        #print("directions"+str(directions))
+        print("directions"+str(directions))
        
        
 
         # get turns based on robot directions and robot orientation
         
-        #turns = self.getTurnsFromDirections(directions)
-
+        turns = self.getTurnsFromDirections(directions)
+        print("turns: "+str(turns))
        
 
         # remove curve turns
-        #turns = self.removeCurves(turns, intersections)
-
+        turns = self.removeCurves(turns, intersections)
+        print("turns2: "+str(turns))
         # return the turns
-        return None
+        return turns
 
     #set goal position in the map
     def setGoalPosition(self, position):
@@ -129,7 +129,8 @@ class PathPlanner:
 
             # get intersection nodes
             for node in route[1:-1]:
-                if self.map[node[0]][node[1]] == Map.I or self.map[node[0]][node[1]] == Map.C: #FORSE BASTA LASCIARE C
+                #if self.map[node[0]][node[1]] == Map.I or self.map[node[0]][node[1]] == Map.C: #FORSE BASTA LASCIARE C
+                if self.map[node[0]][node[1]] == Map.C: #FORSE BASTA LASCIARE C    
                     intersections.append(node)
 
             # get last node
