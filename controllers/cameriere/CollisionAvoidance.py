@@ -1,42 +1,49 @@
+# Collision Avoidance status
+DISABLED = False
+ENABLED = True
+
+# class to handle collision avoidance service
 class CollisionAvoidance:
-    def __init__(self, dsensor):
-        self.proximitysensor = dsensor
-        self.collisionDetected = False
-        self.rotationDegrees = 0
-        
-    def updateSensorsValues(self):
-        self.proximitysensor.getValue()
+    # initialize collision avoidance service
+    def __init__(self, distancesensor):
+        self.distancesensor = distancesensor
+        self.frontsensor = 0.0
+        self.status = DISABLED
+        self.collision = False
+        self.threshold = 2.0 #DA PROVARE
 
-    #def collisionCheck(self):
-    #    threshold=2.0
-    #    if(self.proximitysensor.getValue()>threshold):
-    #        self.collisionDetected=True
-    #    else:
-    #        self.collisionDetected=False
+    def isEnabled(self):
+        return self.status != DISABLED
 
-    def getCollision(self):
-        if (self.collisionDetected):
-            return self.collisionDetected
-    
-    #def checkSector(self, sector):
-    #    if(sector[0]/45 < 1.5):
-    #        print('a collision')
-    #    if(sector[1]/45 < 1):
-    #        print('b collision')
-    #    if(sector[2]/45 < 1):
-    #        print('c collision')
-    #    if(sector[3]/45 < 1):
-    #        print('d collision')
-    #    if(sector[4]/45 < 1):
-    #        print('e collision')
-    #    if(sector[5]/45 < 1):
-    #        print('f collision')
-    #    if(sector[6]/45 < 1):
-    #        print('g collision')
-    #    if(sector[7]/45 < 1):
-    #        print('h collision')
-            
+    def enable(self):
+        self.status = ENABLED
 
+    def disable(self):
+        self.status = DISABLED
 
+    # return true is an imminent collision is detected 
+    def isCollisionDetected(self):
+        return self.collision
+
+    def checkCollision(self):
+        if(self.distancesensor > self.threshold):
+            self.collisionDetected = True
+        else:
+            self.collisionDetected = False
+
+    # update collision avoidance service
     def update(self):
-        print("\n --- Distance Sensor --- \n  Value: " + str(self.proximitysensor.getValue())) 
+        if self.status == ENABLED:
+            self.updateSensorsValue()
+            self.checkCollision()
+    
+    def resetCollision(self):
+        self.collision = False
+
+    # update sensors values
+    def updateSensorsValue(self):
+        self.frontsensor = self.distanceSensors.getValue()
+        
+    # return distance sensors instance
+    def getDistanceSensor(self):
+        return self.distanceSensors
