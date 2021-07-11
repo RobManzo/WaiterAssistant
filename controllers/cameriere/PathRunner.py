@@ -13,24 +13,24 @@ U_TURN = 55
 class PathRunner:
 
     # initialize path running service
-    def __init__(self, positioning, pathPlanner, lineFollower, distanceSensors):
+    def __init__(self, positioning, lineFollower, distanceSensors):
         self.positioning = positioning
-        self.pathPlanner = pathPlanner
+        #self.pathPlanner = pathPlanner
         self.lineFollower = lineFollower
         self.distanceSensors = distanceSensors
 
         self.status = DISABLED
         self.prevStatus = UNKNOWN
 
-        self.uTurnStatus = UNKNOWN
-        self.uTurnGoalOrientation = UNKNOWN
-        self.uTurnStartingMeter = UNKNOWN
+        #self.uTurnStatus = UNKNOWN
+        #self.uTurnGoalOrientation = UNKNOWN
+        #self.uTurnStartingMeter = UNKNOWN
         self.actualTurn = 0
         self.currentPath = UNKNOWN
         self.goalReach = False
         self.speed = SPEED
 
-        self.collisionImminent = False
+        #self.collisionImminent = False
 
     def isEnabled(self):
         return self.status != DISABLED
@@ -41,8 +41,8 @@ class PathRunner:
     def disable(self):
         self.status = DISABLED
 
-    def isUTurning(self):
-        return self.status == U_TURN
+    #def isUTurning(self):
+    #    return self.status == U_TURN
 
     def setCollisionImminent(self, value):
         self.collisionImminent = value
@@ -64,7 +64,7 @@ class PathRunner:
             self.updateGoalStatus()
         
 
-    # get new fastest path from actual position to goal if set
+    # get new fastest path from actual position to goal if set and sets obstacle on map
     def updatePath(self):
         if self.isEnabled():
             print("Computing new path..")
@@ -76,13 +76,13 @@ class PathRunner:
             x = p.getX()
             y = p.getY()
             if o == NORTH:
-                Map.setNewObstacle(Position(x - 1, y))
-            if o == EAST:
-                Map.setNewObstacle(Position(x, y + 1))
-            if o == SOUTH:
                 Map.setNewObstacle(Position(x + 1, y))
-            if o == WEST:
+            if o == EAST:
                 Map.setNewObstacle(Position(x, y - 1))
+            if o == SOUTH:
+                Map.setNewObstacle(Position(x - 1, y))
+            if o == WEST:
+                Map.setNewObstacle(Position(x, y + 1))
             
             #if DEBUG:
             #    Map.printMap()

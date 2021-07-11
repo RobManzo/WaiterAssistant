@@ -1,6 +1,6 @@
 from Misc import Position
 from Constants import NORTH, SOUTH, EAST, WEST
-from Constants import SX, SY
+from Constants import SX, SY , WHEEL_RADIUS
 import Map
 #import Map
 
@@ -14,6 +14,8 @@ class Positioning:
         self.updateOrientation()
         self.position = Position(SX, SY)
         self.distancetravelled = 0.0
+        self.error=0
+        #self.i=1
 
     def updateOrientation(self):
         self.orientation = self.compass.compassToDegree()
@@ -24,6 +26,13 @@ class Positioning:
     def setOrientation(self, orientation):
         self.orientation = orientation
     
+    def getDistanceTraveled(self):
+        self.distance=float((self.positionsensor.getLeftSensor()*WHEEL_RADIUS + self.positionsensor.getRightSensor()*WHEEL_RADIUS)/4)     #Multiply rad * wheel radius in order to obtain mean distance travelled, rotation not affected
+        return self.distance-self.error
+    
+    def resetDistanceTraveled(self):
+        self.error=self.distance
+
     def approximateOrientation(self, orientation):
         if( 330.0 < orientation < 360.0 or 0.0 < orientation < 30.0):
             return NORTH
@@ -37,8 +46,8 @@ class Positioning:
     def getPosition(self):
         return self.position
     
-    def updateWheelTraveledDistance(self):
-        self.distancetravelled = self.positionsensor.getDistanceTraveled()
+    #def updateWheelTraveledDistance(self):
+    #    self.distancetravelled = self.positionsensor.getDistanceTraveled()
     
     #def positionOnLandmark(self):
     #    nearestIntersection = Map.findNearestIntersection(self.position)

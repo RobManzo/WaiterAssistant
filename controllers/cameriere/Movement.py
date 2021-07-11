@@ -6,7 +6,8 @@ import Map
 
 
 class Movement:
-    def __init__(self, positioning, lmotor, rmotor, collisionAvoidance, lineFollower):
+    def __init__(self,pathplanner, positioning, lmotor, rmotor, collisionAvoidance, lineFollower):
+        self.pathplanner=pathplanner
         self.positioning = positioning
         self.lmotor = lmotor
         self.rmotor = rmotor
@@ -19,6 +20,7 @@ class Movement:
         self.finalDegree = None
         self.tiles = 0
         self.clockwise = True
+        self.goalReach= False
         self.map = Map.MAP
 
     def rotate(self, clockwise, speed): #velocità positiva senso orario
@@ -74,10 +76,40 @@ class Movement:
             self.clockwise = True
 
     def collision(self):
-        self.toNewOrientation()
+        self.updatePath()
         #backup function in pathplanner
+
+    def updateGoalStatus(self):
+        currentPosition = self.positioning.getPosition()
+        goalPosition = self.pathPlanner.getGoalPosition()
+
+        self.goalReach = currentPosition == goalPosition
+
+    def updatePath(self): #get new route after setting obstacle in map
+        if self.isEnabled():
+            print("Computing new path..")
+            p = self.positioning.getPosition()
+            o = self.positioning.getOrientation()
+            nearest = Map.getNearestWalkablePosition(p, o)
+            if nearest != None:
+                p = nearest
+            x = p.getX()
+            y = p.getY()
+            if o == NORTH:
+                Map.setNewObstacle(Position(x + 1, y))
+            if o == EAST:
+                Map.setNewObstacle(Position(x, y - 1))
+            if o == SOUTH:
+                Map.setNewObstacle(Position(x - 1, y))
+            if o == WEST:
+                Map.setNewObstacle(Position(x, y + 1))
+            
+            #if DEBUG:
+            #    Map.printMap()s
+
+            self.currentPath = self.pathPlanner.getFastestRoute() #Ricordare di avere 2 goal per tavolo
     
-    def update(self, positionsensor, goal):
+    def update(self): #Goal da mettere nel path planner
             self.positioning.update()
             orientation = self.positioning.getOrientation()
             self.position = self.positioning.getPosition()
@@ -100,7 +132,7 @@ class Movement:
                 self.setNewOrientation(NORTH)
                 self.positioning.setPosition(self.nearestintersection)
                 print("Posizione incrocio settata")
-                positionsensor.resetDistanceTraveled() #posizione incrocio settata
+                self.positioning.resetDistanceTraveled() #posizione incrocio settata
                 self.rotationDirection(orientation)
                 self.toNewOrientation(orientation)
             elif(self.lineFollower.isLineLost() and not self.isRotating):
@@ -110,14 +142,11 @@ class Movement:
                 self.setNewOrientation(variable+180.0)
                 self.toNewOrientation(orientation) 
            
-            #elif(self.lineFollower.getAdjust()):
-             #   print("MOVEMENT ADJ ")
-              #  self.adjustOrientation(90)
 
             elif(not self.isRotating):
                 print("Movement to " + str(Position.degreeToDirection(self.positioning.getOrientation())))
                 self.movement(SPEED)
-                self.distance = positionsensor.getDistanceTraveled()
+                self.distance = self.positioning.getDistanceTraveled()
                 if(self.distance!=0.0):
                     self.tiles = self.distance % 0.4 
                     self.nearestintersection = Map.findNearestIntersection(self.position)

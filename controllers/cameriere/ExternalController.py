@@ -7,6 +7,7 @@ class ExternalController:
         self.status = False
         self.motionStatus = None
         self.orderlist = []
+        self.table=None
 
     def update(self):
         self.currentkey = None
@@ -20,6 +21,9 @@ class ExternalController:
     
     def emptyorderlist(self):
         self.orderlist = []
+        
+    def getTable(self):
+        return self.table
 
     def updateCommands(self):
         self.keyboard.update()
@@ -114,15 +118,14 @@ class ExternalController:
                 self.emptyorderlist()
                 if( 0 < table < 12):
                     self.motionStatus = 99
-                    return table
+                    self.table=table                
                 else:
                     print('Tavolo inesistente.')
-                    return None
+                    
             else:
                 self.emptyorderlist()
                 print('Per favore, inserire un numero compreso tra 1-11.')
 
-        return None
     
     def isEnabled(self):
             return self.status != 0

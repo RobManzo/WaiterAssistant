@@ -1,7 +1,7 @@
-from Map import Map
+import Map
 from Misc import Position
 from Constants import UNKNOWN, NORTH, SOUTH, EAST, WEST, FORWARD, LEFT, RIGHT, U_TURN
-import AStar
+import Astar
 # MAP DIMENSIONS
 #WIDTH = 15          # map width
 #HEIGHT = 15         # map height
@@ -41,14 +41,19 @@ import AStar
 #        [B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B]] # 16
 
 class PathPlanner:
-    def __init__(self, positioning):
+    def __init__(self, positioning,externalcontroller):
         self.map = Map.MAP
+        self.externalcontroller=externalcontroller
         self.positioning = positioning
         self.robotPosition = positioning.getPosition()
         self.robotOrientation = positioning.getOrientation()
-        self.goalPosition = Position(8, 8)
+        self.goalPositions = UNKNOWN
     
     # update path planning service
+    def setGoal(self):
+        self.goalPositions=Map.tablePositions(self.externalcontroller.getTable())
+        print("Goal Positions"+ str(self.goalPositions))
+        
     def update(self):
         self.robotPosition = self.positioning.getPosition()
         self.robotOrientation = self.positioning.getOrientation()
@@ -66,7 +71,7 @@ class PathPlanner:
 
         #logger.debug("Path from: " + str(self.robotPosition) + " to " + str(self.goalPosition) + " Initial Orientation: " + str(self.robotOrientation))
         # get fastest route from AStar giving map, start position and goal position
-        route = AStar.findPath(self.map, self.robotPosition.getPositionArray(), self.goalPosition.getPositionArray())
+        route = Astar.findPath(self.map, self.robotPosition.getPositionArray(), self.goalPosition.getPositionArray())
 
         # if no route was found, return UNKNOWN path
         if route == None:

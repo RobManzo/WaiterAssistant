@@ -40,6 +40,16 @@ MAP =   [[B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B], # 0
          [B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B]] # 16
 
 
+#return positions of goals x table
+def tablePositions(self,table):
+    list=[]
+    for i in range(17):
+        for j in range(17):
+                if MAP[i][j] == table:
+                    list.append(Position(i, j),Position(i,j+1))
+    print(str(list))
+    return list
+
 # return map value in postion
 def getValue(position):
     return MAP[position.getX()][position.getY()]
