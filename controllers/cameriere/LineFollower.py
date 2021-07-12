@@ -47,7 +47,7 @@ class LineFollower:
         self.leftSpeed=0
         
         self.adjust=False
-        self.crossRoadPass=False
+        self.crossRoadPass=True
 
         # angle to be set to follow the line
         self.newSteeringAngle = UNKNOWN

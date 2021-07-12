@@ -66,14 +66,15 @@ class PathPlanner:
 
     
     # return array containing a turn for each intersection in the path between robot position and goal
-    def getFastestRoute(self):
+
+    def getFastestRoute(self,flag): #flag nel caso in cui uno dei due spot non sia raggiungibile
 
         # update map status, this ensure new obstacles are detected
         self.updateMap()
 
         #logger.debug("Path from: " + str(self.robotPosition) + " to " + str(self.goalPosition) + " Initial Orientation: " + str(self.robotOrientation))
         # get fastest route from AStar giving map, start position and goal position
-        route = Astar.findPath(self.map, self.robotPosition.getPositionArray(), self.goalPositions[0].getPositionArray())
+        route = Astar.findPath(self.map, self.robotPosition.getPositionArray(), self.goalPositions[0+flag].getPositionArray())
         print("ROUTE:"+str(route))
         # if no route was found, return UNKNOWN path
         if route == None:
@@ -90,7 +91,7 @@ class PathPlanner:
         
         print("directions"+str(directions))
        
-       
+        return directions
 
         # get turns based on robot directions and robot orientation
         

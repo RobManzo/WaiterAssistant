@@ -71,7 +71,7 @@ def setNewObstacle(position):
         if y > 0 and y < WIDTH:
             MAP[x][y] = O
 
-def findNearestIntersection(position): #ADAPT
+def findNearestIntersection(position,orientation): #ADAPT
     radius = 1
     list=[]
     x = position.getX()
@@ -79,10 +79,16 @@ def findNearestIntersection(position): #ADAPT
     for i in range(x-radius, x+radius +1):
         for j in range(y-radius, y+radius +1):
             if i < HEIGHT and i > 0 and j < WIDTH and j > 0:
-                if MAP[i][j] == C:
+                if MAP[i][j] == C or MAP[i][j] == S :
                     list.append(Position(i, j))
+    print("LISTA incroci")
+    for x in list:
+        x.printCoordinate()
     if len(list):
-        return list[-1]
+        if(orientation==NORTH):
+            return list[-1]
+        else:
+            return list[0]
     return -1
 
 def getNearestWalkablePosition(position, orientation): #ADAPT

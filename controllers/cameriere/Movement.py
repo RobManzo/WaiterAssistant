@@ -23,6 +23,8 @@ class Movement:
         self.goalReach= False
         self.map = Map.MAP
         self.currentPath = UNKNOWN
+        self.neworientation=90
+        self.nearestintersection=Position(4,1)
 
     def rotate(self, clockwise, speed): #velocità positiva senso orario
         if clockwise:
@@ -51,7 +53,7 @@ class Movement:
         if(self.neworientation == NORTH and 270.0 < orientation < 360.0 ):
             if(4.0 < orientation < 354.0):
                 self.isRotating = False
-                self.setNewOrientation(nan)
+                self.setNewOrientation(self.currentPath[0])
             else:
                 if(self.clockwise):
                     self.rotate(False, ROTSPEED)
@@ -60,7 +62,7 @@ class Movement:
         else:
             if((self.neworientation - 4.0) < orientation < (self.neworientation + 4.0)):
                 self.isRotating = False
-                self.setNewOrientation(nan)
+                self.setNewOrientation(self.currentPath[0])
             else:
                 if(self.clockwise):
                     self.rotate(False, ROTSPEED)
@@ -108,20 +110,17 @@ class Movement:
             #if DEBUG:
             #    Map.printMap()s
 
-            self.currentPath = self.pathPlanner.getFastestRoute() #Ricordare di avere 2 goal per tavolo
-    
+            self.currentPath = self.pathPlanner.getFastestRoute(0) #Ricordare di avere 2 goal per tavolo
+
     def update(self): #Goal da mettere nel path planner
             self.positioning.update()
             self.pathplanner.update()
             orientation = self.positioning.getOrientation()
             self.position = self.positioning.getPosition()
-            self.currentPath = self.pathplanner.getFastestRoute()
+            self.currentPath = self.pathplanner.getFastestRoute(0)
             print(str(self.currentPath))
-            print('Actual Position: ('+str(self.position.getX())+','+str(self.position.getY())+')')
-            
-              #NUMERO BLOCCHI SPOSTATI, 1 BLOCCO = 0.4m [mi conta due blocchi? Due volte resto zero? Troppo lento?]
-            
-            
+            print('Actual Position: ('+str(self.position.getX())+','+str(self.position.getY())+')')            
+            print("New Orientation"+str(self.neworientation))
             print("------------\n")
             print("Orientation : ", orientation)
             #print('Rotating : ' + str(self.isRotating))
@@ -129,10 +128,14 @@ class Movement:
             #self.collisionAvoidance.update()
             
             if(self.isRotating):
-                self.toNewOrientation(orientation)  
+                self.toNewOrientation(orientation)
+
+            elif(self.goalReach):
+                self.movement(0)
+                print("GOAL RAGGIUNTO") 
 
             elif(self.lineFollower.getCrossRoad() and not self.isRotating):
-                self.setNewOrientation(NORTH)
+                #○print("prossima direzione"+str(self.currentPath[1]))
                 self.positioning.setPosition(self.nearestintersection)
                 print("Posizione incrocio settata")
                 self.positioning.resetDistanceTraveled() #posizione incrocio settata
@@ -152,11 +155,14 @@ class Movement:
                 self.distance = self.positioning.getDistanceTraveled()
                 if(self.distance!=0.0):
                     self.tiles = self.distance % 0.4 
-                    self.nearestintersection = Map.findNearestIntersection(self.position)
+                    self.nearestintersection = Map.findNearestIntersection(self.position,Position.degreeToDirection(self.positioning.getOrientation()))   
                     if(self.nearestintersection!=-1):
+                        print("NEAREST INTERSECTION:")
                         self.nearestintersection.printCoordinate()
                 if(self.tiles < 0.006 and self.distance!=0):
                     self.positioning.updatePosition(orientation)
+                    if(len(self.currentPath)>1):
+                        self.setNewOrientation(self.currentPath[1])    
                 print('Caselle percorse: '+ str(self.tiles))
                 print('Distance traveled: ' + str(self.distance))    
 

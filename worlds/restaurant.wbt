@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.26946846735646046 -0.9152259304029261 -0.29958010851633404 4.562742896290121
-  position 11.265333260871243 8.046304081723871 -0.7599091324143277
+  orientation 0.41227997457846827 -0.8146313666494132 -0.40792273659663425 4.561423183976711
+  position 10.170871080325718 13.022900347890943 0.4724287989516686
 }
 TexturedBackground {
   texture "empty_office"
@@ -214,6 +214,7 @@ Oven {
   mainColor 0.7 0.7 0.7
 }
 TurtleBot3Burger {
+  hidden rotation_8 0.013414805908240396 -0.9992385972127658 0.036636987085566966 2.440097467113083
   translation -1.6 -3.9702e-08 2.78
   rotation 0.002614148910175633 0.9999965831069 -9.614835991627522e-09 7.33682e-06
   controller "cameriere"
@@ -262,7 +263,7 @@ StraightRoadSegment {
   roadBorderHeight 0
   startingRoadBorderWidth 0
   endingRoadBorderWidth 0
-  length 4.1
+  length 4.3
   appearance PBRAppearance {
     baseColor 0 0 0
   }
@@ -282,14 +283,14 @@ StraightRoadSegment {
   roadBorderHeight 0
   startingRoadBorderWidth 0
   endingRoadBorderWidth 0
-  length 0.6
+  length 0.9
   appearance PBRAppearance {
     baseColor 0 0 0
   }
   pavementAppearance NULL
 }
 StraightRoadSegment {
-  translation -2.4 0.001 0.8
+  translation -2.4 0.001 0.9
   rotation 0 1 0 3.141592653589793
   name "road(33)"
   width 0.1
@@ -302,7 +303,7 @@ StraightRoadSegment {
   roadBorderHeight 0
   startingRoadBorderWidth 0
   endingRoadBorderWidth 0
-  length 0.6
+  length 0.7
   appearance PBRAppearance {
     baseColor 0 0 0
   }
@@ -931,7 +932,7 @@ StraightRoadSegment {
   pavementAppearance NULL
 }
 StraightRoadSegment {
-  translation -2.45 0.001 0.8
+  translation -2.55 0.001 0.8
   rotation 0 1 0 1.5707996938995747
   name "road(30)"
   width 0.1
@@ -944,7 +945,7 @@ StraightRoadSegment {
   roadBorderHeight 0
   startingRoadBorderWidth 0
   endingRoadBorderWidth 0
-  length 4.8
+  length 5.1
   appearance PBRAppearance {
     baseColor 0 0 0
   }

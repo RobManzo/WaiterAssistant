@@ -15,6 +15,7 @@ class Positioning:
         self.position = Position(SX, SY)
         self.distancetravelled = 0.0
         self.error=0
+        self.distance=0
         #self.i=1
 
     def updateOrientation(self):
