@@ -55,18 +55,18 @@ class Movement:
                 #self.setNewOrientation(self.currentPath[0])
             else:
                 if(self.clockwise):
-                    self.rotate(False, ROTSPEED)
-                else:
                     self.rotate(True, ROTSPEED)
+                else:
+                    self.rotate(False, ROTSPEED)
         else:
             if((self.neworientation - 4.0) < orientation < (self.neworientation + 4.0)):
                 self.isRotating = False
                 #self.setNewOrientation(self.currentPath[0])
             else:
                 if(self.clockwise):
-                    self.rotate(False, ROTSPEED)
-                else:
                     self.rotate(True, ROTSPEED)
+                else:
+                    self.rotate(False, ROTSPEED)
                     
     def setNewOrientation(self, neworientation):
         self.neworientation = neworientation
@@ -78,10 +78,27 @@ class Movement:
         print(orientation)
         if(len(self.currentPath)>1):
             self.setNewOrientation(self.currentPath[1])
-        if((self.neworientation - orientation) < 0.0 or (self.neworientation - orientation) > 180.0 ):
-            self.clockwise = False
-        else:
-            self.clockwise = True
+        if(self.neworientation == NORTH):
+            if( 180 <= orientation <= 359.9):
+                self.clockwise = False
+            elif(0.1 <= orientation < 180):
+                self.clockwise = True
+        elif(self.neworientation == SOUTH):
+            if( 180.1 <= orientation <= 359.9 ):
+                self.clockwise = True
+            elif( 0 <= orientation <= 179.9 ):
+                self.clockwise = False
+        elif(self.neworientation == EAST):
+            if(0 <= orientation <= 89.9 or 269.9 <= orientation <= 359.9 ):
+                self.clockwise = True
+            elif( 270.1 <= orientation <= 90):
+                self.clockwise = False
+        elif(self.neworientation == WEST):
+            if( 90.1 <= orientation <= 270):
+                self.clockwise = True
+            elif( 270.1 <= orientation <= 359.9 or 0 <= orientation <= 89.9):
+                self.clockwise = False
+            
 
     def collision(self):
         self.updatePath()

@@ -1,7 +1,7 @@
 import Map
 from Misc import Position
 from Constants import UNKNOWN, NORTH, SOUTH, EAST, WEST, FORWARD, LEFT, RIGHT, U_TURN
-import Astar
+import AStar
 # MAP DIMENSIONS
 #WIDTH = 15          # map width
 #HEIGHT = 15         # map height
@@ -74,7 +74,7 @@ class PathPlanner:
 
         #logger.debug("Path from: " + str(self.robotPosition) + " to " + str(self.goalPosition) + " Initial Orientation: " + str(self.robotOrientation))
         # get fastest route from AStar giving map, start position and goal position
-        route = Astar.findPath(self.map, self.robotPosition.getPositionArray(), self.goalPositions[0+flag].getPositionArray())
+        route = AStar.findPath(self.map, self.robotPosition.getPositionArray(), self.goalPositions[0+flag].getPositionArray())
         print("ROUTE:"+str(route))
         # if no route was found, return UNKNOWN path
         if route == None:

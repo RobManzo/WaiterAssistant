@@ -35,13 +35,13 @@ class Positioning:
         self.error=self.distance
 
     def approximateOrientation(self, orientation):
-        if( 330.0 < orientation < 360.0 or 0.0 < orientation < 30.0):
+        if( 315.0 <= orientation <= 360.0 or 0.0 <= orientation <= 45.0):
             return NORTH
-        elif(150.0 < orientation < 210.0):
+        elif(135.0 <= orientation <= 225.0):
             return SOUTH
-        elif(240.0 < orientation < 310.0):
+        elif(225.0 < orientation < 315.0):
             return EAST
-        elif(60.0 < orientation < 120.0):
+        elif(45.0 < orientation < 135.0): 
             return WEST
 
     def getPosition(self):
