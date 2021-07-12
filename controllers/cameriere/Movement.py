@@ -1,4 +1,3 @@
-from math import nan
 from Misc import Position
 from Constants import NORTH, SOUTH, EAST, WEST
 from Constants import ROTSPEED, ADJSPEED, SPEED, UNKNOWN
@@ -22,9 +21,9 @@ class Movement:
         self.clockwise = True
         self.goalReach= False
         self.map = Map.MAP
-        self.currentPath = UNKNOWN
-        self.neworientation=90
-        self.nearestintersection=Position(4,1)
+        self.currentPath = []
+        self.neworientation=None
+        self.nearestintersection=None
 
     def rotate(self, clockwise, speed): #velocità positiva senso orario
         if clockwise:
@@ -53,7 +52,7 @@ class Movement:
         if(self.neworientation == NORTH and 270.0 < orientation < 360.0 ):
             if(4.0 < orientation < 354.0):
                 self.isRotating = False
-                self.setNewOrientation(self.currentPath[0])
+                #self.setNewOrientation(self.currentPath[0])
             else:
                 if(self.clockwise):
                     self.rotate(False, ROTSPEED)
@@ -62,7 +61,7 @@ class Movement:
         else:
             if((self.neworientation - 4.0) < orientation < (self.neworientation + 4.0)):
                 self.isRotating = False
-                self.setNewOrientation(self.currentPath[0])
+                #self.setNewOrientation(self.currentPath[0])
             else:
                 if(self.clockwise):
                     self.rotate(False, ROTSPEED)
@@ -73,6 +72,12 @@ class Movement:
         self.neworientation = neworientation
     
     def rotationDirection(self, orientation):
+        print("neworientation:")
+        print(self.neworientation)
+        print("orientation:")
+        print(orientation)
+        if(len(self.currentPath)>1):
+            self.setNewOrientation(self.currentPath[1])
         if((self.neworientation - orientation) < 0.0 or (self.neworientation - orientation) > 180.0 ):
             self.clockwise = False
         else:
@@ -117,13 +122,11 @@ class Movement:
             self.pathplanner.update()
             orientation = self.positioning.getOrientation()
             self.position = self.positioning.getPosition()
-            self.currentPath = self.pathplanner.getFastestRoute(0)
-            print(str(self.currentPath))
             print('Actual Position: ('+str(self.position.getX())+','+str(self.position.getY())+')')            
             print("New Orientation"+str(self.neworientation))
             print("------------\n")
             print("Orientation : ", orientation)
-            #print('Rotating : ' + str(self.isRotating))
+            print('Rotating : ' + str(self.isRotating))
             #print('Crossroad : ' + str(self.lineFollower.getCrossRoad()))
             #self.collisionAvoidance.update()
             
@@ -145,8 +148,8 @@ class Movement:
                 print("MOv lost")
                 variable=self.positioning.getOrientation()
                 print("variable"+str(variable))
-                self.setNewOrientation(variable+180.0)
-                self.toNewOrientation(orientation) 
+                #self.setNewOrientation(variable+180.0)
+                #self.toNewOrientation(orientation) 
            
 
             elif(not self.isRotating):
@@ -155,14 +158,20 @@ class Movement:
                 self.distance = self.positioning.getDistanceTraveled()
                 if(self.distance!=0.0):
                     self.tiles = self.distance % 0.4 
-                    self.nearestintersection = Map.findNearestIntersection(self.position,Position.degreeToDirection(self.positioning.getOrientation()))   
+                    self.nearestintersection = Map.findNearestIntersection(self.position,Position.degreeToDirection(self.positioning.getOrientation()))
+                        
                     if(self.nearestintersection!=-1):
                         print("NEAREST INTERSECTION:")
                         self.nearestintersection.printCoordinate()
+                self.currentPath = self.pathplanner.getFastestRoute(0)
                 if(self.tiles < 0.006 and self.distance!=0):
                     self.positioning.updatePosition(orientation)
                     if(len(self.currentPath)>1):
-                        self.setNewOrientation(self.currentPath[1])    
+                        self.setNewOrientation(self.currentPath[1]) 
+                print("currentpath:")
+                print(str(self.currentPath))
+
+                   
                 print('Caselle percorse: '+ str(self.tiles))
                 print('Distance traveled: ' + str(self.distance))    
 

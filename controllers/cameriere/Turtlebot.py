@@ -28,7 +28,6 @@ class Turtlebot:
         self.pathplanner=PathPlanner(self.positioning,self.externalcontroller)
         self.collisionAvoidance = CollisionAvoidance(self.DSensor)
         self.movement = Movement(self.pathplanner,self.positioning,self.lmotor,self.rmotor,self.collisionAvoidance,self.linefollower)
-        self.goal = None
 
     def run(self):
         while self.robot.step(TIMESTEP) != -1:

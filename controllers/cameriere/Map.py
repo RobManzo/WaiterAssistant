@@ -24,8 +24,8 @@ L = 0
 MAP =   [[B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B], # 0
          [B, K, K, K, K, F, F, F, F, F, F, F, F, F, F, F, B], # 1
          [B, K, K, K, K, F, C, 1, B, B, 1, C, 2, B, B, B, B], # 2
-         [B, K, K, K, K, F, L, F, F, F, F, L, F, F, F, F, B], # 3
-         [B, S, L, L, L, L, C, L, L, L, L, C, F, F, F, F, B], # 4
+         [B, K, K, K, S, F, L, F, F, F, F, L, F, F, F, F, B], # 3
+         [B, C, L, L, C, L, C, L, L, L, L, C, F, F, F, F, B], # 4
          [B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B], # 5
          [B, C, 3, B, B, 3, C, 4, B, B, 4, C, 5, B, B, F, B], # 6
          [B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B], # 7
@@ -79,13 +79,13 @@ def findNearestIntersection(position,orientation): #ADAPT
     for i in range(x-radius, x+radius +1):
         for j in range(y-radius, y+radius +1):
             if i < HEIGHT and i > 0 and j < WIDTH and j > 0:
-                if MAP[i][j] == C or MAP[i][j] == S :
+                if MAP[i][j] == C:
                     list.append(Position(i, j))
     print("LISTA incroci")
     for x in list:
         x.printCoordinate()
     if len(list):
-        if(orientation==NORTH):
+        if(orientation==NORTH or orientation==WEST):
             return list[-1]
         else:
             return list[0]
