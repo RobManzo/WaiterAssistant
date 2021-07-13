@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.5452737944086002 -0.5754422013385955 -0.6095430764514014 4.189559655082412
-  position 0.6182526726808504 20.205361292473853 0.5510331645488057
+  orientation 0.5683328264262757 -0.5648340149906445 -0.5982978638737309 4.225798413143384
+  position -0.13742801540201763 18.23558428474539 -0.5675445417200757
 }
 TexturedBackground {
   texture "empty_office"
@@ -234,7 +234,6 @@ Oven {
   mainColor 0.7 0.7 0.7
 }
 TurtleBot3Burger {
-  hidden rotation_8 -0.006875502291196558 -0.9889948460674003 0.14779012795299676 3.233547774050583
   translation -1.96 -2.07138e-08 1.59
   rotation -9.58977e-09 1 9.58984e-09 -1.5707853071795865
   controller "cameriere"
@@ -330,106 +329,6 @@ StraightRoadSegment {
   pavementAppearance NULL
 }
 StraightRoadSegment {
-  translation -0.8 0.002 2.4
-  rotation 0 1 0 3.141592653589793
-  name "road(15)"
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 0.1
-  appearance PBRAppearance {
-    baseColor 0.1 0.8 0.1
-  }
-  pavementAppearance NULL
-}
-StraightRoadSegment {
-  translation -0.8 0.002 1.3
-  rotation 0 1 0 3.141592653589793
-  name "road(16)"
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 0.1
-  appearance PBRAppearance {
-    baseColor 0.1 0.8 0.1
-  }
-  pavementAppearance NULL
-}
-StraightRoadSegment {
-  translation -0.8 0.002 0.4
-  rotation 0 1 0 3.141592653589793
-  name "road(17)"
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 0.1
-  appearance PBRAppearance {
-    baseColor 0.1 0.8 0.1
-  }
-  pavementAppearance NULL
-}
-StraightRoadSegment {
-  translation -0.8 0.002 -0.7
-  rotation 0 1 0 3.141592653589793
-  name "road(18)"
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 0.1
-  appearance PBRAppearance {
-    baseColor 0.1 0.8 0.1
-  }
-  pavementAppearance NULL
-}
-StraightRoadSegment {
-  translation -0.8 0.002 -1.6
-  rotation 0 1 0 3.141592653589793
-  name "road(19)"
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 0.1
-  appearance PBRAppearance {
-    baseColor 0.1 0.8 0.1
-  }
-  pavementAppearance NULL
-}
-StraightRoadSegment {
   translation -2.4 0.002 -1.6
   rotation 0 1 0 3.141592653589793
   name "road(20)"
@@ -445,27 +344,7 @@ StraightRoadSegment {
   endingRoadBorderWidth 0
   length 0.1
   appearance PBRAppearance {
-    baseColor 0.1 0.8 0.1
-  }
-  pavementAppearance NULL
-}
-StraightRoadSegment {
-  translation -2.4 0.002 -0.7
-  rotation 0 1 0 3.141592653589793
-  name "road(21)"
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 0.1
-  appearance PBRAppearance {
-    baseColor 0.1 0.8 0.1
+    baseColor 0 0 0
   }
   pavementAppearance NULL
 }
@@ -485,207 +364,7 @@ StraightRoadSegment {
   endingRoadBorderWidth 0
   length 0.1
   appearance PBRAppearance {
-    baseColor 0.1 0.8 0.1
-  }
-  pavementAppearance NULL
-}
-StraightRoadSegment {
-  translation 0.8 0.002 -0.7
-  rotation 0 1 0 3.141592653589793
-  name "road(22)"
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 0.1
-  appearance PBRAppearance {
-    baseColor 0.1 0.8 0.1
-  }
-  pavementAppearance NULL
-}
-StraightRoadSegment {
-  translation 0.8 0.002 -1.6
-  rotation 0 1 0 3.141592653589793
-  name "road(23)"
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 0.1
-  appearance PBRAppearance {
-    baseColor 0.1 0.8 0.1
-  }
-  pavementAppearance NULL
-}
-StraightRoadSegment {
-  translation 2.4 0.002 -1.6
-  rotation 0 1 0 3.141592653589793
-  name "road(24)"
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 0.1
-  appearance PBRAppearance {
-    baseColor 0.1 0.8 0.1
-  }
-  pavementAppearance NULL
-}
-StraightRoadSegment {
-  translation 2.4 0.002 -0.7
-  rotation 0 1 0 3.141592653589793
-  name "road(25)"
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 0.1
-  appearance PBRAppearance {
-    baseColor 0.1 0.8 0.1
-  }
-  pavementAppearance NULL
-}
-StraightRoadSegment {
-  translation 2.4 0.002 0.4
-  rotation 0 1 0 3.141592653589793
-  name "road(26)"
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 0.1
-  appearance PBRAppearance {
-    baseColor 0.1 0.8 0.1
-  }
-  pavementAppearance NULL
-}
-StraightRoadSegment {
-  translation 2.4 0.002 1.3
-  rotation 0 1 0 3.141592653589793
-  name "road(27)"
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 0.1
-  appearance PBRAppearance {
-    baseColor 0.1 0.8 0.1
-  }
-  pavementAppearance NULL
-}
-StraightRoadSegment {
-  translation 2.4 0.002 2.4
-  rotation 0 1 0 3.141592653589793
-  name "road(28)"
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 0.1
-  appearance PBRAppearance {
-    baseColor 0.1 0.8 0.1
-  }
-  pavementAppearance NULL
-}
-StraightRoadSegment {
-  translation 0.8 0.002 2.4
-  rotation 0 1 0 3.141592653589793
-  name "road(29)"
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 0.1
-  appearance PBRAppearance {
-    baseColor 0.1 0.8 0.1
-  }
-  pavementAppearance NULL
-}
-StraightRoadSegment {
-  translation 0.8 0.002 0.4
-  rotation 0 1 0 3.141592653589793
-  name "road(31)"
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 0.1
-  appearance PBRAppearance {
-    baseColor 0.1 0.8 0.1
-  }
-  pavementAppearance NULL
-}
-StraightRoadSegment {
-  translation 0.8 0.002 1.3
-  rotation 0 1 0 3.141592653589793
-  name "road(32)"
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 0.1
-  appearance PBRAppearance {
-    baseColor 0.1 0.8 0.1
+    baseColor 0 0 0
   }
   pavementAppearance NULL
 }

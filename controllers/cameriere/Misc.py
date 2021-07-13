@@ -35,7 +35,10 @@ class Position:
         elif(175.5<degree<185.0):
             return SOUTH
         print("Degree to direction: " + str(degree))
-
+    def comparePosition(self,position):
+        if(self.x==position.x and self.y == position.y):
+            return True
+        return False
     def checkDegrees(degree):
         if(degree>=360.0):
                 return degree-360.0

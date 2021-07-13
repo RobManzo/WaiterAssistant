@@ -37,7 +37,7 @@ class ExternalController:
             if(len(self.orderlist) < 2):
                 self.orderlist.append(chr(self.currentkey))
                 print(str(''.join(self.orderlist)))
-                time.sleep(1)
+                time.sleep(0.5)
             else:
                 print('Table number must be between 1 and 11!')
         
@@ -45,7 +45,7 @@ class ExternalController:
             if(len(self.orderlist) < 2):
                 self.orderlist.append(chr(self.currentkey))
                 print(str(''.join(self.orderlist)))
-                time.sleep(1)
+                time.sleep(0.5)
             else:
                 print('Table number must be between 1 and 11!')
         
@@ -53,7 +53,7 @@ class ExternalController:
             if(len(self.orderlist) < 2):
                 self.orderlist.append(chr(self.currentkey))
                 print(str(''.join(self.orderlist)))
-                time.sleep(1)
+                time.sleep(0.5)
             else:
                 print('Table number must be between 1 and 11!')
         
@@ -61,7 +61,7 @@ class ExternalController:
             if(len(self.orderlist) < 2):
                 self.orderlist.append(chr(self.currentkey))
                 print(str(''.join(self.orderlist)))
-                time.sleep(1)
+                time.sleep(0.5)
             else:
                 print('Table number must be between 1 and 11!')
         
@@ -69,7 +69,7 @@ class ExternalController:
             if(len(self.orderlist) < 2):
                 self.orderlist.append(chr(self.currentkey))
                 print(str(''.join(self.orderlist)))
-                time.sleep(1)
+                time.sleep(0.5)
             else:
                 print('Table number must be between 1 and 11!')
         
@@ -77,7 +77,7 @@ class ExternalController:
             if(len(self.orderlist) < 2):
                 self.orderlist.append(chr(self.currentkey))
                 print(str(''.join(self.orderlist)))
-                time.sleep(1)
+                time.sleep(0.5)
             else:
                 print('Table number must be between 1 and 11!')
         
@@ -85,7 +85,7 @@ class ExternalController:
             if(len(self.orderlist) < 2):
                 self.orderlist.append(chr(self.currentkey))
                 print(str(''.join(self.orderlist)))
-                time.sleep(1)
+                time.sleep(0.5)
             else:
                 print('Table number must be between 1 and 11!')
         
@@ -93,7 +93,7 @@ class ExternalController:
             if(len(self.orderlist) < 2):
                 self.orderlist.append(chr(self.currentkey))
                 print(str(''.join(self.orderlist)))
-                time.sleep(1)
+                time.sleep(0.5)
             else:
                 print('Table number must be between 1 and 11!')
         
@@ -101,7 +101,7 @@ class ExternalController:
             if(len(self.orderlist) < 2):
                 self.orderlist.append(chr(self.currentkey))
                 print(str(''.join(self.orderlist)))
-                time.sleep(1)
+                time.sleep(0.5)
             else:
                 print('Table number must be between 1 and 11!')
         
@@ -109,7 +109,7 @@ class ExternalController:
             if(len(self.orderlist) < 2):
                 self.orderlist.append(chr(self.currentkey))
                 print(str(''.join(self.orderlist)))
-                time.sleep(1)
+                time.sleep(0.5)
             else:
                 print('Table number must be between 1 and 11!')
                 

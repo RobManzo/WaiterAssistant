@@ -50,7 +50,7 @@ class Movement:
     def toNewOrientation(self, orientation):
         self.isRotating = True
         if(self.neworientation == NORTH and 270.0 < orientation < 360.0 ):
-            if(355.0 < orientation < 360.0 or  0 <= orientation <= 4):
+            if(358.0 < orientation < 360.0 or  0 <= orientation <= 1):
                 self.isRotating = False
                 #self.setNewOrientation(self.currentPath[0])
             else:
@@ -59,7 +59,7 @@ class Movement:
                 else:
                     self.rotate(False, ROTSPEED)
         else:
-            if((self.neworientation - 4.0) < orientation < (self.neworientation + 4.0)):
+            if((self.neworientation - 1.0) < orientation < (self.neworientation + 1.0)):
                 self.isRotating = False
                 #self.setNewOrientation(self.currentPath[0])
             else:
@@ -106,9 +106,9 @@ class Movement:
 
     def updateGoalStatus(self):
         currentPosition = self.positioning.getPosition()
-        goalPosition = self.pathPlanner.getGoalPosition()
-
-        self.goalReach = currentPosition == goalPosition
+        goalPosition = self.pathplanner.getGoalPosition()
+        print("GOAL UPDATE")
+        self.goalReach = goalPosition.comparePosition(currentPosition)
 
     def updatePath(self): #get new route after setting obstacle in map
         if self.isEnabled():
@@ -139,6 +139,7 @@ class Movement:
             self.pathplanner.update()
             orientation = self.positioning.getOrientation()
             self.position = self.positioning.getPosition()
+            self.updateGoalStatus()
             print('Actual Position: ('+str(self.position.getX())+','+str(self.position.getY())+')')            
             print("New Orientation"+str(self.neworientation))
             print("------------\n")

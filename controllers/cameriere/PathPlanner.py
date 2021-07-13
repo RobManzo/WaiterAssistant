@@ -118,7 +118,7 @@ class PathPlanner:
         self.goalPosition = UNKNOWN
     
     def getGoalPosition(self):
-        return self.goalPosition
+        return self.goalPositions[0]
 
     # return first, last and intersection nodes from AStar route
     def getIntersectionNodesFromRoute(self, route):
