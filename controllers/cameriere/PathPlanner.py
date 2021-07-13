@@ -1,6 +1,6 @@
 import Map
 from Misc import Position
-from Constants import UNKNOWN, NORTH, SOUTH, EAST, WEST, FORWARD, LEFT, RIGHT, U_TURN
+from Constants import UNKNOWN, NORTH, SOUTH, EAST, WEST
 import AStar
 # MAP DIMENSIONS
 #WIDTH = 15          # map width
@@ -167,51 +167,6 @@ class PathPlanner:
             prevNode = currentNode
         
         return directions
-
-    # contains a list of turns (RIGHT, LEFT, FORWARD, U_TURN) for each intersection based on robot orientation and next direction
-    def getTurnsFromDirections(self, directions):
-        turns = []
-
-        # get actual robot orientation
-        actualDirection = self.robotOrientation
-        
-        # for each cardinal point direction compute turn based on robot current and future orientation [E SE INVECE DI GIRARE A DESTRA O SX GLI PASSASSIMO SOLAMENTE L'ORIENTAZIONE N-S-E-W?]
-        for direction in directions:
-            # FORWARD case
-            if actualDirection == direction:
-                turns.append(FORWARD)
-            # EST cases
-            elif actualDirection == EAST and direction == SOUTH:
-                turns.append(RIGHT)
-            elif actualDirection == EAST and direction == NORTH:
-                turns.append(LEFT)
-            elif actualDirection == EAST and direction == WEST:
-                turns.append(U_TURN)
-            # WEST cases
-            elif actualDirection == WEST and direction == SOUTH:
-                turns.append(LEFT)
-            elif actualDirection == WEST and direction == NORTH:
-                turns.append(RIGHT)
-            elif actualDirection == WEST and direction == EAST:
-                turns.append(U_TURN)
-            # NORTH cases
-            elif actualDirection == NORTH and direction == EAST:
-                turns.append(RIGHT)
-            elif actualDirection == NORTH and direction == WEST:
-                turns.append(LEFT)
-            elif actualDirection == NORTH and direction == SOUTH:
-                turns.append(U_TURN)
-            # SOUTH cases
-            elif actualDirection == SOUTH and direction == EAST:
-                turns.append(LEFT)
-            elif actualDirection == SOUTH and direction == WEST:
-                turns.append(RIGHT)
-            elif actualDirection == SOUTH and direction == NORTH:
-                turns.append(U_TURN)
-            # change actual direction 
-            actualDirection = direction
-
-        return turns
 
     # remove curves from turns
     def removeCurves(self, turns, intersections):

@@ -30,6 +30,8 @@ class Movement:
         self.nearestintersection=None
         self.backToKitchen=False
         self.status= INSERT
+        self.isParking=False
+        self.isParked=False
 
     def getStatus(self):
         return self.status
@@ -85,7 +87,7 @@ class Movement:
 
     def stop(self):
         self.setNewOrientation(NORTH)
-        self.toNewOrientation(self.positioning.getOrientation())
+        self.toNewOrientation(self.positioning.getOrientation())      
 
 
 
@@ -109,7 +111,7 @@ class Movement:
         elif(self.neworientation == EAST):
             if(0 <= orientation <= 89.9 or 269.9 <= orientation <= 359.9 ):
                 self.clockwise = True
-            elif( 270.1 <= orientation <= 90):
+            elif( 90 <= orientation <= 270.1):
                 self.clockwise = False
         elif(self.neworientation == WEST):
             if( 90.1 <= orientation <= 270):
@@ -172,6 +174,8 @@ class Movement:
             self.position = self.positioning.getPosition()
             self.updateGoalStatus()
             self.collisionAvoidance.update()
+            print("parking")
+            print(self.isParking)
             print(self.collisionAvoidance.getSensorValue())
             print('Actual Position: ('+str(self.position.getX())+','+str(self.position.getY())+')')            
             print("New Orientation"+str(self.neworientation))
@@ -181,9 +185,20 @@ class Movement:
             #print('Crossroad : ' + str(self.lineFollower.getCrossRoad()))
         
 
-
-            if(self.isRotating):
+            if(self.isParked):
+                self.rmotor.setVelocity(0)
+                self.lmotor.setVelocity(0)
+                self.setStatus(STOP)
+            elif(self.isRotating):
                 self.toNewOrientation(orientation)
+            elif(self.isParking and self.position.comparePosition(Position(3,4))):
+                if(358.0 < orientation < 360.0 or  0 <= orientation <= 2):
+                    self.isRotating = False
+                    self.isParking=False
+                    self.isParked=True
+                else:
+                    self.rotate(True,ROTSPEED)
+                print("parking if")
             elif(self.backToKitchen):
                 self.movement(0)
                 self.positioning.setPosition(self.lastGoal)
@@ -193,12 +208,14 @@ class Movement:
                 self.lineFollower.disable()
                 print("GOAL RAGGIUNTO") 
                 self.pathplanner.setGoalPosition(Position(3,4))
+                self.isParking=True
                 self.lastGoal=self.positioning.getPosition()
                 
                 print("lastGoal:")
                 self.lastGoal.printCoordinate()
                 print("Consegna in corso...")
                 time.sleep(5)
+                
                 variable=self.positioning.getOrientation()
                 self.setNewOrientation(Position.degreeToDirection(self.uTurn(variable)))
                 self.toNewOrientation(orientation)
@@ -270,10 +287,6 @@ class Movement:
                 print('Distance traveled: ' + str(self.distance))    
 
             self.lineFollower.update()
-            if(self.lastGoal!=None and self.positioning.getPosition().comparePosition(Position(3,4))):
-                    self.setStatus(BASE)
-            else:
-                self.setStatus(MOVING)
         else:
-            self.stop()
+            print("ciao")
             

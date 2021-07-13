@@ -38,11 +38,6 @@ class Turtlebot:
             elif(self.externalcontroller.getMotionStatus() == 99 and self.movement.getStatus()==MOVING):                    
                 self.movement.update()        #self.goal verrà passato al pathplanner, ad ogni update pathplanner verificherà che l'ordine sia stato consegnato # e restituirà true se è ritornato alla postazione di partenza, nel cas
                 self.camera.getImageGray()
-            elif(self.movement.getStatus()==BASE):
-                for x in range(13):
-                    print("ANDIAMO A BERLINO BEPPE")
-                self.externalcontroller.setMotionStatus(0)  
-                self.movement.setStatus(STOP)
-                self.movement.update()
+        
             else:
                 self.externalcontroller.update()
