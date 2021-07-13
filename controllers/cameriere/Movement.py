@@ -50,7 +50,7 @@ class Movement:
     def toNewOrientation(self, orientation):
         self.isRotating = True
         if(self.neworientation == NORTH and 270.0 < orientation < 360.0 ):
-            if(358.0 < orientation < 360.0 or  0 <= orientation <= 1):
+            if(358.0 < orientation < 360.0 or  0 <= orientation <= 2):
                 self.isRotating = False
                 #self.setNewOrientation(self.currentPath[0])
             else:
@@ -59,7 +59,7 @@ class Movement:
                 else:
                     self.rotate(False, ROTSPEED)
         else:
-            if((self.neworientation - 1.0) < orientation < (self.neworientation + 1.0)):
+            if((self.neworientation - 2.0) < orientation < (self.neworientation + 2.0)): 
                 self.isRotating = False
                 #self.setNewOrientation(self.currentPath[0])
             else:
@@ -154,11 +154,13 @@ class Movement:
 
             elif(self.goalReach):
                 self.movement(0)
+                self.lineFollower.disable()
                 print("GOAL RAGGIUNTO") 
 
             elif(self.lineFollower.getCrossRoad() and not self.isRotating):
                 #○print("prossima direzione"+str(self.currentPath[1]))
-                self.positioning.setPosition(self.nearestintersection)
+                if(self.nearestintersection!=-1):
+                    self.positioning.setPosition(self.nearestintersection)
                 print("Posizione incrocio settata")
                 self.positioning.resetDistanceTraveled() #posizione incrocio settata
                 self.rotationDirection(orientation)
@@ -198,6 +200,7 @@ class Movement:
             elif(not self.isRotating):
                 print("Movement to " + str(Position.degreeToDirection(self.positioning.getOrientation())))
                 self.movement(SPEED)
+                self.lineFollower.enable()
                 self.distance = self.positioning.getDistanceTraveled()
                 if(self.distance!=0.0):
                     self.tiles = self.distance % 0.4 

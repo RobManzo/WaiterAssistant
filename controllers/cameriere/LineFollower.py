@@ -23,7 +23,7 @@ class LineFollower:
     def __init__(self, camera):
         # get camera from Altino
         self.camera = camera    
-
+        self.isEnabled=True
         # get image dimensions
         self.cameraWidth = camera.getWidth()
         self.cameraHeight = camera.getHeight()
@@ -54,7 +54,10 @@ class LineFollower:
 
         # index of the last zone with the yellow line detected
         self.lastLineKnownZone = UNKNOWN
-
+    def disable(self):
+        self.isEnabled=False
+    def enable(self):
+        self.isEnabled=True
     def getAdjust(self):
         return self.adjust
     def getRightSpeed(self):
@@ -102,8 +105,12 @@ class LineFollower:
             print("LINE LOST")
         else: 
             self.lineLost=False
-            
-        if self.zones[0]==0:
+
+        if self.isEnabled==False:
+            print("LineFollower disabled")
+            self.leftSpeed=0
+            self.rightSpeed=0   
+        elif self.zones[0]==0:
             self.leftSpeed=2
             self.rightSpeed=-0.5
             print("left")
