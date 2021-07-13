@@ -50,7 +50,7 @@ class Movement:
     def toNewOrientation(self, orientation):
         self.isRotating = True
         if(self.neworientation == NORTH and 270.0 < orientation < 360.0 ):
-            if(4.0 < orientation < 354.0):
+            if(355.0 < orientation < 360.0 or  0 <= orientation <= 4):
                 self.isRotating = False
                 #self.setNewOrientation(self.currentPath[0])
             else:
@@ -176,12 +176,11 @@ class Movement:
                 if(self.distance!=0.0):
                     self.tiles = self.distance % 0.4 
                     self.nearestintersection = Map.findNearestIntersection(self.position,Position.degreeToDirection(self.positioning.getOrientation()))
-                        
                     if(self.nearestintersection!=-1):
                         print("NEAREST INTERSECTION:")
                         self.nearestintersection.printCoordinate()
                 self.currentPath = self.pathplanner.getFastestRoute(0)
-                if(self.tiles < 0.006 and self.distance!=0):
+                if(self.tiles < 0.0062 and self.distance!=0):
                     self.positioning.updatePosition(orientation)
                     if(len(self.currentPath)>1):
                         self.setNewOrientation(self.currentPath[1]) 
