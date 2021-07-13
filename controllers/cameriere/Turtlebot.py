@@ -30,6 +30,7 @@ class Turtlebot:
         self.movement = Movement(self.pathplanner,self.positioning,self.lmotor,self.rmotor,self.collisionAvoidance,self.linefollower)
 
     def run(self):
+        print("inserire Tavolo")
         while self.robot.step(TIMESTEP) != -1:
             if(self.externalcontroller.getMotionStatus() == 99):
                 print(self.externalcontroller.getTable())

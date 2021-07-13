@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.5683328264262757 -0.5648340149906445 -0.5982978638737309 4.225798413143384
-  position -0.13742801540201763 18.23558428474539 -0.5675445417200757
+  orientation 0.571621002219597 -0.5581786626898494 -0.6014033674159424 4.216693622928142
+  position -0.46092848622442195 17.589638384937174 -0.2535644960973898
 }
 TexturedBackground {
   texture "empty_office"
@@ -170,7 +170,7 @@ Wall {
   }
 }
 Wall {
-  translation -1.82 0 2.45
+  translation -1.87 0 2.45
   rotation 0 1 0 -1.5707953071795862
   name "wall(1)"
   size 1.1 0.4 0.04
@@ -206,7 +206,7 @@ Wall {
   }
 }
 Wall {
-  translation -1.82 0.59 2.45
+  translation -1.87 0.59 2.45
   rotation 0 1 0 -1.5707953071795862
   name "wall(2)"
   size 1.1 0.2 0.04
@@ -218,7 +218,7 @@ Wall {
   }
 }
 Wall {
-  translation -1.82 0.4 2.1
+  translation -1.87 0.4 2.1
   rotation 0 1 0 -1.5707953071795862
   name "wall(3)"
   size 0.4 0.19 0.04
@@ -234,6 +234,7 @@ Oven {
   mainColor 0.7 0.7 0.7
 }
 TurtleBot3Burger {
+  hidden rotation_8 0.010529624003418026 -0.9922556989219182 -0.12376491819300746 3.310030942942018
   translation -1.96 -2.07138e-08 1.59
   rotation -9.58977e-09 1 9.58984e-09 -1.5707853071795865
   controller "cameriere"
@@ -611,7 +612,7 @@ StraightRoadSegment {
   pavementAppearance NULL
 }
 StraightRoadSegment {
-  translation -1.8 0.001 2.8
+  translation -1.8 0.001 2.79
   rotation 0 1 0 1.5707996938995747
   name "road(3)"
   width 0.1

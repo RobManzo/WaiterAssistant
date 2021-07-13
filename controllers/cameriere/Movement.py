@@ -1,3 +1,4 @@
+import time
 from Misc import Position
 from Constants import NORTH, SOUTH, EAST, WEST
 from Constants import ROTSPEED, ADJSPEED, SPEED, UNKNOWN
@@ -170,8 +171,8 @@ class Movement:
                 print("MOv lost")
                 variable=self.positioning.getOrientation()
                 print("variable"+str(variable))
-                #self.setNewOrientation(variable+180.0)
-                #self.toNewOrientatiosen(orientation)
+                self.setNewOrientation(variable+180.0)
+                self.toNewOrientation(orientation)
             
             elif(self.collisionAvoidance.isCollisionDetected() and not self.isRotating):
                 x = self.position.getX()
@@ -204,7 +205,8 @@ class Movement:
                 self.distance = self.positioning.getDistanceTraveled()
                 if(self.distance!=0.0):
                     self.tiles = self.distance % 0.4 
-                    self.nearestintersection = Map.findNearestIntersection(self.position,Position.degreeToDirection(self.positioning.getOrientation()))
+                    self.nearestintersection = Map.findNearestIntersection(self.position,self.currentPath[0])
+                    print(Position.degreeToDirection(self.positioning.getOrientation()))
                     if(self.nearestintersection!=-1):
                         print("NEAREST INTERSECTION:")
                         self.nearestintersection.printCoordinate()
