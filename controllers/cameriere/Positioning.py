@@ -32,7 +32,7 @@ class Positioning:
         return self.distance-self.error
     
     def resetDistanceTraveled(self):
-        self.error=self.distance
+        self.error = self.distance
 
     def approximateOrientation(self, orientation):
         if( 315.0 <= orientation <= 360.0 or 0.0 <= orientation <= 45.0):
@@ -95,6 +95,10 @@ class Positioning:
     
     def update(self):
         self.updateOrientation()
+    
+    def obstacleFound(self, obstacle):
+        Map.setNewObstacle(obstacle)
+
     
     
     #def setPosition(self, position):

@@ -140,14 +140,15 @@ class Movement:
             orientation = self.positioning.getOrientation()
             self.position = self.positioning.getPosition()
             self.updateGoalStatus()
+            self.collisionAvoidance.update()
             print('Actual Position: ('+str(self.position.getX())+','+str(self.position.getY())+')')            
             print("New Orientation"+str(self.neworientation))
             print("------------\n")
             print("Orientation : ", orientation)
             print('Rotating : ' + str(self.isRotating))
             #print('Crossroad : ' + str(self.lineFollower.getCrossRoad()))
-            #self.collisionAvoidance.update()
-            
+        
+    
             if(self.isRotating):
                 self.toNewOrientation(orientation)
 
@@ -162,13 +163,37 @@ class Movement:
                 self.positioning.resetDistanceTraveled() #posizione incrocio settata
                 self.rotationDirection(orientation)
                 self.toNewOrientation(orientation)
+
             elif(self.lineFollower.isLineLost() and not self.isRotating):
                 print("MOv lost")
                 variable=self.positioning.getOrientation()
                 print("variable"+str(variable))
                 #self.setNewOrientation(variable+180.0)
-                #self.toNewOrientation(orientation) 
-           
+                #self.toNewOrientatiosen(orientation)
+            
+            elif(self.collisionAvoidance.isCollisionDetected() and not self.isRotating):
+                x = self.position.getX()
+                y = self.position.getX()
+                if(orientation == NORTH):
+                    self.positioning.setNewObstacle(Position(x+1, y))
+                elif(orientation == SOUTH):
+                    self.positioning.setNewObstacle(Position(x-1, y))
+                elif(orientation == WEST):
+                    self.positioning.setNewObstacle(Position(x, y+1))
+                elif(orientation == EAST):
+                    self.positioning.setNewObstacle(Position(x, y-1))
+                self.updatePath()
+                approxxorientation = self.positioning.approximateOrientation(orientation)
+                if(approxxorientation == NORTH):
+                    self.setNewOrientation(SOUTH)
+                elif(approxxorientation == SOUTH):
+                    self.setNewOrientation == NORTH
+                elif(approxxorientation == WEST):
+                    self.setNewOrientation == EAST
+                elif(approxxorientation == EAST):
+                    self.setNewOrientation == WEST
+                self.isRotating = True
+        
 
             elif(not self.isRotating):
                 print("Movement to " + str(Position.degreeToDirection(self.positioning.getOrientation())))
