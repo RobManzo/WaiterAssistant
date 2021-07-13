@@ -1,5 +1,5 @@
-from enum import Enum
 from Constants import NORTH,SOUTH,EAST,WEST
+
 class Position:
     def __init__(self, x, y):
         self.x = 0
@@ -46,9 +46,3 @@ class Position:
             return degree+360.0
         else:
             return degree
-    
-#class Orientation(Enum):
-#    NORTH = 0.0
-#    SOUTH = 180.0
-#    EAST = 270.0
-#    WEST =  90.0

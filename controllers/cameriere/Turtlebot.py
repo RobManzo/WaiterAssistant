@@ -7,7 +7,6 @@ from CollisionAvoidance import CollisionAvoidance
 from Constants import TIMESTEP
 from ExternalController import ExternalController
 from PathPlanner import PathPlanner
-import Map
 
 class Turtlebot:
 
@@ -35,7 +34,7 @@ class Turtlebot:
             if(self.externalcontroller.getMotionStatus() == 99):
                 print(self.externalcontroller.getTable())
                 self.pathplanner.setGoal(self.externalcontroller.getTable())
-                self.movement.update()        #self.goal verrà passato al pathplanner, ad ogni update pathplanner verificherà che l'ordine sia stato consegnato # e restituirà true se è ritornato alla postazione di partenza, nel cas
+                self.movement.update()
                 self.camera.getImageGray()
             else:
                 self.externalcontroller.update()

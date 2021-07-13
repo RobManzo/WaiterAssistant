@@ -91,7 +91,7 @@ def findNearestIntersection(position,orientation): #ADAPT
             return list[0]
     return -1
 
-def getNearestWalkablePosition(position, orientation): #ADAPT
+def getNearestWalkablePosition(position, orientation):
     if not isWalkable(position):
         print("Actual position non walkable. " + str(position) + " is unwalkable")
         x = position.getX()
