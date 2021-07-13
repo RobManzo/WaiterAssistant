@@ -34,6 +34,7 @@ class ExternalController:
 
         # Start
         if self.keyboard.isKeyPressed(self.currentkey, '1'):
+            print(chr(27) + "[2J")
             if(len(self.orderlist) < 2):
                 self.orderlist.append(chr(self.currentkey))
                 print(str(''.join(self.orderlist)))
@@ -42,6 +43,7 @@ class ExternalController:
                 print('Table number must be between 1 and 11!')
         
         elif self.keyboard.isKeyPressed(self.currentkey, '2'):
+            print(chr(27) + "[2J")
             if(len(self.orderlist) < 2):
                 self.orderlist.append(chr(self.currentkey))
                 print(str(''.join(self.orderlist)))
@@ -50,6 +52,7 @@ class ExternalController:
                 print('Table number must be between 1 and 11!')
         
         elif self.keyboard.isKeyPressed(self.currentkey, '3'):
+            print(chr(27) + "[2J")
             if(len(self.orderlist) < 2):
                 self.orderlist.append(chr(self.currentkey))
                 print(str(''.join(self.orderlist)))
@@ -58,6 +61,7 @@ class ExternalController:
                 print('Table number must be between 1 and 11!')
         
         elif self.keyboard.isKeyPressed(self.currentkey, '4'):
+            print(chr(27) + "[2J")
             if(len(self.orderlist) < 2):
                 self.orderlist.append(chr(self.currentkey))
                 print(str(''.join(self.orderlist)))
@@ -66,6 +70,7 @@ class ExternalController:
                 print('Table number must be between 1 and 11!')
         
         elif self.keyboard.isKeyPressed(self.currentkey, '5'):
+            print(chr(27) + "[2J")
             if(len(self.orderlist) < 2):
                 self.orderlist.append(chr(self.currentkey))
                 print(str(''.join(self.orderlist)))
@@ -74,6 +79,7 @@ class ExternalController:
                 print('Table number must be between 1 and 11!')
         
         elif self.keyboard.isKeyPressed(self.currentkey, '6'):
+            print(chr(27) + "[2J")
             if(len(self.orderlist) < 2):
                 self.orderlist.append(chr(self.currentkey))
                 print(str(''.join(self.orderlist)))
@@ -82,6 +88,7 @@ class ExternalController:
                 print('Table number must be between 1 and 11!')
         
         elif self.keyboard.isKeyPressed(self.currentkey, '7'):
+            print(chr(27) + "[2J")
             if(len(self.orderlist) < 2):
                 self.orderlist.append(chr(self.currentkey))
                 print(str(''.join(self.orderlist)))
@@ -90,6 +97,7 @@ class ExternalController:
                 print('Table number must be between 1 and 11!')
         
         elif self.keyboard.isKeyPressed(self.currentkey, '8'):
+            print(chr(27) + "[2J")
             if(len(self.orderlist) < 2):
                 self.orderlist.append(chr(self.currentkey))
                 print(str(''.join(self.orderlist)))
@@ -98,6 +106,7 @@ class ExternalController:
                 print('Table number must be between 1 and 11!')
         
         elif self.keyboard.isKeyPressed(self.currentkey, '9'):
+            print(chr(27) + "[2J")
             if(len(self.orderlist) < 2):
                 self.orderlist.append(chr(self.currentkey))
                 print(str(''.join(self.orderlist)))
@@ -106,6 +115,7 @@ class ExternalController:
                 print('Table number must be between 1 and 11!')
         
         elif self.keyboard.isKeyPressed(self.currentkey, '0'):
+            print(chr(27) + "[2J")
             if(len(self.orderlist) < 2):
                 self.orderlist.append(chr(self.currentkey))
                 print(str(''.join(self.orderlist)))
@@ -114,6 +124,7 @@ class ExternalController:
                 print('Table number must be between 1 and 11!')
                 
         elif self.keyboard.isKeyPressed(self.currentkey, '\4'):
+            print(chr(27) + "[2J")
             if(1 <= len(self.orderlist) <= 2):
                 table = int(''.join(self.orderlist))
                 self.emptyorderlist()
