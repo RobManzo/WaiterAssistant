@@ -32,28 +32,6 @@ class RMotor:
     
     def getMaxVelocity(self):
         return self.rmotor.getMaxVelocity()
-        
-    def setLDSVelocity(self, big, small):
-        self.LDS_motor_main.setVelocity(big)                 #VELOCITA' MASSIMA MAIN MOTOR LIDAR 40.0
-        self.LDS_motor_secondary.setVelocity(small)         #VELOCITA' MASSIMA SECONDARY MOTOR LIDAR 60.0
-    
-    def getLDSmax(self):
-        return self.LDS_motor_main.getMaxVelocity()
-    
-    def getRangeImage(self):
-        return self.LDS.getRangeImage()
-    
-    def getLayerPointCloud(self):
-        return self.LDS.getLayerPointCloud(0)
-    
-    def getNumberOfLayers(self):
-        return self.LDS.getNumberOfLayers()
-
-    def getLayerRangeImage(self):
-        return self.LDS.getLayerRangeImage(0)
-    
-    def getRangeImage(self):
-        return self.LDS.getRangeImage()
 
 class Compass:
     def __init__(self, robot):
@@ -107,9 +85,6 @@ class Camera:
         red=self.camera.imageGetRed(image,self.getWidth(),128,55)
         green=self.camera.imageGetGreen(image,self.getWidth(),128,55)
         blue=self.camera.imageGetBlue(image,self.getWidth(),128,55)
-        #print(red)
-        #print(green)
-        #print(blue)
 
     def getWidth(self):
         return self.camera.getWidth()
@@ -132,19 +107,3 @@ class Keyboard:
     # return true if char key or his uppercase is pressed
     def isKeyPressed(self, key, char):
         return key == ord(char) or key == ord(char.upper())
-
-
-#class Speaker:
-#    def __init__(self, robot):
-#        self.speaker = robot.getDevice('speaker')
-#        self.speaker.setLanguage('it-IT')
-#        self.speaker.setEngine('microsoft')
-#    
-#    def speak(self, text, volume):
-#        self.speaker.speak(text, volume)
-#    
-#    def isSpeaking(self):
-#        if self.speaker.isSpeaking():
-#            return True
-#        else: return False
-#

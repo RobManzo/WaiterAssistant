@@ -2,7 +2,6 @@ from Misc import Position
 from Constants import NORTH, SOUTH, EAST, WEST
 from Constants import SX, SY , WHEEL_RADIUS
 import Map
-#import Map
 
 class Positioning:
     def __init__(self, compass, positionsensor):
@@ -16,7 +15,6 @@ class Positioning:
         self.distancetravelled = 0.0
         self.error=0
         self.distance=0
-        #self.i=1
 
     def updateOrientation(self):
         self.orientation = self.compass.compassToDegree()
@@ -28,7 +26,7 @@ class Positioning:
         self.orientation = orientation
     
     def getDistanceTraveled(self):
-        self.distance=float((self.positionsensor.getLeftSensor()*WHEEL_RADIUS + self.positionsensor.getRightSensor()*WHEEL_RADIUS)/4)     #Multiply rad * wheel radius in order to obtain mean distance travelled, rotation not affected
+        self.distance=float((self.positionsensor.getLeftSensor()*WHEEL_RADIUS + self.positionsensor.getRightSensor()*WHEEL_RADIUS)/4)
         return self.distance-self.error
     
     def resetDistanceTraveled(self):
@@ -47,29 +45,6 @@ class Positioning:
     def getPosition(self):
         return self.position
     
-    #def updateWheelTraveledDistance(self):
-    #    self.distancetravelled = self.positionsensor.getDistanceTraveled()
-    
-    #def positionOnLandmark(self):
-    #    nearestIntersection = Map.findNearestIntersection(self.position)
-    #    offset = 0.25
-    #    if nearestIntersection != -1:
-    #        x = nearestIntersection.getX()
-    #        y = nearestIntersection.getY()
-    #        if self.orientation == NORTH:
-    #            nearestIntersection.setX(x + offset)
-    #        if self.orientation == EAST:
-    #            nearestIntersection.setY(y - offset)
-    #        if self.orientation == SOUTH:
-    #            nearestIntersection.setX(x - offset)
-    #        if self.orientation == WEST:
-    #            nearestIntersection.setY(y + offset)
-    #        
-    #        self.position = nearestIntersection
-#
-    #    else:
-    #        print('No intersection nearby')
-    
     def setPosition(self, position):
         x = self.position.getX()
         y = self.position.getY()
@@ -79,7 +54,7 @@ class Positioning:
             self.position.setY(position.y)
        
     
-    def updatePosition(self, orientation):      #Da richiamare ogni volta che si ci sposta di 0.4m
+    def updatePosition(self, orientation):
         actualpos = self.getPosition()
         x = actualpos.getX()
         y = actualpos.getY()
@@ -98,16 +73,3 @@ class Positioning:
     
     def obstacleFound(self, obstacle):
         Map.setNewObstacle(obstacle)
-
-    
-    
-    #def setPosition(self, position):
-    #    x = position.getX()
-    #    y = position.getY()
-    #    if x > 0 and x < Map.Height - 1:
-    #        self.position.setX(position.x)
-    #    if y > 0 and y < Map.Width - 1:
-    #        self.position.setY(position.y)
-#
-    #def getPosition(self):
-    #    return self.position

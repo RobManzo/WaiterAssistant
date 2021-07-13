@@ -8,7 +8,6 @@ from CollisionAvoidance import CollisionAvoidance
 from Constants import TIMESTEP,INSERT,MOVING,BASE,STOP
 from ExternalController import ExternalController
 from PathPlanner import PathPlanner
-import Map
 
 class Turtlebot:
 

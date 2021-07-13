@@ -21,7 +21,7 @@ LINE_COLOR_TOLERANCE = 60
 class LineFollower:
 
     def __init__(self, camera):
-        # get camera from Altino
+        # get camera from Turtlebot
         self.camera = camera    
         self.isEnabled=True
         # get image dimensions
