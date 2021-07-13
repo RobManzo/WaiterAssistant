@@ -1,5 +1,8 @@
 from math import nan
-
+STOP=-100
+INSERT = 100
+MOVING = 200
+BASE=0
 UNKNOWN = nan
 MAX_SPEED = 6.50
 SPEED = 3.0

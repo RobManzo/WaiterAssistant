@@ -1,10 +1,11 @@
+
 from controller import Robot
 from Devices import LMotor, RMotor, Compass, DistanceSensor, PositionSensor, Camera, Keyboard
 from LineFollower import LineFollower
 from Positioning import Positioning
 from Movement import Movement
 from CollisionAvoidance import CollisionAvoidance
-from Constants import TIMESTEP
+from Constants import TIMESTEP,INSERT,MOVING,BASE,STOP
 from ExternalController import ExternalController
 from PathPlanner import PathPlanner
 import Map
@@ -32,10 +33,17 @@ class Turtlebot:
     def run(self):
         print("inserire Tavolo")
         while self.robot.step(TIMESTEP) != -1:
-            if(self.externalcontroller.getMotionStatus() == 99):
-                print(self.externalcontroller.getTable())
+            if(self.movement.getStatus()== INSERT and self.externalcontroller.getMotionStatus() == 99):
                 self.pathplanner.setGoal(self.externalcontroller.getTable())
+                self.movement.setStatus(MOVING)
+            elif(self.externalcontroller.getMotionStatus() == 99 and self.movement.getStatus()==MOVING):                    
                 self.movement.update()        #self.goal verrà passato al pathplanner, ad ogni update pathplanner verificherà che l'ordine sia stato consegnato # e restituirà true se è ritornato alla postazione di partenza, nel cas
                 self.camera.getImageGray()
+            elif(self.movement.getStatus()==BASE):
+                for x in range(13):
+                    print("ANDIAMO A BERLINO BEPPE")
+                self.externalcontroller.setMotionStatus(0)  
+                self.movement.setStatus(STOP)
+                self.movement.update()
             else:
                 self.externalcontroller.update()

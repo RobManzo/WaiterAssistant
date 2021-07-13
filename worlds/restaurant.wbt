@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.571621002219597 -0.5581786626898494 -0.6014033674159424 4.216693622928142
-  position -0.46092848622442195 17.589638384937174 -0.2535644960973898
+  orientation 0.5977898943034672 -0.5743792152995024 -0.5592278241473481 4.120825258340613
+  position -0.815805353987996 19.68271219132269 -1.2662816263688361
 }
 TexturedBackground {
   texture "empty_office"
@@ -30,7 +30,7 @@ RectangleArena {
   }
 }
 StraightRoadSegment {
-  translation -1.9 0.001 1.59
+  translation -2.2 0.001 1.59
   rotation 0 1 0 1.5707996938995747
   name "road(35)"
   width 0.1
@@ -43,7 +43,7 @@ StraightRoadSegment {
   roadBorderHeight 0
   startingRoadBorderWidth 0
   endingRoadBorderWidth 0
-  length 0.5
+  length 0.8
   appearance PBRAppearance {
     baseColor 0 0 0
   }
@@ -234,8 +234,7 @@ Oven {
   mainColor 0.7 0.7 0.7
 }
 TurtleBot3Burger {
-  hidden rotation_8 0.010529624003418026 -0.9922556989219182 -0.12376491819300746 3.310030942942018
-  translation -1.96 -2.07138e-08 1.59
+  translation -1.96 -2.07136e-08 1.59
   rotation -9.58977e-09 1 9.58984e-09 -1.5707853071795865
   controller "cameriere"
   controllerArgs [

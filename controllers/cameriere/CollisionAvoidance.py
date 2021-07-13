@@ -47,3 +47,6 @@ class CollisionAvoidance:
     # return distance sensors instance
     def getDistanceSensor(self):
         return self.distancesensors
+    
+    def getSensorValue(self):
+        return self.frontsensor

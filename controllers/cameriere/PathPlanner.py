@@ -55,7 +55,10 @@ class PathPlanner:
         print("Goal Positions:")
         for position in self.goalPositions:
             position.printCoordinate()
-
+    def setGoalPosition(self,position):
+        self.goalPositions[0]=position  
+        print("Setting Goal to:")
+        position.printCoordinate()        
     def update(self):
         self.robotPosition = self.positioning.getPosition()
         self.robotOrientation = self.positioning.getOrientation()
@@ -106,7 +109,7 @@ class PathPlanner:
         return turns
 
     #set goal position in the map
-    def setGoalPosition(self, position):
+    def setGoalPosition2(self, position):
         x = position.getX()
         y = position.getY()
 
@@ -116,6 +119,7 @@ class PathPlanner:
                 self.goalPosition.setX(x)
                 return
         self.goalPosition = UNKNOWN
+    
     
     def getGoalPosition(self):
         return self.goalPositions[0]
