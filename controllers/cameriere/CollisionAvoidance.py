@@ -26,24 +26,24 @@ class CollisionAvoidance:
         return self.collision
 
     def checkCollision(self):
-        if(self.distancesensor > self.threshold):
-            self.collisionDetected = True
+        if(self.frontsensor > self.threshold):
+            return True
         else:
-            self.collisionDetected = False
+            return False
 
     # update collision avoidance service
     def update(self):
         if self.status == ENABLED:
             self.updateSensorsValue()
-            self.checkCollision()
+            self.collision = self.checkCollision()
     
     def resetCollision(self):
         self.collision = False
 
     # update sensors values
     def updateSensorsValue(self):
-        self.frontsensor = self.distanceSensors.getValue()
+        self.frontsensor = self.distancesensors.getValue()
         
     # return distance sensors instance
     def getDistanceSensor(self):
-        return self.distanceSensors
+        return self.distancesensors
