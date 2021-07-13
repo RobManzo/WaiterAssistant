@@ -7,7 +7,8 @@ import Map
 
 
 class Movement:
-    def __init__(self,pathplanner, positioning, lmotor, rmotor, collisionAvoidance, lineFollower):
+    def __init__(self,pathplanner, positioning, lmotor, rmotor, collisionAvoidance, lineFollower, externalcontroller):
+        self.externalcontroller = externalcontroller
         self.pathplanner=pathplanner
         self.positioning = positioning
         self.lmotor = lmotor
@@ -29,15 +30,17 @@ class Movement:
         self.neworientation=None
         self.nearestintersection=None
         self.backToKitchen=False
-        self.status= INSERT
+        self.status = STOP
         self.isParking=False
         self.isParked=False
 
     def getStatus(self):
         return self.status
+
     def setStatus(self,status):
-        self.status=status
+        self.status = status
         print("Setting status to"+str(status))
+
     def rotate(self, clockwise, speed): #velocità positiva senso orario
         if clockwise:
             self.rmotor.setVelocity(-speed)
@@ -55,8 +58,10 @@ class Movement:
             self.rotate(ADJSPEED, True)
         else:
             self.rotate(ADJSPEED, False)
+
     def getBackToKitchen(self):
         return self.backToKitchen        
+
     def movement(self, speed):
         self.rmotor.setVelocity(speed+self.lineFollower.getRightSpeed())
         self.lmotor.setVelocity(speed+self.lineFollower.getLeftSpeed())
@@ -183,12 +188,12 @@ class Movement:
             print("Orientation : ", orientation)
             print('Rotating : ' + str(self.isRotating))
             #print('Crossroad : ' + str(self.lineFollower.getCrossRoad()))
-        
 
             if(self.isParked):
                 self.rmotor.setVelocity(0)
                 self.lmotor.setVelocity(0)
-                self.setStatus(STOP)
+                self.externalcontroller.setMotionStatus(False)
+                self.setStatus(STOP)      
             elif(self.isRotating):
                 self.toNewOrientation(orientation)
             elif(self.isParking and self.position.comparePosition(Position(3,4))):

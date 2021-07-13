@@ -1,13 +1,14 @@
 import time
+from Constants import INSERT
 
 class ExternalController:
 
     def __init__(self, keyboard):
         self.keyboard = keyboard
         self.status = False
-        self.motionStatus = None
+        self.motionStatus = False
         self.orderlist = []
-        self.table=None
+        self.table = None
 
     def update(self):
         self.currentkey = None
@@ -129,8 +130,8 @@ class ExternalController:
                 table = int(''.join(self.orderlist))
                 self.emptyorderlist()
                 if( 0 < table < 12):
-                    self.motionStatus = 99
-                    self.table=table                
+                    self.setMotionStatus(True)
+                    self.table  = table                
                 else:
                     print('Tavolo inesistente.')
                     

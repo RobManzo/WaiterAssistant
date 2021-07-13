@@ -1,4 +1,3 @@
-
 from controller import Robot
 from Devices import LMotor, RMotor, Compass, DistanceSensor, PositionSensor, Camera, Keyboard
 from LineFollower import LineFollower
@@ -22,22 +21,22 @@ class Turtlebot:
         self.DSensor = DistanceSensor(self.robot)
         self.camera = Camera(self.robot)
         self.linefollower = LineFollower(self.camera)
-        #self.speaker = Speaker(self.robot)
         self.positionsensor = PositionSensor(self.robot)
         self.positioning = Positioning(self.compass, self.positionsensor)
         self.pathplanner=PathPlanner(self.positioning,self.externalcontroller)
         self.collisionAvoidance = CollisionAvoidance(self.DSensor)
-        self.movement = Movement(self.pathplanner,self.positioning,self.lmotor,self.rmotor,self.collisionAvoidance,self.linefollower)
+        self.movement = Movement(self.pathplanner,self.positioning,self.lmotor,self.rmotor,self.collisionAvoidance, self.linefollower, self.externalcontroller)
 
     def run(self):
         print("inserire Tavolo")
         while self.robot.step(TIMESTEP) != -1:
-            if(self.movement.getStatus()== INSERT and self.externalcontroller.getMotionStatus() == 99):
+            if(self.externalcontroller.getMotionStatus() and self.movement.getStatus() == STOP):
+                self.movement.setStatus(INSERT)
+            elif(self.movement.getStatus() == INSERT):
                 self.pathplanner.setGoal(self.externalcontroller.getTable())
                 self.movement.setStatus(MOVING)
-            elif(self.externalcontroller.getMotionStatus() == 99 and self.movement.getStatus()==MOVING):                    
-                self.movement.update()        #self.goal verrà passato al pathplanner, ad ogni update pathplanner verificherà che l'ordine sia stato consegnato # e restituirà true se è ritornato alla postazione di partenza, nel cas
+            elif(self.externalcontroller.getMotionStatus() and self.movement.getStatus() == MOVING):                    
+                self.movement.update() 
                 self.camera.getImageGray()
-        
             else:
                 self.externalcontroller.update()
