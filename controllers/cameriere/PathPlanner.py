@@ -73,8 +73,8 @@ class PathPlanner:
     def getFastestRoute(self,flag): #flag nel caso in cui uno dei due spot non sia raggiungibile
 
         # update map status, this ensure new obstacles are detected
+        Map.printMap()
         self.updateMap()
-
         #logger.debug("Path from: " + str(self.robotPosition) + " to " + str(self.goalPosition) + " Initial Orientation: " + str(self.robotOrientation))
         # get fastest route from AStar giving map, start position and goal position
         route = AStar.findPath(self.map, self.robotPosition.getPositionArray(), self.goalPositions[0+flag].getPositionArray())

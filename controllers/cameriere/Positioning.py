@@ -71,5 +71,7 @@ class Positioning:
     def update(self):
         self.updateOrientation()
     
-    def obstacleFound(self, obstacle):
+    def setNewObstacle(self, obstacle):
         Map.setNewObstacle(obstacle)
+        print("setting new obstacle at:")
+        obstacle.printCoordinate()

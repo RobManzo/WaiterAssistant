@@ -97,10 +97,10 @@ class Movement:
 
 
     def rotationDirection(self, orientation):
-        print("neworientation:")
-        print(self.neworientation)
-        print("orientation:")
-        print(orientation)
+        #print("neworientation:")
+        #print(self.neworientation)
+        #print("orientation:")
+        #print(orientation)
         if(len(self.currentPath)>1):
             self.setNewOrientation(self.currentPath[1])
         if(self.neworientation == NORTH):
@@ -143,12 +143,11 @@ class Movement:
     def updateGoalStatus(self):
         currentPosition = self.positioning.getPosition()
         goalPosition = self.pathplanner.getGoalPosition()
-        print("GOAL UPDATE")
+        #print("GOAL UPDATE")
         goalPosition.printCoordinate()
         self.goalReach = goalPosition.comparePosition(currentPosition)
 
     def updatePath(self): #get new route after setting obstacle in map
-        if self.isEnabled():
             print("Computing new path..")
             p = self.positioning.getPosition()
             o = self.positioning.getOrientation()
@@ -169,7 +168,9 @@ class Movement:
             #if DEBUG:
             #    Map.printMap()s
 
-            self.currentPath = self.pathPlanner.getFastestRoute(0) #Ricordare di avere 2 goal per tavolo
+            self.currentPath = self.pathplanner.getFastestRoute(0) #Ricordare di avere 2 goal per tavolo
+            self.currentPath.insert(0,self.uTurn(self.positioning.approximateOrientation(o)))
+            print("UPDATED PATH:"+str(self.currentPath))
 
     def update(self): #Goal da mettere nel path planner
         if(self.getStatus()!=STOP):
@@ -179,25 +180,26 @@ class Movement:
             self.position = self.positioning.getPosition()
             self.updateGoalStatus()
             self.collisionAvoidance.update()
-            print("parking")
-            print(self.isParking)
-            print(self.collisionAvoidance.getSensorValue())
+           # print("parking")
+            #print(self.isParking)
+            #print(self.collisionAvoidance.getSensorValue())
             print('Actual Position: ('+str(self.position.getX())+','+str(self.position.getY())+')')            
             print("New Orientation"+str(self.neworientation))
-            print("------------\n")
             print("Orientation : ", orientation)
             print('Rotating : ' + str(self.isRotating))
+            #Map.printMap()
             #print('Crossroad : ' + str(self.lineFollower.getCrossRoad()))
 
             if(self.isParked):
                 self.rmotor.setVelocity(0)
                 self.lmotor.setVelocity(0)
-                print("IF is parked")
+                #print("IF is parked")
                 self.externalcontroller.setMotionStatus(False)
                 self.setStatus(STOP)
                 self.isParked=False      
             elif(self.isRotating):
                 self.toNewOrientation(orientation)
+                self.collisionAvoidance.disable()
             elif(self.isParking and self.position.comparePosition(Position(3,4))):
                 if(358.0 < orientation < 360.0 or  0 <= orientation <= 2):
                     self.isRotating = False
@@ -205,7 +207,7 @@ class Movement:
                     self.isParked=True
                 else:
                     self.rotate(True,ROTSPEED)
-                print("parking if")
+                #print("parking if")
             elif(self.backToKitchen):
                 self.movement(0)
                 self.positioning.setPosition(self.lastGoal)
@@ -218,8 +220,8 @@ class Movement:
                 self.isParking=True
                 self.lastGoal=self.positioning.getPosition()
                 
-                print("lastGoal:")
-                self.lastGoal.printCoordinate()
+                #print("lastGoal:")
+                #self.lastGoal.printCoordinate()
                 print("Consegna in corso...")
                 time.sleep(5)
                 
@@ -233,46 +235,43 @@ class Movement:
                 #○print("prossima direzione"+str(self.currentPath[1]))
                 if(self.nearestintersection!=-1):
                     self.positioning.setPosition(self.nearestintersection)
-                print("Posizione incrocio settata")
+                #print("Posizione incrocio settata")
                 self.positioning.resetDistanceTraveled() #posizione incrocio settata
+                self.toLastCrossroad=False
                 self.rotationDirection(orientation)
                 self.toNewOrientation(orientation)
 
             elif(self.lineFollower.isLineLost() and not self.isRotating):
-                print("MOv lost")
+                #print("MOv lost")
                 variable=self.positioning.getOrientation()
-                print("variable"+str(variable))
+                #print("variable"+str(variable))
+                self.toLastCrossroad=False
                 self.setNewOrientation(self.uTurn(variable))
                 self.toNewOrientation(orientation)
             
             elif(self.collisionAvoidance.isCollisionDetected() and not self.isRotating):
                 x = self.position.getX()
                 y = self.position.getX()
-                if(orientation == NORTH):
-                    self.positioning.setNewObstacle(Position(x+1, y))
-                elif(orientation == SOUTH):
-                    self.positioning.setNewObstacle(Position(x-1, y))
-                elif(orientation == WEST):
-                    self.positioning.setNewObstacle(Position(x, y+1))
-                elif(orientation == EAST):
-                    self.positioning.setNewObstacle(Position(x, y-1))
-                self.updatePath()
-                approxxorientation = self.positioning.approximateOrientation(orientation)
-                if(approxxorientation == NORTH):
-                    self.setNewOrientation(SOUTH)
-                elif(approxxorientation == SOUTH):
-                    self.setNewOrientation == NORTH
-                elif(approxxorientation == WEST):
-                    self.setNewOrientation == EAST
-                elif(approxxorientation == EAST):
-                    self.setNewOrientation == WEST
+                objectOrientation=self.positioning.approximateOrientation(orientation)
+                if(objectOrientation == NORTH):
+                    self.positioning.setNewObstacle(Position(x+2, y))
+                elif(objectOrientation == SOUTH):
+                    self.positioning.setNewObstacle(Position(x-2, y))
+                elif(objectOrientation == WEST):
+                    self.positioning.setNewObstacle(Position(x, y+2))
+                elif(objectOrientation == EAST):
+                    self.positioning.setNewObstacle(Position(x, y-2))
+                self.setNewOrientation(self.uTurn(objectOrientation))
                 self.isRotating = True
+                self.toLastCrossroad=True
+                self.updatePath()
         
 
             elif(not self.isRotating):
                 print("Movement to " + str(Position.degreeToDirection(self.positioning.getOrientation())))
                 self.movement(SPEED)
                 self.lineFollower.enable()
+                self.collisionAvoidance.enable()
                 self.distance = self.positioning.getDistanceTraveled()
                 if(self.distance!=0.0):
                     self.tiles = self.distance % 0.4 
@@ -282,6 +281,8 @@ class Movement:
                         print("NEAREST INTERSECTION:")
                         self.nearestintersection.printCoordinate()
                 self.currentPath = self.pathplanner.getFastestRoute(0)
+                if(self.toLastCrossroad):
+                    self.currentPath.insert(0,self.positioning.approximateOrientation(orientation))
                 if(self.tiles < 0.0062 and self.distance!=0):
                     self.positioning.updatePosition(orientation)
                     if(len(self.currentPath)>1):
@@ -291,9 +292,11 @@ class Movement:
 
                    
                 print('Caselle percorse: '+ str(self.tiles))
-                print('Distance traveled: ' + str(self.distance))    
+                print('Distance traveled: ' + str(self.distance))
 
+
+            print("Front Sensor:"+str(self.collisionAvoidance.frontsensor))
+            print("Collision:"+str(self.collisionAvoidance.collision))    
             self.lineFollower.update()
-        else:
-            print("ciao")
+           
             

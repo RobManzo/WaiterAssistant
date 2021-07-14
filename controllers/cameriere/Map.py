@@ -11,7 +11,7 @@ K = -123    # kitchen
 F = -123       # floor
 S = -1      # start tile
 C = 66      # intersection
-O = 99      # obstacle
+O = -123      # obstacle
 L = 0 
 # --- MAP ---
 # F-----> Y      ^ S
@@ -70,6 +70,7 @@ def setNewObstacle(position):
     if x> 0 and x < HEIGHT:
         if y > 0 and y < WIDTH:
             MAP[x][y] = O
+    #printMap()
 
 def findNearestIntersection(position,orientation): #ADAPT
     radius = 1

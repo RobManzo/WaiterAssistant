@@ -10,7 +10,7 @@ class CollisionAvoidance:
         self.frontsensor = 0.0
         self.status = DISABLED
         self.collision = False
-        self.threshold = 2.0 #DA PROVARE
+        self.threshold = 2.5 #DA PROVARE
 
     def isEnabled(self):
         return self.status != DISABLED
@@ -36,17 +36,17 @@ class CollisionAvoidance:
         if self.status == ENABLED:
             self.updateSensorsValue()
             self.collision = self.checkCollision()
-    
+            
     def resetCollision(self):
         self.collision = False
 
     # update sensors values
     def updateSensorsValue(self):
-        self.frontsensor = self.distancesensors.getValue()
+        self.frontsensor = self.distancesensor.getValue()
         
     # return distance sensors instance
     def getDistanceSensor(self):
-        return self.distancesensors
+        return self.distancesensor
     
     def getSensorValue(self):
         return self.frontsensor
