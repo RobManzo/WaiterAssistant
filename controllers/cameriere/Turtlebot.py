@@ -41,6 +41,5 @@ class Turtlebot:
                 self.movement.setStatus(MOVING)
             elif(self.externalcontroller.getMotionStatus() and self.movement.getStatus() == MOVING):                    
                 self.movement.update() 
-                self.camera.getImageGray()
             else:
                 self.externalcontroller.update()

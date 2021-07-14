@@ -80,6 +80,7 @@ class Map:
         if x> 0 and x < HEIGHT:
             if y > 0 and y < WIDTH:
                 self.MAP[x][y] = O
+        print("OBSTACLE SET IN "+str(x)+","+str(y))
         #printMap()
 
     def findNearestIntersection(self, position,orientation): #ADAPT
