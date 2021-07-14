@@ -33,7 +33,7 @@ class Movement:
         self.status = STOP
         self.isParking=False
         self.isParked=False
-        self.tileSettedAlready=False
+        self.tileSettedAlready=True
 
     def getStatus(self):
         return self.status
@@ -69,6 +69,7 @@ class Movement:
     
     def toNewOrientation(self, orientation):
         self.isRotating = True
+        self.tileSettedAlready=True
         if(self.neworientation==None and self.lastGoal.comparePosition(Position(SX,SY))):
             self.neworientation=0
         if(self.neworientation == NORTH and 270.0 < orientation < 360.0 ):
@@ -280,12 +281,12 @@ class Movement:
                 self.currentPath = self.pathplanner.getFastestRoute(0)
                 if(self.toLastCrossroad):
                     self.currentPath.insert(0,self.positioning.approximateOrientation(orientation))
-                if(self.tiles <= 0.0062 and self.distance!=0 and not self.tileSettedAlready):
+                if(self.tiles <= 0.0064 and self.distance!=0 and not self.tileSettedAlready):
                     self.positioning.updatePosition(orientation)
                     self.tileSettedAlready=True
                     if(len(self.currentPath)>1):
                         self.setNewOrientation(self.currentPath[1])
-                if(self.tiles>0.0063 ):
+                if(self.tiles>0.0065 ):
                     self.tileSettedAlready=False 
                 print("tilesetted:"+str(self.tileSettedAlready))
                 print("currentpath:")
