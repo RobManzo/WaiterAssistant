@@ -179,12 +179,12 @@ class Movement:
             self.currentPath = self.pathplanner.getFastestRoute(0)
             self.secondPath =self.pathplanner.getFastestRoute(1)
             if(len(self.currentPath)==0 and len(self.secondPath)==0):
-                self.pathplanner.setGoalPosition(Position(SX, SY),self.isSecondRoute)
+                self.pathplanner.setGoalPosition(Position(SX, SY),0)
                 self.isParking=True
                 self.backToKitchen=True
                 self.lastGoal=self.positioning.getPosition() 
                 print("Back to base, goal unreachable")
-            elif(len(self.currentPath)>len(self.secondPath) or len(self.currentPath)==0):
+            elif((len(self.currentPath)>len(self.secondPath) or len(self.currentPath)==0) and not self.isParking):
                     self.currentPath=self.secondPath
                     self.isSecondRoute=1 #Ricordare di avere 2 goal per tavolo
             if(len(self.currentPath)>1):
@@ -237,11 +237,12 @@ class Movement:
                 self.movement(0)
                 self.lineFollower.disable()
                 print("GOAL RAGGIUNTO") 
-                self.pathplanner.setGoalPosition(Position(SX, SY),self.isSecondRoute)
+                self.pathplanner.setGoalPosition(Position(SX, SY),0)
                 self.isParking=True
                 self.backToKitchen=True
                 self.lastGoal=self.positioning.getPosition() 
                 self.goalReach=False
+                self.isSecondRoute=0
                 
                 #print("lastGoal:")
                 #self.lastGoal.printCoordinate()
@@ -302,9 +303,9 @@ class Movement:
                     self.isParking=True
                     self.backToKitchen=True
                     self.lastGoal=self.positioning.getPosition() 
-                    self.pathplanner.setGoalPosition(Position(SX, SY),self.isSecondRoute)
+                    self.pathplanner.setGoalPosition(Position(SX, SY),0)
                     #self.updatePath()
-                elif(len(self.currentPath)>len(self.secondPath) or len(self.currentPath)==0):
+                elif((len(self.currentPath)>len(self.secondPath) or len(self.currentPath)==0) and not self.isParking):
                     self.currentPath=self.secondPath
                     self.isSecondRoute=1
                 if(self.toLastCrossroad):
