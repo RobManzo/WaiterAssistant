@@ -21,7 +21,8 @@ S = -1      # start tile
 C = 66      # intersection
 O = -123          # obstacle
 L = 0 
-MAP =   [[B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B], # 0
+
+BMAP =   [[B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B], # 0
          [B, K, K, K, K, K, B, B, B, B, B, B, B, B, B, B, B, B, B], # 1
          [B, K, K, K, K, K, F, F, F, F, F, F, F, F, F, F, F, B, B], # 2
          [B, K, K, K, K, K, F, C, 1, B, B, 1, C, 2, B, B, B, B, B], # 3

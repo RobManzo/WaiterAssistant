@@ -1,5 +1,5 @@
 from Misc import Position
-from Constants import NORTH, SOUTH, EAST, WEST
+from Constants import NORTH, SOUTH, EAST, WEST, BMAP
 # MAP DIMENSIONS
 WIDTH = 17          # map width
 HEIGHT = 17        # map height
@@ -40,89 +40,98 @@ MAP =   [[B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B], # 0
          [B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B], # 17
          [B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B]] # 18
 
+class Map:
+    def __init__(self):
+        self.MAP = MAP
 
-#return positions of goals x table
-def tablePositions(table):
-    print("TABLE:"+str(table))
-    list=[]
-    for i in range(19):
-        for j in range(19):
-                if MAP[i][j] == table:
-                    list.append(Position(i, j))
-    return list
+    def resetMap(self):
+        self.MAP = BMAP
+    
+    def getMap(self):
+        return self.MAP
 
-# return map value in postion
-def getValue(position):
-    return MAP[position.getX()][position.getY()]
+    #return positions of goals x table
+    def tablePositions(self, table):
+        print("TABLE:"+str(table))
+        list=[]
+        for i in range(19):
+            for j in range(19):
+                    if self.MAP[i][j] == table:
+                        list.append(Position(i, j))
+        return list
 
-# Ritorna TRUE se la posizione individuata è calpestabile
-def isWalkable(position):
-    x = position.getX()
-    y = position.getY()
-    if x < HEIGHT and x > 0 and y < WIDTH and y > 0:
-        value = MAP[x][y]
-        return value == F or value == C or value == L
-    return False
+    # return map value in postion
+    def getValue(self, position):
+        return self.MAP[position.getX()][position.getY()]
 
-# set new 
-def setNewObstacle(position):
-    x = position.getX()
-    y = position.getY()
-    if x> 0 and x < HEIGHT:
-        if y > 0 and y < WIDTH:
-            MAP[x][y] = O
-    #printMap()
-
-def findNearestIntersection(position,orientation): #ADAPT
-    radius = 1
-    list=[]
-    x = position.getX()
-    y = position.getY()
-    for i in range(x-radius, x+radius +1):
-        for j in range(y-radius, y+radius +1):
-            if i < HEIGHT and i > 0 and j < WIDTH and j > 0:
-                if MAP[i][j] == C:
-                    list.append(Position(i, j))
-    print("LISTA incroci")
-    for x in list:
-        x.printCoordinate()
-    if len(list):
-        if(orientation==NORTH or orientation==WEST):
-            return list[-1]
-        else:
-            return list[0]
-    return None
-
-def getNearestWalkablePosition(position, orientation):
-    if not isWalkable(position):
-        print("Actual position non walkable. " + str(position) + " is unwalkable")
+    # Ritorna TRUE se la posizione individuata è calpestabile
+    def isWalkable(self, position):
         x = position.getX()
         y = position.getY()
-        print("ORIENTATION: " + str(orientation))
-        if orientation == NORTH or orientation == SOUTH:
-            p = Position(x, y - 1)
-            if isWalkable(p):
-                return p
-            p = Position(x, y + 1)
-            if isWalkable(p):
-                return p
-        elif orientation == EAST or orientation == WEST:
-            p = Position(x - 1, y)
-            if isWalkable(p):
-                return p
-            p = Position(x + 1, y)
-            if isWalkable(p):
-                return p
-    else:
-        return position
+        if x < HEIGHT and x > 0 and y < WIDTH and y > 0:
+            value = self.MAP[x][y]
+            return value == F or value == C or value == L
+        return False
 
-def printMap():
-    for F in range(HEIGHT):
-        for j in range(WIDTH):
-            if F>= 0 and F < HEIGHT:
-                if j >= 0 and j < WIDTH:
-                    print("%2d" % MAP[F][j], end=" ")
-        print()
+    # set new 
+    def setNewObstacle(self, position):
+        x = position.getX()
+        y = position.getY()
+        if x> 0 and x < HEIGHT:
+            if y > 0 and y < WIDTH:
+                self.MAP[x][y] = O
+        #printMap()
+
+    def findNearestIntersection(self, position,orientation): #ADAPT
+        radius = 1
+        list=[]
+        x = position.getX()
+        y = position.getY()
+        for i in range(x-radius, x+radius +1):
+            for j in range(y-radius, y+radius +1):
+                if i < HEIGHT and i > 0 and j < WIDTH and j > 0:
+                    if self.MAP[i][j] == C:
+                        list.append(Position(i, j))
+        print("LISTA incroci")
+        for x in list:
+            x.printCoordinate()
+        if len(list):
+            if(orientation==NORTH or orientation==WEST):
+                return list[-1]
+            else:
+                return list[0]
+        return None
+
+    def getNearestWalkablePosition(self, position, orientation):
+        if not self.isWalkable(position):
+            print("Actual position non walkable. " + str(position) + " is unwalkable")
+            x = position.getX()
+            y = position.getY()
+            print("ORIENTATION: " + str(orientation))
+            if orientation == NORTH or orientation == SOUTH:
+                p = Position(x, y - 1)
+                if self.isWalkable(p):
+                    return p
+                p = Position(x, y + 1)
+                if self.isWalkable(p):
+                    return p
+            elif orientation == EAST or orientation == WEST:
+                p = Position(x - 1, y)
+                if self.isWalkable(p):
+                    return p
+                p = Position(x + 1, y)
+                if self.isWalkable(p):
+                    return p
+        else:
+            return position
+
+    def printMap(self):
+        for F in range(HEIGHT):
+            for j in range(WIDTH):
+                if F>= 0 and F < HEIGHT:
+                    if j >= 0 and j < WIDTH:
+                        print("%2d" % self.MAP[F][j], end=" ")
+            print()
 
 
 
