@@ -192,8 +192,10 @@ class Movement:
             if(self.isParked):
                 self.rmotor.setVelocity(0)
                 self.lmotor.setVelocity(0)
+                print("IF is parked")
                 self.externalcontroller.setMotionStatus(False)
-                self.setStatus(STOP)      
+                self.setStatus(STOP)
+                self.isParked=False      
             elif(self.isRotating):
                 self.toNewOrientation(orientation)
             elif(self.isParking and self.position.comparePosition(Position(3,4))):
