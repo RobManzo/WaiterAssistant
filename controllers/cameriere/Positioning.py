@@ -27,7 +27,7 @@ class Positioning:
         self.orientation = orientation
     
     def getDistanceTraveled(self):
-        self.distance=round(float((self.positionsensor.getLeftSensor()*WHEEL_RADIUS + self.positionsensor.getRightSensor()*WHEEL_RADIUS)/4),4)
+        self.distance=float((self.positionsensor.getLeftSensor()*WHEEL_RADIUS + self.positionsensor.getRightSensor()*WHEEL_RADIUS)/4)
         return self.distance-self.error
     
     def resetDistanceTraveled(self):

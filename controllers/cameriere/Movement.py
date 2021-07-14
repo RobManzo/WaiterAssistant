@@ -280,7 +280,7 @@ class Movement:
                 self.currentPath = self.pathplanner.getFastestRoute(0)
                 if(self.toLastCrossroad):
                     self.currentPath.insert(0,self.positioning.approximateOrientation(orientation))
-                if(self.tiles <= 0.005999 and self.distance!=0 and not self.tileSettedAlready):
+                if(self.tiles <= 0.0062 and self.distance!=0 and not self.tileSettedAlready):
                     self.positioning.updatePosition(orientation)
                     self.tileSettedAlready=True
                     if(len(self.currentPath)>1):
