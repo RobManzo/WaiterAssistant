@@ -27,6 +27,7 @@ class Movement:
         self.map = map
         self.lastGoal=None
         self.currentPath = []
+        self.secondPath =[]
         self.neworientation=None
         self.nearestintersection=None
         self.backToKitchen=False
@@ -34,6 +35,7 @@ class Movement:
         self.isParking=False
         self.isParked=False
         self.tileSettedAlready=True
+        self.isSecondRoute=0
 
     def getStatus(self):
         return self.status
@@ -144,8 +146,8 @@ class Movement:
 
     def updateGoalStatus(self):
         currentPosition = self.positioning.getPosition()
-        goalPosition = self.pathplanner.getGoalPosition()
-        #print("GOAL UPDATE")
+        goalPosition = self.pathplanner.getGoalPosition(self.isSecondRoute)
+        print("GOAL UPDATE")
         goalPosition.printCoordinate()
         self.goalReach = goalPosition.comparePosition(currentPosition)
 
@@ -174,7 +176,15 @@ class Movement:
             #if DEBUG:
             #    Map.printMap()s
 
-            self.currentPath = self.pathplanner.getFastestRoute(0) #Ricordare di avere 2 goal per tavolo
+            self.currentPath = self.pathplanner.getFastestRoute(0)
+            self.secondPath =self.pathplanner.getFastestRoute(1)
+            if(len(self.currentPath)==0 and len(self.secondPath)==0):
+                self.goalReach=True
+                self.pathplanner.setGoalPosition(Position(SX, SY),self.isSecondRoute)
+                print("Back to base, goal unreachable")
+            elif(len(self.currentPath)>len(self.secondPath) or len(self.currentPath)==0):
+                    self.currentPath=self.secondPath
+                    self.isSecondRoute=1 #Ricordare di avere 2 goal per tavolo
             if(len(self.currentPath)>1):
                 self.currentPath.insert(0,self.uTurn(self.positioning.approximateOrientation(o)))
             print("UPDATED PATH:"+str(self.currentPath))
@@ -204,6 +214,7 @@ class Movement:
                 self.externalcontroller.setMotionStatus(False)
                 self.setStatus(STOP)
                 self.isParked=False
+                self.isSecondRoute=False
                 self.map.resetMap()                     
             elif(self.isRotating):
                 self.toNewOrientation(orientation)
@@ -224,9 +235,11 @@ class Movement:
                 self.movement(0)
                 self.lineFollower.disable()
                 print("GOAL RAGGIUNTO") 
-                self.pathplanner.setGoalPosition(Position(SX, SY))
+                self.pathplanner.setGoalPosition(Position(SX, SY),self.isSecondRoute)
                 self.isParking=True
                 self.lastGoal=self.positioning.getPosition()
+                self.backToKitchen=True
+                self.goalReach=False
                 
                 #print("lastGoal:")
                 #self.lastGoal.printCoordinate()
@@ -236,8 +249,6 @@ class Movement:
                 variable=self.positioning.getOrientation()
                 self.setNewOrientation(Position.degreeToDirection(self.uTurn(variable)))
                 self.toNewOrientation(orientation)
-                self.goalReach=False
-                self.backToKitchen=True
 
             elif(self.lineFollower.getCrossRoad() and not self.isRotating):
                 #○print("prossima direzione"+str(self.currentPath[1]))
@@ -273,13 +284,25 @@ class Movement:
                 self.collisionAvoidance.enable()
                 self.distance = self.positioning.getDistanceTraveled()
                 if(self.distance!=0.0):
-                    self.tiles = self.distance % 0.4 
-                    self.nearestintersection = self.map.findNearestIntersection(self.position, self.currentPath[0])
+                    self.tiles = self.distance % 0.4
+                    if(len(self.currentPath)==0):
+                        self.nearestintersection = self.map.findNearestIntersection(self.position, self.neworientation)     
+                    else:
+                        self.nearestintersection = self.map.findNearestIntersection(self.position, self.currentPath[0])
                     print(Position.degreeToDirection(self.positioning.getOrientation()))
                     if(self.nearestintersection!=None):
                         print("NEAREST INTERSECTION:")
                         self.nearestintersection.printCoordinate()
                 self.currentPath = self.pathplanner.getFastestRoute(0)
+                self.secondPath =self.pathplanner.getFastestRoute(1)
+                if(len(self.currentPath)==0 and len(self.secondPath)==0):
+                    print("Back to base, goal unreachable")
+                    self.goalReach=True
+                    self.pathplanner.setGoalPosition(Position(SX, SY),self.isSecondRoute)
+                    #self.updatePath()
+                elif(len(self.currentPath)>len(self.secondPath) or len(self.currentPath)==0):
+                    self.currentPath=self.secondPath
+                    self.isSecondRoute=1
                 if(self.toLastCrossroad):
                     self.currentPath.insert(0,self.positioning.approximateOrientation(orientation))
                 if(self.tiles <= 0.0064 and self.distance!=0 and not self.tileSettedAlready):

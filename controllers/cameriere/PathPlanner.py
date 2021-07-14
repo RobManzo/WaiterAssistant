@@ -56,8 +56,8 @@ class PathPlanner:
         print("Goal Positions:")
         for position in self.goalPositions:
             position.printCoordinate()
-    def setGoalPosition(self,position):
-        self.goalPositions[0]=position  
+    def setGoalPosition(self,position,flag):
+        self.goalPositions[0+flag]=position  
         print("Setting Goal to:")
         position.printCoordinate()   
              
@@ -70,14 +70,14 @@ class PathPlanner:
     def getFastestRoute(self,flag): #flag nel caso in cui uno dei due spot non sia raggiungibile
 
         # update map status, this ensure new obstacles are detected
-        self.map.printMap()
+        #self.map.printMap()
         #logger.debug("Path from: " + str(self.robotPosition) + " to " + str(self.goalPosition) + " Initial Orientation: " + str(self.robotOrientation))
         # get fastest route from AStar giving map, start position and goal position
         route = AStar.findPath(self.map.getMap(), self.robotPosition.getPositionArray(), self.goalPositions[0+flag].getPositionArray())
         print("ROUTE:"+str(route))
         # if no route was found, return UNKNOWN path
         if route == None:
-            return UNKNOWN
+            return []
 
         # get only intersection nodes from AStar route
        
@@ -117,8 +117,8 @@ class PathPlanner:
         self.goalPosition = UNKNOWN
     
     
-    def getGoalPosition(self):
-        return self.goalPositions[0]
+    def getGoalPosition(self,flag):
+        return self.goalPositions[0+flag]
 
     # return first, last and intersection nodes from AStar route
     def getIntersectionNodesFromRoute(self, route):

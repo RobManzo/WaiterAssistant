@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.5800431172340039 0.5639887549848913 0.5877641247984192 2.1062667442375305
-  position -0.2101476209310612 18.16045604484627 -0.10197860695450031
+  orientation -0.5721475603299864 0.58525094910885 0.5745680949858206 2.06571550096126
+  position 0.7366606486977736 23.17438073740429 0.016050592557547927
 }
 TexturedBackground {
   texture "empty_office"
@@ -28,6 +28,16 @@ RectangleArena {
   wallAppearance BrushedAluminium {
     colorOverride 0.4 0.4 0.4
   }
+}
+SolidBox {
+  translation -2.4 0.21 0.79
+  name "box(3)"
+  size 0.4 0.4 0.4
+}
+SolidBox {
+  translation -2.4 0.21 -1.21
+  name "box(2)"
+  size 0.4 0.4 0.4
 }
 StraightRoadSegment {
   translation -2.2 0.001 1.59
@@ -105,7 +115,7 @@ Table {
 }
 Table {
   translation -2.4 1.62442e-06 -0.2
-  rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
+  rotation 2.346409999987081e-06 0.9999999999944944 2.346409999987081e-06 1.5708
   name "table(4)"
   size 0.8 0.3 0.4
   feetSize 0.04 0.04
@@ -160,7 +170,7 @@ Table {
   frameThickness 0.04
 }
 Wall {
-  translation -2.8 0 1.22
+  translation -2.8 0 1.32
   size 1.2 0.8 0.04
   appearance Roughcast {
     colorOverride 0.3 0.3 0.3
