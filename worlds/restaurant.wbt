@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.3887679028936806 -0.8231304833227971 -0.4139030382884715 4.486562166649334
-  position 7.106028919741159 8.222540417364634 0.2729296925855559
+  orientation 0.508526281991159 -0.7001229788250767 -0.5012273287095881 4.400437521918872
+  position 3.476998456091289 11.16331828501952 0.08712636710087973
 }
 TexturedBackground {
   texture "empty_office"
@@ -71,7 +71,7 @@ Door {
     colorOverride 0.5 0.5 0.5
   }
   doorHandle DoorLever {
-    translation 0 -3.293984534352701e-05 0
+    translation 0 -4.391616801535658e-05 0
   }
 }
 HotPlate {
@@ -85,7 +85,7 @@ Table {
   translation -0.8 -7.7615e-06 1.8
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(11)"
-  size 0.8 0.3 0.4
+  size 0.7 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -93,7 +93,7 @@ Table {
   translation -0.8 1.62442e-06 -0.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(1)"
-  size 0.8 0.3 0.4
+  size 0.7 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -101,7 +101,7 @@ Table {
   translation -0.8 1.10098e-05 -2.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(2)"
-  size 0.8 0.3 0.4
+  size 0.7 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -109,7 +109,7 @@ Table {
   translation -2.4 1.10098e-05 -2.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(3)"
-  size 0.8 0.3 0.4
+  size 0.7 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -117,7 +117,7 @@ Table {
   translation -2.4 1.62442e-06 -0.2
   rotation 2.346409999987081e-06 0.9999999999944944 2.346409999987081e-06 1.5708
   name "table(4)"
-  size 0.8 0.3 0.4
+  size 0.6 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -125,7 +125,7 @@ Table {
   translation 0.81 -7.7615e-06 1.8
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(8)"
-  size 0.8 0.3 0.4
+  size 0.7 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -133,7 +133,7 @@ Table {
   translation 0.81 1.62442e-06 -0.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(6)"
-  size 0.8 0.3 0.4
+  size 0.7 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -141,7 +141,7 @@ Table {
   translation 2.41 -7.7615e-06 1.8
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(9)"
-  size 0.8 0.3 0.4
+  size 0.7 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -149,7 +149,7 @@ Table {
   translation 2.41 1.62431e-06 -0.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(10)"
-  size 0.8 0.3 0.4
+  size 0.7 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -157,7 +157,7 @@ Table {
   translation 0.81 1.10098e-05 -2.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(7)"
-  size 0.8 0.3 0.4
+  size 0.7 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.02
 }
@@ -165,7 +165,7 @@ Table {
   translation 2.41 1.10098e-05 -2.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(5)"
-  size 0.8 0.3 0.4
+  size 0.7 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -244,9 +244,13 @@ Oven {
   mainColor 0.7 0.7 0.7
 }
 TurtleBot3Burger {
-  hidden rotation_8 0.42469019703711336 0.9050339701545781 0.023489346666521208 1.2796161278031135
-  translation -1.959999011568931 -0.0017226216591975513 1.5899999999910825
-  rotation -0.009196625129715518 0.9999154195348858 -0.009196513610970845 -1.5708698912306143
+  hidden position_0_0 -1.5105677002994757e-15
+  hidden position_0_1 -1.714112081143751e-15
+  hidden position_0_2 3.778763864580339e-09
+  hidden translation_8 -2.369215934550084e-13 0.004023246348212051 0.08099957235668576
+  hidden rotation_8 0.42469019687344983 0.9050339702359719 0.0234893464895065 1.279616127659911
+  translation -1.9599990115689494 -0.001722621512540011 1.5899999999914252
+  rotation -0.009196625579887022 0.9999154195266051 -0.009196514061125347 -1.5708698912388992
   controller "cameriere"
   controllerArgs [
     "--name=Turtlebot"
