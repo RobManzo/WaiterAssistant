@@ -15,6 +15,7 @@ class Positioning:
         self.distancetravelled = 0.0
         self.error=0
         self.distance=0
+        self.psstep = 0
 
     def updateOrientation(self):
         self.orientation = self.compass.compassToDegree()
@@ -26,11 +27,16 @@ class Positioning:
         self.orientation = orientation
     
     def getDistanceTraveled(self):
-        self.distance=float((self.positionsensor.getLeftSensor()*WHEEL_RADIUS + self.positionsensor.getRightSensor()*WHEEL_RADIUS)/4)
-        return self.distance-self.error
+        psvalue = float((self.positionsensor.getLeftSensor() + self.positionsensor.getRightSensor())*WHEEL_RADIUS)/2
+        self.distance = float(((self.positionsensor.getLeftSensor() + self.positionsensor.getRightSensor())*WHEEL_RADIUS) - self.psstep)
+        self.psstep = psvalue
+        return self.distance
     
     def resetDistanceTraveled(self):
         self.error = self.distance
+    
+    def resetDistance(self):
+        self.distance = 0
 
     def approximateOrientation(self, orientation):
         if( 315.0 <= orientation <= 360.0 or 0.0 <= orientation <= 45.0):
