@@ -48,6 +48,7 @@ class PathPlanner:
         self.robotPosition = positioning.getPosition()
         self.robotOrientation = positioning.getOrientation()
         self.goalPositions = UNKNOWN
+        #self.backup=Map.MAP1
     
     # update path planning service
     def setGoal(self,table):
@@ -67,7 +68,6 @@ class PathPlanner:
     def updateMap(self):
         self.map = Map.MAP
 
-    
     # return array containing a turn for each intersection in the path between robot position and goal
 
     def getFastestRoute(self,flag): #flag nel caso in cui uno dei due spot non sia raggiungibile

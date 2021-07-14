@@ -31,8 +31,10 @@ class Turtlebot:
         print("inserire Tavolo")
         while self.robot.step(TIMESTEP) != -1:
             if(self.externalcontroller.getMotionStatus() and self.movement.getStatus() == STOP):
+                
                 self.movement.setStatus(INSERT)
             elif(self.movement.getStatus() == INSERT):
+                
                 self.pathplanner.setGoal(self.externalcontroller.getTable())
                 self.movement.setStatus(MOVING)
             elif(self.externalcontroller.getMotionStatus() and self.movement.getStatus() == MOVING):                    
