@@ -26,21 +26,22 @@ BMAP =   [[B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B], # 0
          [B, K, K, K, K, K, B, B, B, B, B, B, B, B, B, B, B, B, B], # 1
          [B, K, K, K, K, K, F, F, F, F, F, F, F, F, F, F, F, B, B], # 2
          [B, K, K, K, K, K, F, C, 1, B, B, 1, C, 2, B, B, B, B, B], # 3
-         [B, K, K, K, K, S, F, L, F, F, F, F, L, F, F, F, F, B, B], # 4
-         [B, B, C, L, L, C, L, C, L, L, L, L, C, F, F, F, F, B, B], # 5
+         [B, K, K, K, K, S, F, L, F, F, F, F, L, F, F, 2, F, B, B], # 4
+         [B, B, C, L, L, C, L, C, L, L, L, L, C, L, L, C, F, B, B], # 5
          [B, B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B, B], # 6
          [B, B, C, 3, B, B, 3, C, 4, B, B, 4, C, 5, B, B, F, B, B], # 7
-         [B, B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B, B], # 8
-         [B, B, C, L, L, L, L, C, L, L, L, L, C, F, F, F, F, B, B], # 9
-         [B, B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B, B], # 10
+         [B, B, L, F, F, F, F, L, F, F, F, F, L, F, F, 5, F, B, B], # 8
+         [B, B, C, L, L, L, L, C, L, L, L, L, C, L, L, C, F, B, B], # 9
+         [B, B, L, F, F, F, F, L, F, F, F, F, L, F, F, 8, F, B, B], # 10
          [B, B, C, 6, B, B, 6, C, 7, B, B, 7, C, 8, B, B, F, B, B], # 11
          [B, B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B, B], # 12
-         [B, B, C, L, L, L, L, C, L, L, L, L, C, F, F, F, F, B, B], # 13
-         [B, B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B, B], # 14
+         [B, B, C, L, L, L, L, C, L, L, L, L, C, L, L, C, F, B, B], # 13
+         [B, B, L, F, F, F, F, L, F, F, F, F, L, F, F, 11, F, B, B], # 14
          [B, B, C, 9, B, B, 9, C, 10, B, B, 10, C, 11, B, B, F, B, B], # 15
          [B, B, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, B, B], # 16
          [B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B], # 17
          [B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B]] # 18
+
 
 NORTH = 0.0
 SOUTH = 180.0

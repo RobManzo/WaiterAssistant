@@ -74,7 +74,7 @@ class Movement:
         self.tileSettedAlready=True
         if(self.neworientation==None and self.lastGoal.comparePosition(Position(SX,SY))):
             self.neworientation=0
-        if(self.neworientation == NORTH and 270.0 < orientation < 360.0 ):
+        if((self.neworientation == NORTH or self.neworientation==360.0) and 270.0 < orientation < 360.0 ):
             if(358.0 < orientation < 360.0 or  0 <= orientation <= 2):
                 self.isRotating = False
             else:
@@ -216,7 +216,7 @@ class Movement:
                 self.externalcontroller.setMotionStatus(False)
                 self.setStatus(STOP)
                 self.isParked=False
-                self.isSecondRoute=False
+                self.isSecondRoute=0
                 self.map.resetMap()                     
             elif(self.isRotating):
                 self.toNewOrientation(orientation)
@@ -243,15 +243,13 @@ class Movement:
                 self.lastGoal=self.positioning.getPosition() 
                 self.goalReach=False
                 self.isSecondRoute=0
-                
                 #print("lastGoal:")
                 #self.lastGoal.printCoordinate()
                 print("Consegna in corso...")
                 time.sleep(5)
-                
-                variable=self.positioning.getOrientation()
-                self.setNewOrientation(Position.degreeToDirection(self.uTurn(variable)))
-                self.toNewOrientation(orientation)
+                variable=self.positioning.approximateOrientation(orientation)
+                self.setNewOrientation((self.uTurn(variable)))
+                self.toNewOrientation(variable)
 
             elif(self.lineFollower.getCrossRoad() and not self.isRotating):
                 #○print("prossima direzione"+str(self.currentPath[1]))

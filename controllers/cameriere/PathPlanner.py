@@ -1,6 +1,6 @@
 import Map
 from Misc import Position
-from Constants import UNKNOWN, NORTH, SOUTH, EAST, WEST
+from Constants import UNKNOWN, NORTH, SOUTH, EAST, WEST,SX,SY
 import AStar
 # MAP DIMENSIONS
 #WIDTH = 15          # map width
@@ -73,7 +73,7 @@ class PathPlanner:
         #self.map.printMap()
         #logger.debug("Path from: " + str(self.robotPosition) + " to " + str(self.goalPosition) + " Initial Orientation: " + str(self.robotOrientation))
         # get fastest route from AStar giving map, start position and goal position
-        route = AStar.findPath(self.map.getMap(), self.robotPosition.getPositionArray(), self.goalPositions[0+flag].getPositionArray())
+        route = AStar.findPath(self.map.getMap(), self.robotPosition.getPositionArray(), self.getGoalPosition(flag).getPositionArray())
         print("ROUTE:"+str(route))
         # if no route was found, return UNKNOWN path
         if route == None:
