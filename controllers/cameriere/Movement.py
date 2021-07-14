@@ -169,7 +169,8 @@ class Movement:
             #    Map.printMap()s
 
             self.currentPath = self.pathplanner.getFastestRoute(0) #Ricordare di avere 2 goal per tavolo
-            self.currentPath.insert(0,self.uTurn(self.positioning.approximateOrientation(o)))
+            if(len(self.currentPath)>1):
+                self.currentPath.insert(0,self.uTurn(self.positioning.approximateOrientation(o)))
             print("UPDATED PATH:"+str(self.currentPath))
 
     def update(self): #Goal da mettere nel path planner
@@ -236,10 +237,10 @@ class Movement:
                 if(self.nearestintersection!=-1):
                     self.positioning.setPosition(self.nearestintersection)
                 #print("Posizione incrocio settata")
-                self.positioning.resetDistanceTraveled() #posizione incrocio settata
                 self.toLastCrossroad=False
                 self.rotationDirection(orientation)
                 self.toNewOrientation(orientation)
+                self.positioning.resetDistanceTraveled() #posizione incrocio settata
 
             elif(self.lineFollower.isLineLost() and not self.isRotating):
                 #print("MOv lost")
@@ -249,7 +250,7 @@ class Movement:
                 self.setNewOrientation(self.uTurn(variable))
                 self.toNewOrientation(orientation)
             
-            elif(self.collisionAvoidance.isCollisionDetected() and not self.isRotating):
+            elif(self.collisionAvoidance.isCollisionDetected() and not self.isRotating and self.collisionAvoidance.isEnabled()):
                 x = self.position.getX()
                 y = self.position.getX()
                 objectOrientation=self.positioning.approximateOrientation(orientation)

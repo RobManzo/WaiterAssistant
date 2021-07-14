@@ -11,7 +11,7 @@ K = -123    # kitchen
 F = -123       # floor
 S = -1      # start tile
 C = 66      # intersection
-O = -123      # obstacle
+O = -123          # obstacle
 L = 0 
 # --- MAP ---
 # F-----> Y      ^ S
