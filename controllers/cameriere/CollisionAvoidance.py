@@ -20,6 +20,8 @@ class CollisionAvoidance:
 
     def disable(self):
         self.status = DISABLED
+        self.resetCollision()
+        self.frontsensor=0
 
     # return true is an imminent collision is detected 
     def isCollisionDetected(self):

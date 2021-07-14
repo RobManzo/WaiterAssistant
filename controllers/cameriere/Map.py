@@ -4,14 +4,13 @@ from Constants import NORTH, SOUTH, EAST, WEST
 WIDTH = 17          # map width
 HEIGHT = 17        # map height
 MAP_RESOLUTION = 0.4 # map resolution
-
 # MAP CONSTANS
 B = -123    # arena border
 K = -123    # kitchen
 F = -123       # floor
 S = -1      # start tile
 C = 66      # intersection
-O = -123      # obstacle
+O = -123          # obstacle
 L = 0 
 # --- MAP ---
 # F-----> Y      ^ S
@@ -92,7 +91,7 @@ def findNearestIntersection(position,orientation): #ADAPT
             return list[-1]
         else:
             return list[0]
-    return -1
+    return None
 
 def getNearestWalkablePosition(position, orientation):
     if not isWalkable(position):

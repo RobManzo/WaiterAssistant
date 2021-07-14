@@ -33,6 +33,7 @@ class Movement:
         self.status = STOP
         self.isParking=False
         self.isParked=False
+        self.tileSettedAlready=False
 
     def getStatus(self):
         return self.status
@@ -152,24 +153,29 @@ class Movement:
             p = self.positioning.getPosition()
             o = self.positioning.getOrientation()
             nearest = Map.getNearestWalkablePosition(p, o)
+            print("NEAREST:")
+            print(nearest)
             if nearest != None:
                 p = nearest
             x = p.getX()
             y = p.getY()
+            p.printCoordinate()
+            o=self.positioning.approximateOrientation(o)
             if o == NORTH:
-                Map.setNewObstacle(Position(x + 1, y))
+                Map.setNewObstacle(Position(x + 2, y))
             if o == EAST:
-                Map.setNewObstacle(Position(x, y - 1))
+                Map.setNewObstacle(Position(x, y - 2))
             if o == SOUTH:
-                Map.setNewObstacle(Position(x - 1, y))
+                Map.setNewObstacle(Position(x - 2, y))
             if o == WEST:
-                Map.setNewObstacle(Position(x, y + 1))
+                Map.setNewObstacle(Position(x, y + 2))
             
             #if DEBUG:
             #    Map.printMap()s
 
             self.currentPath = self.pathplanner.getFastestRoute(0) #Ricordare di avere 2 goal per tavolo
-            self.currentPath.insert(0,self.uTurn(self.positioning.approximateOrientation(o)))
+            if(len(self.currentPath)>1):
+                self.currentPath.insert(0,self.uTurn(self.positioning.approximateOrientation(o)))
             print("UPDATED PATH:"+str(self.currentPath))
 
     def update(self): #Goal da mettere nel path planner
@@ -196,7 +202,7 @@ class Movement:
                 #print("IF is parked")
                 self.externalcontroller.setMotionStatus(False)
                 self.setStatus(STOP)
-                self.isParked=False      
+                self.isParked=False                     
             elif(self.isRotating):
                 self.toNewOrientation(orientation)
                 self.collisionAvoidance.disable()
@@ -233,34 +239,25 @@ class Movement:
 
             elif(self.lineFollower.getCrossRoad() and not self.isRotating):
                 #○print("prossima direzione"+str(self.currentPath[1]))
-                if(self.nearestintersection!=-1):
+                if(self.nearestintersection!=None and not self.toLastCrossroad):
                     self.positioning.setPosition(self.nearestintersection)
                 #print("Posizione incrocio settata")
-                self.positioning.resetDistanceTraveled() #posizione incrocio settata
                 self.toLastCrossroad=False
                 self.rotationDirection(orientation)
                 self.toNewOrientation(orientation)
+                self.positioning.resetDistanceTraveled() #posizione incrocio settata
+
 
             elif(self.lineFollower.isLineLost() and not self.isRotating):
-                #print("MOv lost")
                 variable=self.positioning.getOrientation()
                 #print("variable"+str(variable))
                 self.toLastCrossroad=False
                 self.setNewOrientation(self.uTurn(variable))
                 self.toNewOrientation(orientation)
+                self.lineFollower.setLineLost()
             
-            elif(self.collisionAvoidance.isCollisionDetected() and not self.isRotating):
-                x = self.position.getX()
-                y = self.position.getX()
+            elif(self.collisionAvoidance.isCollisionDetected() and not self.isRotating and self.collisionAvoidance.isEnabled()):
                 objectOrientation=self.positioning.approximateOrientation(orientation)
-                if(objectOrientation == NORTH):
-                    self.positioning.setNewObstacle(Position(x+2, y))
-                elif(objectOrientation == SOUTH):
-                    self.positioning.setNewObstacle(Position(x-2, y))
-                elif(objectOrientation == WEST):
-                    self.positioning.setNewObstacle(Position(x, y+2))
-                elif(objectOrientation == EAST):
-                    self.positioning.setNewObstacle(Position(x, y-2))
                 self.setNewOrientation(self.uTurn(objectOrientation))
                 self.isRotating = True
                 self.toLastCrossroad=True
@@ -277,16 +274,20 @@ class Movement:
                     self.tiles = self.distance % 0.4 
                     self.nearestintersection = Map.findNearestIntersection(self.position, self.currentPath[0])
                     print(Position.degreeToDirection(self.positioning.getOrientation()))
-                    if(self.nearestintersection!=-1):
+                    if(self.nearestintersection!=None):
                         print("NEAREST INTERSECTION:")
                         self.nearestintersection.printCoordinate()
                 self.currentPath = self.pathplanner.getFastestRoute(0)
                 if(self.toLastCrossroad):
                     self.currentPath.insert(0,self.positioning.approximateOrientation(orientation))
-                if(self.tiles < 0.0062 and self.distance!=0):
+                if(self.tiles <= 0.005999 and self.distance!=0 and not self.tileSettedAlready):
                     self.positioning.updatePosition(orientation)
+                    self.tileSettedAlready=True
                     if(len(self.currentPath)>1):
-                        self.setNewOrientation(self.currentPath[1]) 
+                        self.setNewOrientation(self.currentPath[1])
+                if(self.tiles>0.0063 ):
+                    self.tileSettedAlready=False 
+                print("tilesetted:"+str(self.tileSettedAlready))
                 print("currentpath:")
                 print(str(self.currentPath))
 

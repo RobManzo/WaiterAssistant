@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.5571120521059739 0.6350296328884584 0.5351294485933478 1.992595337648952
-  position 4.023801177006484 18.140777769914063 -0.22003166308462024
+  orientation -0.5800431172340039 0.5639887549848913 0.5877641247984192 2.1062667442375305
+  position -0.2101476209310612 18.16045604484627 -0.10197860695450031
 }
 TexturedBackground {
   texture "empty_office"
@@ -750,6 +750,11 @@ StraightRoadSegment {
   }
   pavementAppearance NULL
 }
+SolidBox {
+  translation -1.6 0.21 2.79
+  name "box(1)"
+  size 0.4 0.4 0.4
+}
 StraightRoadSegment {
   translation -2.55 0.001 0.79
   rotation 0 1 0 1.5707996938995747
@@ -769,4 +774,8 @@ StraightRoadSegment {
     baseColor 0 0 0
   }
   pavementAppearance NULL
+}
+SolidBox {
+  translation 0.8 0.21 0.8
+  size 0.4 0.4 0.4
 }

@@ -10,12 +10,13 @@ class Positioning:
         self.positionsensor = positionsensor
         self.leftpos = positionsensor.leftpos
         self.rightpos = positionsensor.rightpos
-        self.updateOrientation()
+        #self.updateOrientation()
         self.position = Position(SX, SY)
         self.distancetravelled = 0.0
         self.error=0
         self.distance=0
         self.psstep = 0
+        #self.i=1
 
     def updateOrientation(self):
         self.orientation = self.compass.compassToDegree()
@@ -31,8 +32,11 @@ class Positioning:
         self.distance = float(((self.positionsensor.getLeftSensor() + self.positionsensor.getRightSensor())*WHEEL_RADIUS) - self.psstep)
         self.psstep = psvalue
         return self.distance
+        self.distance=round(float((self.positionsensor.getLeftSensor()*WHEEL_RADIUS + self.positionsensor.getRightSensor()*WHEEL_RADIUS)/4),4)
+        return self.distance-self.error
     
     def resetDistanceTraveled(self):
+        #self.i+=self.i
         self.error = self.distance
     
     def resetDistance(self):
