@@ -3,11 +3,11 @@ import time
 from Misc import Position
 from Constants import NORTH, SOUTH, EAST, WEST,BASE
 from Constants import SX, SY, ROTSPEED, ADJSPEED, SPEED, UNKNOWN, INSERT,MOVING, STOP
-import Map
+from Map import Map
 
 
 class Movement:
-    def __init__(self,pathplanner, positioning, lmotor, rmotor, collisionAvoidance, lineFollower, externalcontroller):
+    def __init__(self,pathplanner, positioning, lmotor, rmotor, collisionAvoidance, lineFollower, externalcontroller, map):
         self.externalcontroller = externalcontroller
         self.pathplanner=pathplanner
         self.positioning = positioning
@@ -24,7 +24,7 @@ class Movement:
         self.clockwise = True
         self.toLastCrossroad=False
         self.goalReach= False
-        self.map = Map.MAP
+        self.map = map
         self.lastGoal=None
         self.currentPath = []
         self.neworientation=None
@@ -153,7 +153,7 @@ class Movement:
             print("Computing new path..")
             p = self.positioning.getPosition()
             o = self.positioning.getOrientation()
-            nearest = Map.getNearestWalkablePosition(p, o)
+            nearest = self.map.getNearestWalkablePosition(p, o)
             print("NEAREST:")
             print(nearest)
             if nearest != None:
@@ -163,13 +163,13 @@ class Movement:
             p.printCoordinate()
             o=self.positioning.approximateOrientation(o)
             if o == NORTH:
-                Map.setNewObstacle(Position(x + 2, y))
+                self.map.setNewObstacle(Position(x + 2, y))
             if o == EAST:
-                Map.setNewObstacle(Position(x, y - 2))
+                self.map.setNewObstacle(Position(x, y - 2))
             if o == SOUTH:
-                Map.setNewObstacle(Position(x - 2, y))
+                self.map.setNewObstacle(Position(x - 2, y))
             if o == WEST:
-                Map.setNewObstacle(Position(x, y + 2))
+                self.map.setNewObstacle(Position(x, y + 2))
             
             #if DEBUG:
             #    Map.printMap()s
@@ -203,7 +203,8 @@ class Movement:
                 #print("IF is parked")
                 self.externalcontroller.setMotionStatus(False)
                 self.setStatus(STOP)
-                self.isParked=False                     
+                self.isParked=False
+                self.map.resetMap()                     
             elif(self.isRotating):
                 self.toNewOrientation(orientation)
                 self.collisionAvoidance.disable()
@@ -273,7 +274,7 @@ class Movement:
                 self.distance = self.positioning.getDistanceTraveled()
                 if(self.distance!=0.0):
                     self.tiles = self.distance % 0.4 
-                    self.nearestintersection = Map.findNearestIntersection(self.position, self.currentPath[0])
+                    self.nearestintersection = self.map.findNearestIntersection(self.position, self.currentPath[0])
                     print(Position.degreeToDirection(self.positioning.getOrientation()))
                     if(self.nearestintersection!=None):
                         print("NEAREST INTERSECTION:")

@@ -41,8 +41,8 @@ import AStar
 #        [B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B]] # 16
 
 class PathPlanner:
-    def __init__(self, positioning,externalcontroller):
-        self.map = Map.MAP
+    def __init__(self, positioning,externalcontroller, map):
+        self.map = map
         self.externalcontroller=externalcontroller
         self.positioning = positioning
         self.robotPosition = positioning.getPosition()
@@ -52,32 +52,28 @@ class PathPlanner:
     
     # update path planning service
     def setGoal(self,table):
-        self.goalPositions=Map.tablePositions(table)
+        self.goalPositions=self.map.tablePositions(table)
         print("Goal Positions:")
         for position in self.goalPositions:
             position.printCoordinate()
     def setGoalPosition(self,position):
         self.goalPositions[0]=position  
         print("Setting Goal to:")
-        position.printCoordinate()        
+        position.printCoordinate()   
+             
     def update(self):
         self.robotPosition = self.positioning.getPosition()
         self.robotOrientation = self.positioning.getOrientation()
-
-    # update map to improve path planning when obstacle are found
-    def updateMap(self):
-        self.map = Map.MAP
 
     # return array containing a turn for each intersection in the path between robot position and goal
 
     def getFastestRoute(self,flag): #flag nel caso in cui uno dei due spot non sia raggiungibile
 
         # update map status, this ensure new obstacles are detected
-        Map.printMap()
-        self.updateMap()
+        self.map.printMap()
         #logger.debug("Path from: " + str(self.robotPosition) + " to " + str(self.goalPosition) + " Initial Orientation: " + str(self.robotOrientation))
         # get fastest route from AStar giving map, start position and goal position
-        route = AStar.findPath(self.map, self.robotPosition.getPositionArray(), self.goalPositions[0+flag].getPositionArray())
+        route = AStar.findPath(self.map.getMap(), self.robotPosition.getPositionArray(), self.goalPositions[0+flag].getPositionArray())
         print("ROUTE:"+str(route))
         # if no route was found, return UNKNOWN path
         if route == None:
@@ -127,6 +123,7 @@ class PathPlanner:
     # return first, last and intersection nodes from AStar route
     def getIntersectionNodesFromRoute(self, route):
         intersections = []
+        map = self.map.getMap()
         #if self.map[route[0][0]][route[0][1]] == I:
             # get first node
         if route != None:
@@ -135,7 +132,7 @@ class PathPlanner:
             # get intersection nodes
             for node in route[1:-1]:
                 #if self.map[node[0]][node[1]] == Map.I or self.map[node[0]][node[1]] == Map.C: #FORSE BASTA LASCIARE C
-                if self.map[node[0]][node[1]] == Map.C: #FORSE BASTA LASCIARE C    
+                if map[node[0]][node[1]] == Map.C: #FORSE BASTA LASCIARE C    
                     intersections.append(node)
 
             # get last node
@@ -173,7 +170,8 @@ class PathPlanner:
         newTurns = [turns[0]]
         for i in range(1, len(intersections) - 1):
             node = intersections[i]
-            if self.map[node[0]][node[1]] != Map.C:
+            map = self.map.getMap()
+            if map[node[0]][node[1]] != Map.C:
                 newTurns.append(turns[i])
         return newTurns
 

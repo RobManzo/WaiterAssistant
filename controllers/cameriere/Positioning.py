@@ -4,7 +4,7 @@ from Constants import SX, SY , WHEEL_RADIUS
 import Map
 
 class Positioning:
-    def __init__(self, compass, positionsensor):
+    def __init__(self, compass, positionsensor, map):
         self.orientation = -123
         self.compass = compass
         self.positionsensor = positionsensor
@@ -17,6 +17,7 @@ class Positioning:
         self.distance=0
         self.psstep = 0
         #self.i=1
+        self.map = map
 
     def updateOrientation(self):
         self.orientation = self.compass.compassToDegree()
@@ -78,6 +79,6 @@ class Positioning:
         self.updateOrientation()
     
     def setNewObstacle(self, obstacle):
-        Map.setNewObstacle(obstacle)
+        self.map.setNewObstacle(obstacle)
         print("setting new obstacle at:")
         obstacle.printCoordinate()

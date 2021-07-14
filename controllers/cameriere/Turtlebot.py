@@ -7,6 +7,7 @@ from CollisionAvoidance import CollisionAvoidance
 from Constants import TIMESTEP,INSERT,MOVING,BASE,STOP
 from ExternalController import ExternalController
 from PathPlanner import PathPlanner
+from Map import Map
 
 class Turtlebot:
 
@@ -20,12 +21,13 @@ class Turtlebot:
         self.compass = Compass(self.robot)
         self.DSensor = DistanceSensor(self.robot)
         self.camera = Camera(self.robot)
+        self.map = Map()
         self.linefollower = LineFollower(self.camera)
         self.positionsensor = PositionSensor(self.robot)
-        self.positioning = Positioning(self.compass, self.positionsensor)
-        self.pathplanner=PathPlanner(self.positioning,self.externalcontroller)
+        self.positioning = Positioning(self.compass, self.positionsensor, self.map)
+        self.pathplanner=PathPlanner(self.positioning,self.externalcontroller, self.map)
         self.collisionAvoidance = CollisionAvoidance(self.DSensor)
-        self.movement = Movement(self.pathplanner,self.positioning,self.lmotor,self.rmotor,self.collisionAvoidance, self.linefollower, self.externalcontroller)
+        self.movement = Movement(self.pathplanner,self.positioning,self.lmotor,self.rmotor,self.collisionAvoidance, self.linefollower, self.externalcontroller, self.map)
 
     def run(self):
         print("inserire Tavolo")
