@@ -2,7 +2,7 @@
 import time
 from Misc import Position
 from Constants import NORTH, SOUTH, EAST, WEST,BASE
-from Constants import ROTSPEED, ADJSPEED, SPEED, UNKNOWN, INSERT,MOVING,STOP
+from Constants import SX, SY, ROTSPEED, ADJSPEED, SPEED, UNKNOWN, INSERT,MOVING, STOP
 import Map
 
 
@@ -68,7 +68,7 @@ class Movement:
     
     def toNewOrientation(self, orientation):
         self.isRotating = True
-        if(self.neworientation==None and self.lastGoal.comparePosition(Position(3,4))):
+        if(self.neworientation==None and self.lastGoal.comparePosition(Position(SX,SY))):
             self.neworientation=0
         if(self.neworientation == NORTH and 270.0 < orientation < 360.0 ):
             if(358.0 < orientation < 360.0 or  0 <= orientation <= 2):
@@ -200,7 +200,7 @@ class Movement:
             elif(self.isRotating):
                 self.toNewOrientation(orientation)
                 self.collisionAvoidance.disable()
-            elif(self.isParking and self.position.comparePosition(Position(3,4))):
+            elif(self.isParking and self.position.comparePosition(Position(SX,SY))):
                 if(358.0 < orientation < 360.0 or  0 <= orientation <= 2):
                     self.isRotating = False
                     self.isParking=False
@@ -216,7 +216,7 @@ class Movement:
                 self.movement(0)
                 self.lineFollower.disable()
                 print("GOAL RAGGIUNTO") 
-                self.pathplanner.setGoalPosition(Position(3,4))
+                self.pathplanner.setGoalPosition(Position(SX, SY))
                 self.isParking=True
                 self.lastGoal=self.positioning.getPosition()
                 
@@ -275,7 +275,7 @@ class Movement:
                 self.distance = self.positioning.getDistanceTraveled()
                 if(self.distance!=0.0):
                     self.tiles = self.distance % 0.4 
-                    self.nearestintersection = Map.findNearestIntersection(self.position,self.currentPath[0])
+                    self.nearestintersection = Map.findNearestIntersection(self.position, self.currentPath[0])
                     print(Position.degreeToDirection(self.positioning.getOrientation()))
                     if(self.nearestintersection!=-1):
                         print("NEAREST INTERSECTION:")

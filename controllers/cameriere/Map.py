@@ -1,8 +1,8 @@
 from Misc import Position
 from Constants import NORTH, SOUTH, EAST, WEST
 # MAP DIMENSIONS
-WIDTH = 15          # map width
-HEIGHT = 15         # map height
+WIDTH = 17          # map width
+HEIGHT = 17        # map height
 MAP_RESOLUTION = 0.4 # map resolution
 
 # MAP CONSTANS
@@ -20,32 +20,34 @@ L = 0
 # v X            |
 #                v N
 #                                       
-#      Y  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16     X    map[X][Y]
-MAP =   [[B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B], # 0
-         [B, K, K, K, K, F, F, F, F, F, F, F, F, F, F, F, B], # 1
-         [B, K, K, K, K, F, C, 1, B, B, 1, C, 2, B, B, B, B], # 2
-         [B, K, K, K, S, F, L, F, F, F, F, L, F, F, F, F, B], # 3
-         [B, C, L, L, C, L, C, L, L, L, L, C, F, F, F, F, B], # 4
-         [B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B], # 5
-         [B, C, 3, B, B, 3, C, 4, B, B, 4, C, 5, B, B, F, B], # 6
-         [B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B], # 7
-         [B, C, L, L, L, L, C, L, L, L, L, C, F, F, F, F, B], # 8
-         [B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B], # 9
-         [B, C, 6, B, B, 6, C, 7, B, B, 7, C, 8, B, B, F, B], # 10
-         [B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B], # 11
-         [B, C, L, L, L, L, C, L, L, L, L, C, F, F, F, F, B], # 12
-         [B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B], # 13
-         [B, C, 9, B, B, 9, C, 10, B, B, 10, C, 11, B, B, F, B], # 14
-         [B, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, B], # 15
-         [B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B]] # 16
+#      Y  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18   X    map[X][Y]
+MAP =   [[B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B], # 0
+         [B, K, K, K, K, K, B, B, B, B, B, B, B, B, B, B, B, B, B], # 1
+         [B, K, K, K, K, K, F, F, F, F, F, F, F, F, F, F, F, B, B], # 2
+         [B, K, K, K, K, K, F, C, 1, B, B, 1, C, 2, B, B, B, B, B], # 3
+         [B, K, K, K, K, S, F, L, F, F, F, F, L, F, F, F, F, B, B], # 4
+         [B, B, C, L, L, C, L, C, L, L, L, L, C, F, F, F, F, B, B], # 5
+         [B, B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B, B], # 6
+         [B, B, C, 3, B, B, 3, C, 4, B, B, 4, C, 5, B, B, F, B, B], # 7
+         [B, B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B, B], # 8
+         [B, B, C, L, L, L, L, C, L, L, L, L, C, F, F, F, F, B, B], # 9
+         [B, B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B, B], # 10
+         [B, B, C, 6, B, B, 6, C, 7, B, B, 7, C, 8, B, B, F, B, B], # 11
+         [B, B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B, B], # 12
+         [B, B, C, L, L, L, L, C, L, L, L, L, C, F, F, F, F, B, B], # 13
+         [B, B, L, F, F, F, F, L, F, F, F, F, L, F, F, F, F, B, B], # 14
+         [B, B, C, 9, B, B, 9, C, 10, B, B, 10, C, 11, B, B, F, B, B], # 15
+         [B, B, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, B, B], # 16
+         [B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B], # 17
+         [B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B]] # 18
 
 
 #return positions of goals x table
 def tablePositions(table):
     print("TABLE:"+str(table))
     list=[]
-    for i in range(17):
-        for j in range(17):
+    for i in range(19):
+        for j in range(19):
                 if MAP[i][j] == table:
                     list.append(Position(i, j))
     return list

@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.5211627837844479 -0.6605949850453159 -0.5403735916299238 4.2569926085821574
-  position 3.2671308984770904 16.31214952886107 -0.38727118031383984
+  orientation -0.5571120521059739 0.6350296328884584 0.5351294485933478 1.992595337648952
+  position 4.023801177006484 18.140777769914063 -0.22003166308462024
 }
 TexturedBackground {
   texture "empty_office"
@@ -14,7 +14,7 @@ TexturedBackgroundLight {
 }
 RectangleArena {
   name "restaurant"
-  floorSize 6 6
+  floorSize 6.8 6.8
   floorTileSize 0.8 0.8
   floorAppearance PBRAppearance {
     baseColorMap ImageTexture {
@@ -50,7 +50,7 @@ StraightRoadSegment {
   pavementAppearance NULL
 }
 Door {
-  translation 3.02 0 -4.42745e-07
+  translation 3.42 0 -8.50585e-07
   rotation 0 1 0 -1.5707953071795862
   size 0.5 0.7 0.04
   canBeOpen FALSE
@@ -65,10 +65,10 @@ Door {
   }
 }
 HotPlate {
-  translation -2.77 0.27 2.9
+  translation -3.15 0.27 2.9
 }
 HotPlate {
-  translation -2.77 0.27 2.42
+  translation -3.16 0.27 2.42
   name "hot plate(1)"
 }
 Table {
@@ -160,7 +160,7 @@ Table {
   frameThickness 0.04
 }
 Wall {
-  translation -2.4 0 1.22
+  translation -2.8 0 1.22
   size 1.2 0.8 0.04
   appearance Roughcast {
     colorOverride 0.3 0.3 0.3
@@ -170,10 +170,10 @@ Wall {
   }
 }
 Wall {
-  translation -1.87 0 2.45
+  translation -2.24 0 2.7
   rotation 0 1 0 -1.5707953071795862
   name "wall(1)"
-  size 1.1 0.4 0.04
+  size 1.4 0.4 0.04
   appearance Roughcast {
     colorOverride 0.3 0.3 0.3
     textureTransform TextureTransform {
@@ -182,10 +182,10 @@ Wall {
   }
 }
 Wall {
-  translation -2.53 0 2.51
+  translation -2.89 0 2.71
   rotation 0 1 0 -1.5707953071795862
   name "wall(4)"
-  size 1 0.3 0.02
+  size 1.4 0.3 0.02
   appearance Roughcast {
     colorOverride 0.7 0.7 0.7
     textureTransform TextureTransform {
@@ -194,10 +194,10 @@ Wall {
   }
 }
 Wall {
-  translation -3.025 0.287223 2.51
+  translation -3.395 0.287223 2.71
   rotation 0.5773502691896258 0.5773502691896258 0.5773502691896258 -2.094395307179586
   name "wall(5)"
-  size 1 0.5 0.02
+  size 1.4 0.5 0.02
   appearance Roughcast {
     colorOverride 0.7 0.7 0.7
     textureTransform TextureTransform {
@@ -206,10 +206,10 @@ Wall {
   }
 }
 Wall {
-  translation -1.87 0.59 2.45
+  translation -2.24 0.59 2.7
   rotation 0 1 0 -1.5707953071795862
   name "wall(2)"
-  size 1.1 0.2 0.04
+  size 1.4 0.2 0.04
   appearance Roughcast {
     colorOverride 0.3 0.3 0.3
     textureTransform TextureTransform {
@@ -218,7 +218,7 @@ Wall {
   }
 }
 Wall {
-  translation -1.87 0.4 2.1
+  translation -2.24 0.4 2.2
   rotation 0 1 0 -1.5707953071795862
   name "wall(3)"
   size 0.4 0.19 0.04
@@ -230,7 +230,7 @@ Wall {
   }
 }
 Oven {
-  translation -2.77 0.34 1.79
+  translation -3.15 0.34 1.79
   mainColor 0.7 0.7 0.7
 }
 TurtleBot3Burger {
