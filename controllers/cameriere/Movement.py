@@ -179,8 +179,10 @@ class Movement:
             self.currentPath = self.pathplanner.getFastestRoute(0)
             self.secondPath =self.pathplanner.getFastestRoute(1)
             if(len(self.currentPath)==0 and len(self.secondPath)==0):
-                self.goalReach=True
                 self.pathplanner.setGoalPosition(Position(SX, SY),self.isSecondRoute)
+                self.isParking=True
+                self.backToKitchen=True
+                self.lastGoal=self.positioning.getPosition() 
                 print("Back to base, goal unreachable")
             elif(len(self.currentPath)>len(self.secondPath) or len(self.currentPath)==0):
                     self.currentPath=self.secondPath
@@ -237,8 +239,8 @@ class Movement:
                 print("GOAL RAGGIUNTO") 
                 self.pathplanner.setGoalPosition(Position(SX, SY),self.isSecondRoute)
                 self.isParking=True
-                self.lastGoal=self.positioning.getPosition()
                 self.backToKitchen=True
+                self.lastGoal=self.positioning.getPosition() 
                 self.goalReach=False
                 
                 #print("lastGoal:")
@@ -297,7 +299,9 @@ class Movement:
                 self.secondPath =self.pathplanner.getFastestRoute(1)
                 if(len(self.currentPath)==0 and len(self.secondPath)==0):
                     print("Back to base, goal unreachable")
-                    self.goalReach=True
+                    self.isParking=True
+                    self.backToKitchen=True
+                    self.lastGoal=self.positioning.getPosition() 
                     self.pathplanner.setGoalPosition(Position(SX, SY),self.isSecondRoute)
                     #self.updatePath()
                 elif(len(self.currentPath)>len(self.secondPath) or len(self.currentPath)==0):
