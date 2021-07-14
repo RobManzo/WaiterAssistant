@@ -15,6 +15,7 @@ class Positioning:
         self.distancetravelled = 0.0
         self.error=0
         self.distance=0
+        self.psstep = 0
         #self.i=1
 
     def updateOrientation(self):
@@ -33,6 +34,9 @@ class Positioning:
     def resetDistanceTraveled(self):
         #self.i+=self.i
         self.error = self.distance
+    
+    def resetDistance(self):
+        self.distance = 0
 
     def approximateOrientation(self, orientation):
         if( 315.0 <= orientation <= 360.0 or 0.0 <= orientation <= 45.0):
