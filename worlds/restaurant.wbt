@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.5721475603299864 0.58525094910885 0.5745680949858206 2.06571550096126
-  position 0.7366606486977736 23.17438073740429 0.016050592557547927
+  orientation 0.5266399857767792 -0.665680337472256 -0.528696523237913 4.334999819206315
+  position 2.3445789844251412 11.339352878167828 -0.5635230336119518
 }
 TexturedBackground {
   texture "empty_office"
@@ -71,7 +71,7 @@ Door {
     colorOverride 0.5 0.5 0.5
   }
   doorHandle DoorLever {
-    translation 0 -3.293984534352701e-05 0
+    translation 0 -5.489249068718616e-05 0
   }
 }
 HotPlate {
@@ -85,7 +85,7 @@ Table {
   translation -0.8 -7.7615e-06 1.8
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(11)"
-  size 0.8 0.3 0.4
+  size 0.7 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -93,7 +93,7 @@ Table {
   translation -0.8 1.62442e-06 -0.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(1)"
-  size 0.8 0.3 0.4
+  size 0.7 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -101,7 +101,7 @@ Table {
   translation -0.8 1.10098e-05 -2.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(2)"
-  size 0.8 0.3 0.4
+  size 0.7 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -109,7 +109,7 @@ Table {
   translation -2.4 1.10098e-05 -2.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(3)"
-  size 0.8 0.3 0.4
+  size 0.7 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -117,7 +117,7 @@ Table {
   translation -2.4 1.62442e-06 -0.2
   rotation 2.346409999987081e-06 0.9999999999944944 2.346409999987081e-06 1.5708
   name "table(4)"
-  size 0.8 0.3 0.4
+  size 0.6 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -125,7 +125,7 @@ Table {
   translation 0.81 -7.7615e-06 1.8
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(8)"
-  size 0.8 0.3 0.4
+  size 0.7 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -133,7 +133,7 @@ Table {
   translation 0.81 1.62442e-06 -0.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(6)"
-  size 0.8 0.3 0.4
+  size 0.7 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -141,7 +141,7 @@ Table {
   translation 2.41 -7.7615e-06 1.8
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(9)"
-  size 0.8 0.3 0.4
+  size 0.7 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -149,7 +149,7 @@ Table {
   translation 2.41 1.62431e-06 -0.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(10)"
-  size 0.8 0.3 0.4
+  size 0.7 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -157,7 +157,7 @@ Table {
   translation 0.81 1.10098e-05 -2.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(7)"
-  size 0.8 0.3 0.4
+  size 0.7 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.02
 }
@@ -165,7 +165,7 @@ Table {
   translation 2.41 1.10098e-05 -2.2
   rotation 2.3464099999870814e-06 0.9999999999944944 2.3464099999870814e-06 1.5708
   name "table(5)"
-  size 0.8 0.3 0.4
+  size 0.7 0.3 0.4
   feetSize 0.04 0.04
   frameThickness 0.04
 }
@@ -244,9 +244,13 @@ Oven {
   mainColor 0.7 0.7 0.7
 }
 TurtleBot3Burger {
-  hidden rotation_8 0.42469019703711336 0.9050339701545781 0.023489346666521208 1.2796161278031135
-  translation -1.959999011568931 -0.0017226216591975513 1.5899999999910825
-  rotation -0.009196625129715518 0.9999154195348858 -0.009196513610970845 -1.5708698912306143
+  hidden position_0_0 9.450819501187322e-12
+  hidden position_0_1 9.268685843532042e-12
+  hidden position_0_2 1.502267477526775e-09
+  hidden translation_8 -4.721778523730791e-13 0.00404649490960898 0.0809991353234466
+  hidden rotation_8 0.424630484174971 0.9050632415911241 0.023441003175981204 1.2795700798655274
+  translation -1.9599990148138655 -0.0017221430799900447 1.5899999999918022
+  rotation -0.009342864624167287 0.9999127081276961 -0.009342751487191651 -1.5708726028679856
   controller "cameriere"
   controllerArgs [
     "--name=Turtlebot"
@@ -279,25 +283,6 @@ TurtleBot3Burger {
       name "DSENSOR-SHARP-BACK"
     }
   ]
-}
-StraightRoadSegment {
-  translation -1.6 0.001 3.04
-  rotation 0 1 0 3.141592653589793
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 6.1
-  appearance PBRAppearance {
-    baseColor 0 0 0
-  }
-  pavementAppearance NULL
 }
 StraightRoadSegment {
   translation -0.8 0.001 3
@@ -520,106 +505,6 @@ StraightRoadSegment {
   pavementAppearance NULL
 }
 StraightRoadSegment {
-  translation -0.8 0.001 -2.6
-  rotation 0 1 0 3.141592653589793
-  name "road(18)"
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 0.4
-  appearance PBRAppearance {
-    baseColor 0 0 0
-  }
-  pavementAppearance NULL
-}
-StraightRoadSegment {
-  translation 0.8 0.001 -2.6
-  rotation 0 1 0 3.141592653589793
-  name "road(16)"
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 0.4
-  appearance PBRAppearance {
-    baseColor 0 0 0
-  }
-  pavementAppearance NULL
-}
-StraightRoadSegment {
-  translation 2.4 0.001 -2.6
-  rotation 0 1 0 3.141592653589793
-  name "road(17)"
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 0.4
-  appearance PBRAppearance {
-    baseColor 0 0 0
-  }
-  pavementAppearance NULL
-}
-StraightRoadSegment {
-  translation -2.4 0.001 -2.6
-  rotation 0 1 0 3.141592653589793
-  name "road(19)"
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 0.4
-  appearance PBRAppearance {
-    baseColor 0 0 0
-  }
-  pavementAppearance NULL
-}
-StraightRoadSegment {
-  translation 0 0.001 -2.6
-  rotation 0 1 0 3.141592653589793
-  name "road(21)"
-  width 0.1
-  numberOfLanes 1
-  lines [
-    RoadLine {
-      color 0 0 1
-    }
-  ]
-  roadBorderHeight 0
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 0.4
-  appearance PBRAppearance {
-    baseColor 0 0 0
-  }
-  pavementAppearance NULL
-}
-StraightRoadSegment {
   translation 2.4 0.001 1.4
   rotation 0 1 0 3.141592653589793
   name "road(10)"
@@ -673,7 +558,27 @@ StraightRoadSegment {
   roadBorderHeight 0
   startingRoadBorderWidth 0
   endingRoadBorderWidth 0
-  length 5.8
+  length 5.6
+  appearance PBRAppearance {
+    baseColor 0 0 0
+  }
+  pavementAppearance NULL
+}
+StraightRoadSegment {
+  translation -1.6 0.001 3
+  rotation 0 1 0 3.141592653589793
+  name "road(18)"
+  width 0.1
+  numberOfLanes 1
+  lines [
+    RoadLine {
+      color 0 0 1
+    }
+  ]
+  roadBorderHeight 0
+  startingRoadBorderWidth 0
+  endingRoadBorderWidth 0
+  length 5.6
   appearance PBRAppearance {
     baseColor 0 0 0
   }
@@ -695,7 +600,7 @@ StraightRoadSegment {
   endingRoadBorderWidth 0
   rightBorder FALSE
   leftBorder FALSE
-  length 5.8
+  length 5.6
   appearance PBRAppearance {
     baseColor 0 0 0
   }
@@ -722,7 +627,7 @@ StraightRoadSegment {
   pavementAppearance NULL
 }
 StraightRoadSegment {
-  translation -2.55 0.001 -2.81
+  translation -2.2 0.001 -2.41
   rotation 0 1 0 1.5707996938995747
   name "road(15)"
   width 0.1
@@ -735,7 +640,47 @@ StraightRoadSegment {
   roadBorderHeight 0
   startingRoadBorderWidth 0
   endingRoadBorderWidth 0
-  length 5.1
+  length 0.8
+  appearance PBRAppearance {
+    baseColor 0 0 0
+  }
+  pavementAppearance NULL
+}
+StraightRoadSegment {
+  translation 1.4 0.001 -2.41
+  rotation 0 1 0 1.5707996938995747
+  name "road(17)"
+  width 0.1
+  numberOfLanes 1
+  lines [
+    RoadLine {
+      color 0 0 1
+    }
+  ]
+  roadBorderHeight 0
+  startingRoadBorderWidth 0
+  endingRoadBorderWidth 0
+  length 0.8
+  appearance PBRAppearance {
+    baseColor 0 0 0
+  }
+  pavementAppearance NULL
+}
+StraightRoadSegment {
+  translation -0.6 0.001 -2.41
+  rotation 0 1 0 1.5707996938995747
+  name "road(16)"
+  width 0.1
+  numberOfLanes 1
+  lines [
+    RoadLine {
+      color 0 0 1
+    }
+  ]
+  roadBorderHeight 0
+  startingRoadBorderWidth 0
+  endingRoadBorderWidth 0
+  length 1.2
   appearance PBRAppearance {
     baseColor 0 0 0
   }
